@@ -1,0 +1,24 @@
+# API Coverage Matrix — Organized verified prompts
+
+| Prompt | Priority | Folder | Title |
+|---|---|---|---|
+| [A01](../04-api-prompts/01-domain-api/A01-auth--sessions--2fa--reset-tokens-and-portal-role-boundaries.md) | P0 | `04-api-prompts/01-domain-api` | A01 — Auth, sessions, 2FA, reset tokens and portal role boundaries |
+| [A02](../04-api-prompts/01-domain-api/A02-users-self-service-profile--preferences--security--export-and-deletion.md) | P0 | `04-api-prompts/01-domain-api` | A02 — Users self-service profile, preferences, security, export and deletion |
+| [A03](../04-api-prompts/01-domain-api/A03-requests--service-catalogue-and-admin-request-triage-apis.md) | P1 | `04-api-prompts/01-domain-api` | A03 — Requests, service catalogue and admin request triage APIs |
+| [A04](../04-api-prompts/01-domain-api/A04-quotes--quote-documents--templates--line-items-and-schedules.md) | P0 | `04-api-prompts/01-domain-api` | A04 — Quotes, quote documents, templates, line items and schedules |
+| [A05](../04-api-prompts/01-domain-api/A05-projects--progress--milestones--deliverables-and-public-project-apis.md) | P0 | `04-api-prompts/01-domain-api` | A05 — Projects, progress, milestones, deliverables and public project APIs |
+| [A06](../04-api-prompts/01-domain-api/A06-payments--invoices--payment-methods--offline-transfers--disputes-and-d.md) | P0 | `04-api-prompts/01-domain-api` | A06 — Payments, invoices, payment methods, offline transfers, disputes and documents |
+| [A07](../04-api-prompts/01-domain-api/A07-messaging--chat-threads--moderation-and-websocket-events.md) | P1 | `04-api-prompts/01-domain-api` | A07 — Messaging, chat threads, moderation and websocket events |
+| [A08](../04-api-prompts/01-domain-api/A08-notifications--preferences--push-subscriptions--templates-and-delivery.md) | P1 | `04-api-prompts/01-domain-api` | A08 — Notifications, preferences, push subscriptions, templates and delivery |
+| [A09](../04-api-prompts/01-domain-api/A09-media-uploads--chunking--sharing--public-share-and-admin-media.md) | P1 | `04-api-prompts/01-domain-api` | A09 — Media uploads, chunking, sharing, public share and admin media |
+| [A10](../04-api-prompts/01-domain-api/A10-blog--comments--taxonomy--portfolio--contact-and-public-content-apis.md) | P1 | `04-api-prompts/01-domain-api` | A10 — Blog, comments, taxonomy, portfolio, contact and public content APIs |
+| [A11](../04-api-prompts/01-domain-api/A11-admin-dashboard--analytics--audit--reports--health-and-system-operatio.md) | P0 | `04-api-prompts/01-domain-api` | A11 — Admin dashboard, analytics, audit, reports, health and system operations |
+| [A12](../04-api-prompts/01-domain-api/A12-admin-users--roles--sessions--password-reset--export--restore-and-impe.md) | P0 | `04-api-prompts/01-domain-api` | A12 — Admin users, roles, sessions, password reset, export, restore and impersonation APIs |
+| [A13](../04-api-prompts/01-domain-api/A13-admin-domain-operations--requests--quotes--projects--progress--service.md) | P0 | `04-api-prompts/01-domain-api` | A13 — Admin domain operations: requests, quotes, projects, progress, service packages and time entries |
+| [A14](../04-api-prompts/01-domain-api/A14-admin-payments--disputes--accounts--legal-profiles--reconciliation-and.md) | P0 | `04-api-prompts/01-domain-api` | A14 — Admin payments, disputes, accounts, legal profiles, reconciliation and revenue APIs |
+| [A15](../04-api-prompts/01-domain-api/A15-admin-messaging--moderation--notifications--media-content-portfolio-an.md) | P1 | `04-api-prompts/01-domain-api` | A15 — Admin messaging, moderation, notifications, media/content/portfolio and integrations APIs |
+| [A16](../04-api-prompts/01-domain-api/A16-health--inbound-webhooks--workers--websocket-gateway-and-deployment-sm.md) | P1 | `04-api-prompts/01-domain-api` | A16 — Health, inbound webhooks, workers, websocket gateway and deployment smoke |
+| [A17](../04-api-prompts/02-platform-backend/A17-frontend-bff-same-origin-proxy-auth-cookies-and-csp-contracts.md) | P0 | `04-api-prompts/02-platform-backend` | A17 — Frontend BFF, same-origin proxy, auth cookies and CSP contracts |
+| [A18](../04-api-prompts/02-platform-backend/A18-backend-cross-cutting-platform-contracts-security-cache-idempotency.md) | P0 | `04-api-prompts/02-platform-backend` | A18 — Backend cross-cutting platform contracts: security, cache, idempotency, validation and errors |
+| [A19](../04-api-prompts/02-platform-backend/A19-workers-outbox-documents-email-notification-media-export-and-webhook-side-effects.md) | P0 | `04-api-prompts/02-platform-backend` | A19 — Workers, outbox, documents, email, notification, media, export and webhook side effects |
+| [A20](../04-api-prompts/02-platform-backend/A20-demo-seed-data-scripts-and-fixture-readiness.md) | P0 | `04-api-prompts/02-platform-backend` | A20 — Demo seed data, scripts and fixture readiness |

@@ -1,0 +1,51 @@
+# UI Coverage Matrix — Organized verified prompts
+
+| Prompt | Priority | Folder | Title |
+|---|---|---|---|
+| [P01](../03-ui-prompts/01-public/P01-marketing-landing-seo.md) | P2 | `03-ui-prompts/01-public` | P01 — Marketing landing, SEO, redirects and contact intake |
+| [P02](../03-ui-prompts/01-public/P02-public-app-content-share-verify.md) | P2 | `03-ui-prompts/01-public` | P02 — App-host public blog, portfolio, share viewer, document verify and legal surfaces |
+| [P03](../03-ui-prompts/02-client-portal/P03-client-auth-signup-password-email-2fa.md) | P0 | `03-ui-prompts/02-client-portal` | P03 — Client auth: signup, login, forgot/reset password, email verification and 2FA |
+| [P04](../03-ui-prompts/02-client-portal/P04-client-shell-global-chrome-realtime.md) | P1 | `03-ui-prompts/02-client-portal` | P04 — Client shell, global chrome, nav, command palette, bell, chat dock and realtime sync |
+| [P05](../03-ui-prompts/02-client-portal/P05-client-dashboard-work-summary.md) | P2 | `03-ui-prompts/02-client-portal` | P05 — Client dashboard and work summary cards |
+| [P06](../03-ui-prompts/02-client-portal/P06-client-requests-intake-detail.md) | P1 | `03-ui-prompts/02-client-portal` | P06 — Client requests: list, intake wizard, detail, attachments and lifecycle |
+| [P07](../03-ui-prompts/02-client-portal/P07-client-quotes-acceptance-documents.md) | P0 | `03-ui-prompts/02-client-portal` | P07 — Client quotes: list/detail, accept, decline, request changes, PDF/contract |
+| [P08](../03-ui-prompts/02-client-portal/P08-client-projects-list-new-archive.md) | P2 | `03-ui-prompts/02-client-portal` | P08 — Client projects list, new-from-quote, archive and completed views |
+| [P09](../03-ui-prompts/02-client-portal/P09-client-project-hub-core-progress-milestones-messages.md) | P0 | `03-ui-prompts/02-client-portal` | P09 — Client project detail hub: overview, progress, milestones and messages |
+| [P10](../03-ui-prompts/02-client-portal/P10-client-project-delivery-files-media.md) | P0 | `03-ui-prompts/02-client-portal` | P10 — Client project deliverables, files, previews, approvals and file actions |
+| [P11](../03-ui-prompts/02-client-portal/P11-client-invoices-documents-verify.md) | P0 | `03-ui-prompts/02-client-portal` | P11 — Client invoices and generated documents |
+| [P12](../03-ui-prompts/02-client-portal/P12-client-payments-checkout-methods-disputes.md) | P0 | `03-ui-prompts/02-client-portal` | P12 — Client payments: overview, checkout, saved methods, offline transfer and disputes |
+| [P13](../03-ui-prompts/02-client-portal/P13-client-messaging-chat-dock.md) | P1 | `03-ui-prompts/02-client-portal` | P13 — Client messaging: inbox, threads, project conversations, direct chat, attachments and dock |
+| [P14](../03-ui-prompts/02-client-portal/P14-client-notifications-preferences-push.md) | P1 | `03-ui-prompts/02-client-portal` | P14 — Client notifications center, bell, preferences and push subscription |
+| [P15](../03-ui-prompts/02-client-portal/P15-client-settings-profile-security-account.md) | P0 | `03-ui-prompts/02-client-portal` | P15 — Client settings, profile, security, sessions, data export and account deletion |
+| [P16](../03-ui-prompts/02-client-portal/P16-client-media-files-library.md) | P1 | `03-ui-prompts/02-client-portal` | P16 — Client media/files library in settings |
+| [P17](../03-ui-prompts/02-client-portal/P17-client-responsive-a11y-security-sweep.md) | P1 | `03-ui-prompts/02-client-portal` | P17 — Client portal sweep: responsive, accessibility, offline, security and route aliases |
+| [P18](../03-ui-prompts/03-admin-console/P18-admin-auth-operator-gate.md) | P0 | `03-ui-prompts/03-admin-console` | P18 — Admin auth/operator gate, 2FA, role mismatch and session teardown |
+| [P19](../03-ui-prompts/03-admin-console/P19-admin-shell-global-chrome.md) | P1 | `03-ui-prompts/03-admin-console` | P19 — Admin shell/global chrome: nav, palette, notifications, messages, moderation, user menu |
+| [P20](../03-ui-prompts/03-admin-console/P20-admin-dashboard-analytics.md) | P1 | `03-ui-prompts/03-admin-console` | P20 — Admin dashboard and analytics |
+| [P21](../03-ui-prompts/03-admin-console/P21-admin-contact-inquiries.md) | P1 | `03-ui-prompts/03-admin-console` | P21 — Admin contact inquiries and public contact parity |
+| [P22](../03-ui-prompts/03-admin-console/P22-admin-requests-capacity.md) | P1 | `03-ui-prompts/03-admin-console` | P22 — Admin requests triage, assignment, notes, status and capacity |
+| [P23](../03-ui-prompts/03-admin-console/P23-admin-request-to-quote-builder.md) | P0 | `03-ui-prompts/03-admin-console` | P23 — Admin request-to-quote builder, edit and prefill flow |
+| [P24](../03-ui-prompts/03-admin-console/P24-admin-quotes-templates-lineitems.md) | P0 | `03-ui-prompts/03-admin-console` | P24 — Admin quotes list/detail, templates, line item library, payment schedules and documents |
+| [P25](../03-ui-prompts/03-admin-console/P25-admin-projects-overview-team-export-duplicate.md) | P0 | `03-ui-prompts/03-admin-console` | P25 — Admin projects list/detail overview, team, status, export and duplicate |
+| [P26](../03-ui-prompts/03-admin-console/P26-admin-project-delivery-progress-portfolio-time.md) | P0 | `03-ui-prompts/03-admin-console` | P26 — Admin project delivery, milestones/files, progress updates, analytics, portfolio bridge and time entries |
+| [P27](../03-ui-prompts/03-admin-console/P27-admin-payments-overview-detail-manual-reconciliation.md) | P0 | `03-ui-prompts/03-admin-console` | P27 — Admin payments overview, detail, manual payments, transfers, refunds and reconciliation |
+| [P28](../03-ui-prompts/03-admin-console/P28-admin-payment-disputes-accounts-company-legal.md) | P0 | `03-ui-prompts/03-admin-console` | P28 — Admin payment disputes, platform accounts and company legal profiles |
+| [P29](../03-ui-prompts/03-admin-console/P29-admin-users-directory-search-bulk.md) | P1 | `03-ui-prompts/03-admin-console` | P29 — Admin users directory, search, filters and bulk actions |
+| [P30](../03-ui-prompts/03-admin-console/P30-admin-user-detail-password-sessions-impersonation.md) | P0 | `03-ui-prompts/03-admin-console` | P30 — Admin user detail: profile, role/status, password reset, sessions, export, deactivate and impersonation |
+| [P31](../03-ui-prompts/03-admin-console/P31-admin-audit-security-impersonation-sessions.md) | P0 | `03-ui-prompts/03-admin-console` | P31 — Admin audit console, security stats, user logs, impersonation sessions and export |
+| [P32](../03-ui-prompts/03-admin-console/P32-admin-media-storage-detail-share-quarantine-analytics.md) | P1 | `03-ui-prompts/03-admin-console` | P32 — Admin media library: storage, detail drawer, sharing, quarantine, analytics and cleanup |
+| [P33](../03-ui-prompts/03-admin-console/P33-admin-messages-moderation.md) | P1 | `03-ui-prompts/03-admin-console` | P33 — Admin messages, project/system broadcast, group/direct chat and moderation queue |
+| [P34](../03-ui-prompts/03-admin-console/P34-admin-notifications-broadcast-segment-delivery.md) | P0 | `03-ui-prompts/03-admin-console` | P34 — Admin notifications: inbox, single send, broadcast, segment, delivery report and platform log |
+| [P35](../03-ui-prompts/03-admin-console/P35-admin-system-config-features-jobs-templates-ops.md) | P0 | `03-ui-prompts/03-admin-console` | P35 — Admin system hub: health, config, features, jobs, templates, operations, logs and redirects |
+| [P36](../03-ui-prompts/03-admin-console/P36-admin-content-blog-cms.md) | P1 | `03-ui-prompts/03-admin-console` | P36 — Admin content/blog CMS: posts, editor, taxonomy, comments and analytics |
+| [P37](../03-ui-prompts/03-admin-console/P37-admin-portfolio-cms.md) | P1 | `03-ui-prompts/03-admin-console` | P37 — Admin portfolio CMS: list, editor, media, categories, reorder, analytics and public parity |
+| [P38](../03-ui-prompts/03-admin-console/P38-admin-pipeline-integrations-webhooks-reports.md) | P1 | `03-ui-prompts/03-admin-console` | P38 — Admin pipeline, user/project hubs, integrations/webhooks, API keys alias and reports gap |
+| [P41](../03-ui-prompts/03-admin-console/P41-admin-operator-profile.md) | P1 | `03-ui-prompts/03-admin-console` | P41 — Admin operator profile and self-account surface |
+| [P39](../03-ui-prompts/04-cross-portal-regression-platform/P39-cross-portal-end-to-end-workflows.md) | P0 | `03-ui-prompts/04-cross-portal-regression-platform` | P39 — Cross-portal end-to-end workflows and backend/UI parity |
+| [P40](../03-ui-prompts/04-cross-portal-regression-platform/P40-full-regression-responsive-a11y-performance.md) | P1 | `03-ui-prompts/04-cross-portal-regression-platform` | P40 — Full regression sweep: responsive, accessibility, performance, offline, security and coverage closure |
+| [P42](../03-ui-prompts/04-cross-portal-regression-platform/P42-source-coverage-reconciliation.md) | P0 | `03-ui-prompts/04-cross-portal-regression-platform` | P42 — Source coverage reconciliation: routes, controls, API usage and backend endpoint gaps |
+| [P43](../03-ui-prompts/04-cross-portal-regression-platform/P43-frontend-middleware-bff-proxy-csp-hard-404s.md) | P0 | `03-ui-prompts/04-cross-portal-regression-platform` | P43 — Frontend middleware, BFF route handlers, same-origin API proxy, CSP and hard 404s |
+| [P44](../03-ui-prompts/04-cross-portal-regression-platform/P44-debug-observability-diagnostics-and-secret-leakage.md) | P0 | `03-ui-prompts/04-cross-portal-regression-platform` | P44 — Debug panels, diagnostics, telemetry and secret/PII leakage sweep |
+| [P45](../03-ui-prompts/04-cross-portal-regression-platform/P45-known-regression-rerun-and-automated-test-parity.md) | P0 | `03-ui-prompts/04-cross-portal-regression-platform` | P45 — Known regression rerun and automated e2e parity sweep |
+| [P46](../03-ui-prompts/04-cross-portal-regression-platform/P46-demo-seed-fixtures-and-destructive-flow-readiness.md) | P0 | `03-ui-prompts/04-cross-portal-regression-platform` | P46 — Demo seed fixtures, audit records and destructive-flow readiness |
+| [P47](../03-ui-prompts/04-cross-portal-regression-platform/P47-generated-documents-emails-exports-and-download-artifacts.md) | P1 | `03-ui-prompts/04-cross-portal-regression-platform` | P47 — Generated documents, emails, exports and downloadable artifacts |

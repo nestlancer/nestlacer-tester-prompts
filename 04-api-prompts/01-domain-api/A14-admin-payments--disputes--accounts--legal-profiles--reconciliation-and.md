@@ -1,0 +1,90 @@
+# A14 — Admin payments, disputes, accounts, legal profiles, reconciliation and revenue APIs
+
+**Priority:** P0  
+**Execution:** Direct API/backend contract testing is allowed for this `A##` prompt. Use demo/prod data only.  
+**Scope:** Admin money backend APIs
+
+## 1. Source and contract references
+- openapi admin payments/disputes/accounts/company-legal/reconciliation/revenue
+- services/payments admin controllers
+
+## 2. Endpoint groups to cover
+- admin payments list/stats/summary/detail/timeline/transactions/verify/refund/manual
+- payment milestones/update/complete/request/release/create
+- disputes update/respond/resolve
+- platform accounts CRUD
+- company legal profiles CRUD
+- reconciliation/revenue report/export
+
+## 3. Required setup / fixtures
+- demo payments in multiple statuses
+- demo dispute
+- demo platform account
+- demo legal profile
+- test-mode refund/payment
+
+## 4. Mandatory tests
+1. List and stats consistency.
+2. Payment verify/approve/reject offline transfer with idempotency.
+3. Manual payment create and reconciliation.
+4. Refund limits and audit.
+5. Milestone payment lifecycle.
+6. Dispute response/update/resolve.
+7. Platform accounts and legal profile validation.
+8. Revenue report/export.
+
+## 5. Negative and abuse probes
+- Refund over amount/duplicate.
+- Approve already rejected transfer.
+- Delete active platform account.
+- Invalid GSTIN/PAN/IFSC.
+- Revenue export unauthorized.
+
+## 6. Cross-check with UI prompts
+- P27-P28 admin money UI
+- P12 client payment parity
+
+## 7. Evidence to capture
+- Request method/path, status, request id/correlation id, latency and response envelope shape.
+- Request/response keys only for sensitive data; redact tokens, passwords, cookies, OTPs, reset links and PII values.
+- Before/after state for every mutation.
+- Audit/outbox/notification/document side effects where relevant.
+- Any OpenAPI/controller mismatch.
+
+## 8. Output format
+
+```markdown
+# Result — A14 — Admin payments, disputes, accounts, legal profiles, reconciliation and revenue APIs
+
+## Summary
+- Environment:
+- Accounts/fixtures:
+- Endpoint groups covered:
+- Highest severity:
+
+## Endpoint coverage
+| Method + path | Scenario | Status | Verdict | Evidence |
+|---|---|---|---|---|
+
+## Contract drift
+| Endpoint | OpenAPI says | Runtime/source says | Severity |
+|---|---|---|---|
+
+## Bugs
+...
+```
+
+## Security addendum — mandatory for this API prompt
+
+Run the relevant checks from [`00-SECURITY-RUNBOOK.md`](../../06-security-prompts/00-SECURITY-RUNBOOK.md) before closing this API/backend prompt.
+
+At minimum, verify:
+- Authentication, role authorization and object ownership for every endpoint group, including unauthenticated, client, admin, wrong-role, suspended and impersonated sessions.
+- Input validation rejects malicious-looking path/query/body values, invalid enums, oversized fields, tampered IDs and malformed payloads with safe error envelopes.
+- Mutating endpoints are protected against CSRF/origin abuse where browser-callable, replay, double-submit, race conditions and idempotency failures.
+- Rate limits or practical abuse controls exist for auth, reset/OTP, contact, comments, upload, checkout, webhook and notification endpoints.
+- Logs, debug responses, error envelopes, generated artifacts and worker payloads redact tokens, cookies, OTPs, reset links, provider secrets, private URLs and unnecessary PII.
+- If this prompt touches payments, webhooks, media, documents, messaging, notifications, exports, seed/reset or system operations, also run the matching `S##` security prompt from `06-security-prompts/`.
+
+Add a `Security findings` section to the prompt result using the security runbook output template. Stop and escalate P0 for auth bypass, cross-user data, token leakage, duplicate charge, unsigned webhook acceptance, unsafe webhook target acceptance, stored XSS or privilege escalation.
+

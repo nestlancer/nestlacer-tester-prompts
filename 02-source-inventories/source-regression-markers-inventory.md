@@ -1,0 +1,178 @@
+# Source regression markers inventory (sampled, code-derived)
+
+Markers are not defects by themselves. They identify prior regressions that prompts must keep covered.
+
+## frontend
+- `apps/admin/src/app/(dashboard)/AdminConsoleLayout.tsx:435` — // because KeyboardEvent bubbles defaults to false (NL-BUG-UI-001).
+- `apps/admin/src/app/(dashboard)/api-keys/page.tsx:8` — * Replaces the previous "Coming soon" placeholder (NL-BUG-UI-017): nothing in
+- `apps/admin/src/app/(dashboard)/payments/disputes/page.tsx:7` — /** Dedicated disputes queue — must not fall through to /payments/[id] (NL-BUG-UI-014). */
+- `apps/admin/src/app/nl-absent/route.ts:4` — * Hard HTTP 404 target for probe-as-absent admin paths (NL-UI-RERUN-002 /
+- `apps/admin/src/app/nl-absent/route.ts:5` — * NL-BUG-ADMIN-003). Middleware rewrites known-absent segments (`/users/bulk`,
+- `apps/admin/src/components/admin/UserSearchCombobox.tsx:169` — // Single mode — always-visible input (NL-BUG-PIPE-2); closed state used to be a button only.
+- `apps/admin/src/features/auth/useAdminLogin.ts:127` — // inline alert so short-lived toasts cannot leave a silent failure (NL-BUG-AUTH-001).
+- `apps/admin/src/features/integrations/IntegrationsClient.tsx:298` — // NL-BUG-INT-1: confirm before silently disabling deliveries.
+- `apps/admin/src/features/projects/AdminProjectDeliveryPanel.tsx:140` — /** Project payments — used to show Paid vs Pending on pay-only milestones (NL-BUG-MS-004). */
+- `apps/admin/src/features/projects/AdminProjectDetailClient.tsx:140` — // NL-BUG-UI-016: invalid / missing entity must not render a silent blank shell
+- `apps/admin/src/features/quotes/QuoteDetailClient.tsx:107` — // NL-BUG-UI-016: invalid quote id must show an explicit empty/error state, not a blank shell.
+- `apps/admin/src/features/requests/RequestDetailClient.tsx:132` — // NL-BUG-QUOTE-3: guard the click race before React re-renders isPending.
+- `apps/admin/src/features/users/UsersListClient.tsx:64` — // NL-BUG-USER-1: typing alone never submitted — debounce into the search query.
+- `apps/admin/src/middleware.ts:37` — * `/nl-absent` (Route Handler) which returns a real document 404 (NL-UI-RERUN-002 /
+- `apps/admin/src/middleware.ts:38` — * NL-BUG-ADMIN-003). Note: App Router treats `_`-prefixed folders as private, so
+- `apps/admin/src/styles/gentelella-tokens.css:6` — /* Darkened from #1abc9c → ≈#0c7a63 for WCAG AA on white (NL-BUG-A11Y-001) */
+- `apps/admin/tailwind.config.ts:10` — // NL-BUG-REQ-002: FieldHelp width utilities live in this package.
+- `apps/landing/src/app/globals.css:23` — /* Light — cool paper; primary darkened for WCAG AA (NL-BUG-A11Y-001) */
+- `apps/landing/src/components/marketing/HeroSection.tsx:14` — /** Never ship localhost CTAs from a production build (audit NL-BUG-CMS-001). */
+- `apps/landing/src/lib/site-origin.ts:35` — // Production builds must never fall back to localhost (NL-BUG-CMS-001/002).
+- `apps/web/src/app/(public)/verify/page.tsx:5` — /** Short alias for document HMAC verify (NL-BUG-UI-015 /verify 404). */
+- `apps/web/src/app/api/auth/impersonate/route.ts:107` — * Leave the support session on this browser and end the server grant (NL-BUG-IMP-3).
+- `apps/web/src/app/api/auth/refresh/route.ts:38` — /** Explicit refresh failure (body token rejected) — NL-BUG-AUTH-002. */
+- `apps/web/src/app/api/auth/refresh/route.ts:72` — /** Concurrent rotation / lock contention — must NOT wipe cookies (NL-BUG-SESSION-01). */
+- `apps/web/src/app/api/auth/refresh/route.ts:132` — // NL-BUG-AUTH-6: forward CF/XFF so refresh does not overwrite session IP with Docker hop.
+- `apps/web/src/components/auth/SessionBootstrap.tsx:40` — // blocked behind a serial round-trip before silent refresh (NL-BUG-PERF-001).
+- `apps/web/src/features/payments/PaymentInvoiceClient.tsx:28` — // NL-BUG-UI-015: null URL without throw left the spinner forever.
+- `apps/web/src/features/payments/components/PaymentStatsHero.tsx:20` — // NL-BUG-UI-015: never coerce a failed fetch to ₹0.00 — that reads as "never paid".
+- `apps/web/src/features/payments/lib/razorpay-test-mode.test.ts:29` — it('hides credentials on production builds even with a test key (NL-BUG-PAY-1)', () => {
+- `apps/web/src/features/payments/lib/razorpay-test-mode.ts:7` — * NL-BUG-PAY-1: never print full test card credentials on production builds unless
+- `apps/web/src/features/projects/ProjectDetailClient.tsx:131` — // Overview KPI must match delivery milestones (exclude payment schedule) — NL-BUG-UI-018.
+- `apps/web/src/features/projects/ProjectDetailClient.tsx:156` — // NL-BUG-MS-005: label + amount must come from the same payable installment.
+- `apps/web/src/features/projects/ProjectDetailClient.tsx:176` — // NL-BUG-UI-015: missing entity → soft 404, not empty authenticated chrome.
+- `apps/web/src/features/quotes/QuoteDetailClient.tsx:198` — // NL-BUG-UI-015: empty success payload must not render blank chrome.
+- `apps/web/src/features/quotes/QuoteDetailClient.tsx:259` — // NL-BUG-QUOTE-1 / QUOTE-2: require reason + detail + inline confirm (no window.confirm —
+- `apps/web/src/lib/site-origin.ts:40` — // Production builds must never fall back to localhost (NL-BUG-CMS-001/002).
+- `apps/web/src/styles/public-editorial-tokens.css:10` — /* Primary/meta darkened for WCAG AA (NL-BUG-A11Y-001) */
+- `apps/web/tailwind.config.ts:9` — // NL-BUG-REQ-002: FieldHelp width utilities live in this package.
+- `packages/api-client/src/errors.test.ts:7` — it('prefers API envelope code over Axios ERR_* transport code (NL-BUG-UI-015)', () => {
+- `packages/api-client/src/errors.ts:10` — // over PROJECT_001 / QUOTE_001 (NL-BUG-UI-015).
+- `packages/api-client/src/errors.ts:41` — /** True when an API error should render Next.js `notFound()` (NL-BUG-UI-015). */
+- `packages/auth/src/bff-gateway-login.ts:55` — /** Forward browser IP / UA headers so auth sessions store the real client IP (NL-BUG-AUTH-6). */
+- `packages/auth/src/silentRefresh.ts:5` — /** Browser-tab single-flight — concurrent callers share one refresh (NL-BUG-SESSION-01). */
+- `packages/auth/src/silentRefresh.ts:37` — // 503/502 / AUTH_REFRESH_BUSY — cookies kept; one short retry (NL-BUG-SESSION-01).
+- `packages/config/csp-middleware.mjs:49` — * NextResponse.next() — that was wiping /users/bulk → hard-404 (NL-UI-RERUN-002).
+- `packages/config/src/env.test.ts:52` — it('rejects dev-api host in production builds (NL-BUG-PAY-003)', () => {
+- `packages/config/src/env.ts:64` — /** NL-BUG-PAY-003: never allow a production build to silently use the dev-api host. */
+- `packages/theme/tokens.css:7` — /* Darkened for WCAG AA text on white / muted surfaces (NL-BUG-A11Y-001) */
+- `packages/ui/src/components/brand/NestlancerLogo.tsx:26` — // max-w clamps intrinsic SVG width if Tailwind utilities fail to load (NL-BUG-RESP-01).
+- `packages/ui/src/components/data-display/filter-bar/FilterBar.tsx:37` — // collide on id="filter-bar-action" / id="filter-bar-search" (NL-BUG-A11Y-001).
+- `packages/ui/src/components/overlay/Sheet.tsx:138` — // NL-BUG-A11Y-001: restore focus to the Open menu (or other) trigger after Escape/close.
+- `packages/validators/src/request.schema.ts:3` — /** Align with backend CreateRequestDto + field-help registry (NL-BUG-REQ-001). */
+- `packages/validators/src/route-id.ts:7` — * never get forwarded to the API as path params (NL-BUG-STATE-01).
+- `packages/websocket/src/client.ts:69` — // Marker only — never put the JWT in the query string (NL-BUG-PAY-003).
+- `packages/websocket/src/messaging-socket.ts:55` — // Marker only — JWT stays in `auth` (NL-BUG-PAY-003). Engine.IO allowRequest
+
+## backend
+- `gateway/src/middleware/public-http-cache.middleware.ts:7` — * Directives match the audit recommendation for NL-BUG-PERF-101:
+- `gateway/src/middleware/public-http-cache.middleware.ts:54` — * (NL-BUG-PERF-001). The gateway rebuilds JSON envelopes, so downstream
+- `gateway/src/middleware/public-http-cache.middleware.ts:59` — * never ran (NL-BUG-PERF-101 still open after the first deploy).
+- `gateway/src/modules/admin/admin.controller.ts:262` — /** NL-BUG-USR-001: `/admin/audit/logs` must list, not hit `:id` with id="logs". */
+- `gateway/src/modules/media/media-admin.gateway.controller.ts:70` — /** NL-BUG-UI-014: console paths that previously 404'd. */
+- `services/admin/src/controllers/admin/audit.admin.controller.ts:47` — * which previously matched `:id` and returned null/not-found (NL-BUG-USR-001).
+- `services/admin/src/controllers/admin/email-templates.admin.controller.ts:63` — * Collection-level preview (NL-BUG-SYS-002). Auditors called
+- `services/admin/src/services/background-jobs.service.ts:12` — // NL-BUG-SYS-001: real RabbitMQ queue introspection (depth + consumers).
+- `services/admin/src/services/dashboard-revenue.service.ts:80` — // yank the admin "Revenue (month)" KPI (NL-BUG-DISP-001).
+- `services/admin/src/services/dashboard.service.ts:143` — // Include DISPUTED so open chargebacks do not shrink avg project value (NL-BUG-DISP-001).
+- `services/auth/src/controllers/auth.public.controller.ts:208` — * Ends the caller's own admin-impersonation grant (NL-BUG-IMP-3).
+- `services/auth/src/services/auth.service.ts:75` — * NL-BUG-IMP-3: end the server-side impersonation session from the client tab
+- `services/auth/src/services/auth.service.ts:129` — // NL-BUG-SEC-003: do not oracle whether an account exists. Format-only check;
+- `services/auth/src/services/login.service.ts:184` — /** Persist every failed sign-in path claimed by the admin gate (NL-BUG-OPS-001). */
+- `services/media/src/media/media-access.service.ts:11` — /** PRIVATE files are not granted by project membership alone (NL-BUG-DEL-1). */
+- `services/media/src/media/media-access.service.ts:34` — // NL-BUG-DEL-1: project membership must not expose PRIVATE operator artifacts.
+- `services/media/src/media/media-library-scope.service.ts:421` — // NL-BUG-DEL-1: own uploads always; project-context membership only for PUBLIC;
+- `services/media/src/media/media.admin.controller.ts:170` — /** NL-BUG-UI-014: aliases expected by the operator console. */
+- `services/media/src/media/upload-validation.util.ts:124` — // NL-BUG-MEDIA-001: SVG can carry script; never accept as image even if spoofed via extension.
+- `services/media/tests/unit/media/media-access.service.spec.ts:33` — it('denies project client for PRIVATE non-owned media (NL-BUG-DEL-1)', async () => {
+- `services/messaging/src/services/conversations.service.ts:50` — // NL-BUG-MSG-001: hub lists real ChatThreads only. Project message streams
+- `services/messaging/src/services/messaging.service.ts:41` — // NL-BUG-MSG-001: sanitize free-text content on ingest (notifications/emails/PDFs re-emit it).
+- `services/messaging/src/services/messaging.service.ts:160` — // retry and either lose the message or duplicate it (NL-BUG-MSG-001).
+- `services/messaging/src/services/unread-count.service.ts:35` — // NL-BUG-MSG-1: hub `/conversations` lists ChatThreads only (see ConversationsService /
+- `services/messaging/src/services/unread-count.service.ts:36` — // NL-BUG-MSG-001). Counting orphan project-stream messages inflated "Unread messages"
+- `services/notifications/src/dto/update-preferences.dto.ts:67` — /** Alias for `preferences` — matches the GET response shape auditors / UI may PATCH back (NL-BUG-MSG-002). */
+- `services/notifications/src/dto/update-preferences.dto.ts:89` — /** Allowed when clients PATCH the GET body back (NL-BUG-MSG-002). */
+- `services/payments/src/controllers/admin/payment-disputes.admin.controller.ts:48` — // Pre-setting status:'success' without a nested data field made clients peel to null (NL-BUG-DISP-001).
+- `services/payments/src/controllers/admin/payments.admin.controller.ts:211` — // Keep disputed (captured) payments in revenue until refunded — NL-BUG-DISP-001.
+- `services/payments/src/controllers/admin/payments.admin.controller.ts:581` — // NL-BUG-PAY-002: never mint a second COMPLETED payment for the same milestone.
+- `services/payments/src/controllers/admin/payments.admin.controller.ts:614` — // NL-BUG-PAY-001 / NL-BUG-MS-002: never bill a zero-amount delivery / placeholder milestone.
+- `services/payments/src/controllers/admin/payments.admin.controller.ts:625` — // NL-BUG-PAY-001: reject explicit non-positive amounts (DTO @IsPositive is primary;
+- `services/payments/src/dto/create-manual-payment.dto.ts:22` — * NL-BUG-PAY-001: amount may be omitted only when the milestone schedule amount is > 0;
+- `services/payments/src/services/company-legal-profile.service.ts:22` — /** NL-BUG-PDF-013: reject free-text GSTIN/PAN that would print on tax invoices. */
+- `services/payments/src/services/company-legal-profile.service.ts:116` — * Branding for PDF generation. Legal fields are blank when unset (NL-BUG-PDF-001).
+- `services/payments/src/services/invoice-pdf.service.ts:39` — // NL-BUG-DOC-001: prefer the already-issued invoice over minting a download number.
+- `services/payments/src/services/payment-confirmation.service.ts:54` — * NL-BUG-PAY-006: a reused Razorpay order can be for a different paise amount than the
+- `services/payments/src/services/payment-document-context.service.ts:22` — // NL-BUG-PDF-001: legal identity from DB (blank when unset); bank/UPI from settlement accounts.
+- `services/payments/src/services/payment-methods.service.ts:172` — // NL-BUG-METHOD-001: never persist an unverified / non-Razorpay tokenId.
+- `services/payments/src/services/payment-milestones.service.ts:124` — // NL-BUG-PAY-002: strip monetary amounts from delivery/work milestones when the
+- `services/payments/src/services/payment-stats.service.ts:23` — // yank revenue from the KPI (NL-BUG-DISP-001 residual).
+- `services/payments/src/services/payments.service.ts:521` — // NL-BUG-DISP-001: clients must not unilaterally flip COMPLETED → DISPUTED.
+- `services/payments/src/services/platform-payment-account.service.ts:90` — // NL-BUG-PAY-005: empty list is an ops gap — surface how to provision.
+- `services/payments/src/services/razorpay.service.ts:64` — // echoes the PSP string (NL-BUG-PAY-006). Callers map this to PAYMENT_GATE_*.
+- `services/payments/src/services/refund.service.ts:45` — // NL-BUG-PAY-004: manual/bank/offline inflows have no PSP id — record a ledger refund.
+- `services/payments/tests/unit/services/payment-completion.service.spec.ts:100` — it('does not mark schedule-only installment APPROVED when payment completes (NL-BUG-MS-003)', async () => {
+- `services/progress/src/services/deliverable-review.service.ts:69` — // NL-BUG-DEL-001: cascade even when the parent is still PENDING/IN_PROGRESS/REVIEW
+- `services/progress/src/services/milestone-approval.service.ts:108` — * (which skip an explicit "mark complete") still cascade (NL-BUG-DEL-001).
+- `services/progress/src/services/milestone-approval.service.ts:165` — // Mirror payment-completion path (NL-BUG-DEL-001 / DEL-003): cascade
+- `services/progress/src/services/milestone-approval.service.ts:202` — /** Recompute project.overallProgress from milestone statuses (NL-BUG-DEL-001). */
+- `services/progress/src/services/milestones.service.ts:73` — // NL-BUG-MS-001: never reuse an order already taken on this project.
+- `services/progress/src/services/milestones.service.ts:90` — // NL-BUG-PAY-002: delivery rows must not copy the contract value.
+- `services/progress/src/services/milestones.service.ts:141` — // NL-BUG-DEL-001: a work milestone with nothing delivered must not flip to COMPLETED
+- `services/projects/src/controllers/projects.admin.controller.ts:354` — // NL-BUG-PAY-002: when payment-schedule rows already exist, new rows are delivery/work
+- `services/projects/src/controllers/projects.admin.controller.ts:360` — // NL-BUG-MS-001: keep `order` unique per project (continue after the highest existing order).
+- `services/quotes/src/controllers/quotes.admin.controller.ts:302` — // NL-BUG-QUOTE-001: admin detail previously omitted lineItems (raw Prisma row only).
+- `services/quotes/src/controllers/quotes.admin.controller.ts:724` — // NL-BUG-QUOTE-004 / QUOTE-002: include legacy outbox rows that only set payload.quoteId
+- `services/quotes/src/controllers/quotes.admin.controller.ts:905` — // NL-BUG-QUOTE-007: do NOT compare quote.updatedAt to doc.createdAt.
+- `services/quotes/src/services/quote-pdf.service.ts:8` — /** Client-facing quote routes must hide unissued drafts (NL-BUG-QUOTE-001). */
+- `services/quotes/src/services/quote-pdf.service.ts:124` — /** NL-BUG-PDF-001: legal identity from DB; blank fields when unset. */
+- `services/quotes/src/services/quotes.admin.service.ts:85` — // Include ACCEPTED/DECLINED/EXPIRED — default empty list was hiding real quotes (NL-BUG-QUOTE-001).
+- `services/quotes/src/services/quotes.admin.service.ts:165` — // NL-BUG-PAY-001: this endpoint accepts explicit totals in paise. Persist as-sent.
+- `services/quotes/src/services/quotes.admin.service.ts:252` — // NL-BUG-QUOTE-3: already-sent quotes must not re-run SENT→SENT (same-status is
+- `services/quotes/src/services/quotes.service.ts:152` — // must be 400 — Prisma throws 500 on an invalid QuoteStatus (NL-BUG-QUOTE-STATUS).
+- `services/quotes/src/services/quotes.service.ts:234` — // NL-BUG-QUOTE-004: history is outbox-driven — emit VIEWED so the Event column fills.
+- `services/quotes/tests/unit/services/quote-pdf.service.spec.ts:91` — it('rejects draft quotes for clients (NL-BUG-QUOTE-001)', async () => {
+- `services/quotes/tests/unit/services/quotes.admin.service.spec.ts:163` — it('stores admin-supplied paise totals as-sent even for VIP clients (NL-BUG-PAY-001)', async () => {
+- `services/quotes/tests/unit/services/quotes.admin.service.spec.ts:209` — it('should no-op without a second QUOTE_SENT when already SENT (NL-BUG-QUOTE-3)', async () => {
+- `services/requests/src/dto/create-quote.dto.ts:219` — 'When true, apply the client tier discount (e.g. VIP 10%) to computed list-price totals. Default false — never silently rewrite admin totals (NL-BUG-PAY-001).',
+- `services/requests/src/services/admin-capacity.service.ts:123` — // NL-BUG-PIPE-002: operator "AVAILABLE" must not contradict live over-capacity.
+- `services/requests/src/services/quotes.admin.service.ts:86` — // on computed totals caused NL-BUG-PAY-001 downstream (schedule/milestones/PDFs).
+- `services/requests/tests/unit/services/quotes.admin.service.spec.ts:161` — it('does not silently apply VIP discount unless applyClientTierDiscount is set (NL-BUG-PAY-001)', async () => {
+- `services/users/tests/unit/services/sessions.service.spec.ts:110` — it('should revoke all sessions except current (NL-BUG-AUTH-7)', async () => {
+- `libs/cache/src/access-token-revocation.service.ts:41` — * NL-BUG-AUTH-001: concurrent tabs that refresh the same cookie within this
+- `libs/common/src/constants/mime-types.constants.ts:2` — * SVG is excluded: stored SVG can execute script when served inline (NL-BUG-MEDIA-001).
+- `libs/common/src/constants/regex.constants.ts:39` — /** Indian GSTIN (15 chars) — NL-BUG-PDF-013 */
+- `libs/common/src/constants/regex.constants.ts:42` — /** Indian PAN (10 chars) — NL-BUG-PDF-013 */
+- `libs/common/src/exceptions/business-logic.exception.ts:26` — // Auth — invalid credentials must be 401, not 422 (NL-BUG-SEC-002)
+- `libs/common/src/exceptions/business-logic.exception.ts:29` — // Auth — invalid/expired/reused refresh tokens (NL-BUG-AUTH-002)
+- `libs/common/src/exceptions/business-logic.exception.ts:32` — // Auth — wrong-portal login is forbidden, not a validation error (NL-BUG-AUTH-001)
+- `libs/common/src/exceptions/business-logic.exception.ts:35` — // Concurrent refresh race — keep cookies; client should retry (NL-BUG-SESSION-01)
+- `libs/common/src/interceptors/transform-response.interceptor.ts:42` — * `{ status, data, metadata }` envelope (NL-BUG-API-ENV-001).
+- `libs/common/src/interceptors/transform-response.interceptor.ts:119` — // Prefer X-Request-ID when the client supplied one (NL-BUG-PERF-002).
+- `libs/common/src/observability/correlation-id.ts:8` — * (NL-BUG-API-103).
+- `libs/common/src/payment/client-payment-notes.ts:3` — /** Default manual-payment note used to embed an operator UUID (NL-BUG-PAY-NOTES). */
+- `libs/common/src/payment/payment-completion.service.ts:192` — // NL-BUG-MS-003 / ADR 001: payment must not set delivery status to APPROVED.
+- `libs/common/src/payment/payment-completion.service.ts:210` — * Intentionally does not flip schedule/pay-only milestones to APPROVED (NL-BUG-MS-003).
+- `libs/common/src/payment/payment-gate.constants.ts:31` — * Unauthenticated self-service flips are rejected (NL-BUG-DISP-001).
+- `libs/common/src/payment/payment-schedule.util.ts:237` — // NL-BUG-QUOTE-005: when every installment carries a percentage, they must sum to 100
+- `libs/common/src/utils/indian-tax-id.util.ts:3` — /** Normalize and validate an Indian GSTIN (NL-BUG-PDF-013). */
+- `libs/common/src/utils/indian-tax-id.util.ts:10` — /** Normalize and validate an Indian PAN (NL-BUG-PDF-013). */
+- `libs/common/src/utils/webhook-url.util.ts:24` — * NL-BUG-HOOK-001: reject webhook targets that resolve to loopback, link-local,
+- `libs/common/tests/unit/interceptors/transform-response.interceptor.spec.ts:76` — // NL-BUG-API-ENV-001 — a hand-built `{ status, data }` used to escape the
+- `libs/common/tests/unit/interceptors/transform-response.interceptor.spec.ts:89` — // NL-BUG-API-ENV-001 — the live `/api/v1/admin/payments` shape: `status` plus
+- `libs/common/tests/unit/utils/indian-tax-id.util.spec.ts:8` — describe('indian-tax-id.util (NL-BUG-PDF-013)', () => {
+- `libs/common/tests/unit/utils/webhook-url.util.spec.ts:3` — describe('assertSafeWebhookUrl (NL-BUG-HOOK-001)', () => {
+- `libs/documents/src/document-generation.service.ts:49` — // NL-BUG-DOC-001: write-connection lookup; prefer payment canonical pointer when
+- `libs/documents/src/document-generation.service.ts:257` — * often win a naive issuedAt sort — see NL-BUG-DOC-001).
+- `libs/documents/src/document-generation.service.ts:304` — * NL-BUG-DOC-001: collapse zombie isLatest siblings (e.g. download minted 000044
+- `libs/documents/src/document-generation.service.ts:582` — // NL-BUG-PAY-008: paymentContext is built before the registry number exists, so
+- `libs/documents/src/document-generation.service.ts:691` — // NL-BUG-DOCS-001: paginate like /invoices (MAX_LIMIT=100). Callers that omit
+- `libs/documents/src/document-generation.service.ts:731` — // NL-BUG-DOC-001 / NL-PAY-011: when download+worker both left isLatest rows,
+- `libs/documents/src/document-generation.service.ts:752` — * NL-BUG-DOC-001: one payment can temporarily have multiple isLatest invoice/receipt
+- `libs/pdf/src/pdf.service.ts:90` — // NL-BUG-PDF-003: page numbers via Chromium footer (run-header/footer stay in HTML).
+- `libs/pdf/src/templates/receipt.template.ts:42` — // NL-BUG-PDF-005: one date line — date + optional time, not duplicated date.
+- `libs/pdf/src/utils/format.util.ts:40` — /** NL-BUG-PDF-004: never print internal payment enums on customer documents. */
+- `libs/pdf/src/utils/format.util.ts:63` — /** NL-BUG-PDF-004: customer-facing payment status wording. */
+- `libs/pdf/src/utils/payment-document-sections.ts:22` — // Never put bank UTR / payment refs in the document-number column (NL-BUG-PAY-008).
+- `libs/queue/src/queue-publisher.service.ts:152` — * Inspect RabbitMQ queue depths for the admin jobs console (NL-BUG-SYS-001).
+- `libs/storage/src/interfaces/storage.interface.ts:54` — /** Force browser download instead of inline render (NL-BUG-MEDIA-001). */
+- `libs/tracing/src/middleware/correlation-id.middleware.ts:23` — // NL-BUG-PERF-002: honour a client-supplied X-Request-ID when present and valid,
+- `workers/document-worker/src/services/document-processor.service.ts:96` — // NL-BUG-PDF-001: legal fields from CompanyLegalProfile (blank when unset).
+- `workers/media-worker/src/services/media-worker.service.ts:119` — // NL-BUG-MEDIA-001: reject SVG content even when declared as PNG/JPEG (MIME spoof).
+- `workers/webhook-worker/src/processors/outgoing-webhook.processor.ts:34` — // NL-BUG-HOOK-001: re-validate at delivery time (DNS rebinding / stale private URLs).
+- `prisma/schema/payment.prisma:24` — * Platform legal identity for invoices/receipts/quotes (NL-BUG-PDF-001).
+

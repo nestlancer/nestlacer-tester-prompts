@@ -1,0 +1,294 @@
+# Frontend route map (code-derived)
+
+## landing
+
+- `/about` — `apps/landing/src/app/about/page.tsx`
+- `/blog/[slug]` — `apps/landing/src/app/blog/[slug]/page.tsx` — redirects: webAppUrl(`/blog/${params.slug}`
+- `/blog` — `apps/landing/src/app/blog/page.tsx` — redirects: webAppUrl('/blog'
+- `/contact` — `apps/landing/src/app/contact/page.tsx`
+  - import { JsonLd } from '@/components/seo/JsonLd';
+- `/` — `apps/landing/src/app/page.tsx`
+- `/portfolio/[id]` — `apps/landing/src/app/portfolio/[id]/page.tsx` — redirects: webAppUrl(`/portfolio/${params.id}`
+- `/portfolio` — `apps/landing/src/app/portfolio/page.tsx` — redirects: webAppUrl('/portfolio'
+- `/pricing` — `apps/landing/src/app/pricing/page.tsx`
+  - import { JsonLd } from '@/components/seo/JsonLd';
+  - import { PricingPlans } from './PricingPlans';
+- `/services` — `apps/landing/src/app/services/page.tsx`
+
+## web
+
+- `/forgot-password` — `apps/web/src/app/(auth)/forgot-password/page.tsx`
+  - import { AuthPageHeader } from '@/components/auth/AuthPageHeader';
+  - import { PasswordResetForm } from '@/features/auth';
+- `/login` — `apps/web/src/app/(auth)/login/page.tsx`
+  - import { AuthPageHeader } from '@/components/auth/AuthPageHeader';
+  - import { LoginForm } from '@/features/auth';
+- `/register` — `apps/web/src/app/(auth)/register/page.tsx`
+  - import { AuthPageHeader } from '@/components/auth/AuthPageHeader';
+  - import { RegisterForm } from '@/features/auth';
+- `/reset-password` — `apps/web/src/app/(auth)/reset-password/page.tsx`
+  - import { AuthPageHeader } from '@/components/auth/AuthPageHeader';
+  - import { ResetPasswordClient } from './ResetPasswordClient';
+- `/verify-email` — `apps/web/src/app/(auth)/verify-email/page.tsx`
+  - import { AuthPageHeader } from '@/components/auth/AuthPageHeader';
+  - import { VerifyEmailClient } from './VerifyEmailClient';
+- `/dashboard` — `apps/web/src/app/(dashboard)/dashboard/page.tsx`
+  - import { DashboardOverview } from './DashboardOverview';
+- `/invoices/[id]` — `apps/web/src/app/(dashboard)/invoices/[id]/page.tsx` — redirects: routes.invoices, routes.invoice(id
+- `/invoices` — `apps/web/src/app/(dashboard)/invoices/page.tsx`
+  - import { InvoicesListClient } from '@/features/invoices/InvoicesListClient';
+- `/messages/[conversationId]` — `apps/web/src/app/(dashboard)/messages/[conversationId]/page.tsx`
+  - import { MessageThreadClient } from '@/features/messaging/MessageThreadClient';
+- `/messages/archived` — `apps/web/src/app/(dashboard)/messages/archived/page.tsx`
+  - import { MessagesPanelClient } from '@/features/messaging/MessagesPanelClient';
+- `/messages/inbox` — `apps/web/src/app/(dashboard)/messages/inbox/page.tsx`
+  - import { MessagesPanelClient } from '@/features/messaging/MessagesPanelClient';
+- `/messages/new/direct` — `apps/web/src/app/(dashboard)/messages/new/direct/page.tsx`
+  - import { MessageNewDirectClient } from '@/features/messaging/MessageNewDirectClient';
+- `/messages/new` — `apps/web/src/app/(dashboard)/messages/new/page.tsx` — redirects: '/messages/new/direct'
+- `/messages` — `apps/web/src/app/(dashboard)/messages/page.tsx`
+  - import { MessagesOverviewClient } from '@/features/messaging/MessagesOverviewClient';
+- `/messages/thread/[threadId]` — `apps/web/src/app/(dashboard)/messages/thread/[threadId]/page.tsx`
+  - import { MessageChatThreadClient } from '@/features/messaging/MessageChatThreadClient';
+- `/messages/threads` — `apps/web/src/app/(dashboard)/messages/threads/page.tsx` — redirects: '/messages/inbox'
+- `/notifications` — `apps/web/src/app/(dashboard)/notifications/page.tsx`
+  - import { NotificationsClient } from '@/features/notifications/NotificationsClient';
+- `/payments/[id]` — `apps/web/src/app/(dashboard)/payments/[id]/page.tsx` — redirects: routes.paymentMethods, routes.invoices, routes.invoices, routes.payments
+  - import { PaymentDetailClient } from '@/features/payments/PaymentDetailClient';
+- `/payments/invoice/[id]` — `apps/web/src/app/(dashboard)/payments/invoice/[id]/page.tsx`
+  - import { PaymentInvoiceClient } from '@/features/payments/PaymentInvoiceClient';
+- `/payments/invoices` — `apps/web/src/app/(dashboard)/payments/invoices/page.tsx` — redirects: routes.invoices
+- `/payments/methods` — `apps/web/src/app/(dashboard)/payments/methods/page.tsx`
+  - import { PaymentMethodsClient } from '@/features/payments/PaymentMethodsClient';
+- `/payments` — `apps/web/src/app/(dashboard)/payments/page.tsx`
+  - import { PaymentsListClient } from '@/features/payments/PaymentsListClient';
+- `/profile/edit` — `apps/web/src/app/(dashboard)/profile/edit/page.tsx`
+  - import { ProfileEditClient } from '@/features/profile/ProfileEditClient';
+- `/profile` — `apps/web/src/app/(dashboard)/profile/page.tsx`
+  - import { ProfileViewClient } from '@/features/profile/ProfileViewClient';
+- `/projects/[id]` — `apps/web/src/app/(dashboard)/projects/[id]/page.tsx`
+  - import { ProjectDetailClient } from '@/features/projects/ProjectDetailClient';
+  - import { ProjectHubTabBar } from '@/features/projects/hub/ProjectHubTabBar';
+- `/projects/archive` — `apps/web/src/app/(dashboard)/projects/archive/page.tsx`
+- `/projects/completed` — `apps/web/src/app/(dashboard)/projects/completed/page.tsx`
+- `/projects/new` — `apps/web/src/app/(dashboard)/projects/new/page.tsx`
+  - import { ProjectsNewClient } from '@/features/projects/ProjectsNewClient';
+- `/projects` — `apps/web/src/app/(dashboard)/projects/page.tsx`
+  - import { ProjectsListClient } from './ProjectsListClient';
+- `/quotes/[id]` — `apps/web/src/app/(dashboard)/quotes/[id]/page.tsx`
+  - import { QuoteDetailClient } from '@/features/quotes/QuoteDetailClient';
+- `/quotes/drafts` — `apps/web/src/app/(dashboard)/quotes/drafts/page.tsx` — redirects: '/quotes'
+- `/quotes/new` — `apps/web/src/app/(dashboard)/quotes/new/page.tsx` — redirects: '/quotes'
+- `/quotes` — `apps/web/src/app/(dashboard)/quotes/page.tsx`
+  - import { QuotesListClient } from '@/features/quotes/QuotesListClient';
+- `/quotes/templates` — `apps/web/src/app/(dashboard)/quotes/templates/page.tsx` — redirects: '/quotes'
+- `/requests/[id]` — `apps/web/src/app/(dashboard)/requests/[id]/page.tsx`
+  - import { RequestDetailClient } from '@/features/requests/RequestDetailClient';
+- `/requests/archive` — `apps/web/src/app/(dashboard)/requests/archive/page.tsx` — redirects: '/requests'
+- `/requests/new` — `apps/web/src/app/(dashboard)/requests/new/page.tsx`
+  - import { NewRequestClient } from '@/features/requests/NewRequestClient';
+- `/requests` — `apps/web/src/app/(dashboard)/requests/page.tsx`
+  - import { RequestsListClient } from '@/features/requests/RequestsListClient';
+- `/settings/account` — `apps/web/src/app/(dashboard)/settings/account/page.tsx`
+  - import { SettingsAccountClient } from '@/features/settings/SettingsAccountClient';
+- `/settings/activity` — `apps/web/src/app/(dashboard)/settings/activity/page.tsx`
+  - import { SettingsActivityClient } from '@/features/settings/SettingsActivityClient';
+- `/settings/billing` — `apps/web/src/app/(dashboard)/settings/billing/page.tsx` — redirects: routes.payments
+- `/settings/files` — `apps/web/src/app/(dashboard)/settings/files/page.tsx`
+  - import { MediaLibraryClient } from '@/features/media/MediaLibraryClient';
+- `/settings/notifications` — `apps/web/src/app/(dashboard)/settings/notifications/page.tsx`
+  - import { SettingsNotificationsClient } from '@/features/settings/SettingsNotificationsClient';
+- `/settings` — `apps/web/src/app/(dashboard)/settings/page.tsx` — redirects: routes.settingsAccount
+- `/settings/security` — `apps/web/src/app/(dashboard)/settings/security/page.tsx`
+  - import { SettingsSecurityClient } from '@/features/settings/SettingsSecurityClient';
+- `/settings/sessions` — `apps/web/src/app/(dashboard)/settings/sessions/page.tsx` — redirects: routes.settingsSecurity
+- `/about` — `apps/web/src/app/(public)/about/page.tsx`
+  - import { AboutPhotoHero } from '@/components/marketing/AboutPhotoHero';
+  - import { Reveal, SoftTilt, ZigReveal } from '@/components/motion/MotionPrimitives';
+- `/blog/[slug]` — `apps/web/src/app/(public)/blog/[slug]/page.tsx`
+  - import { BlogArticleContextRail } from '@/features/blog/components/BlogArticleContextRail';
+  - import { BlogArticleShell } from '@/features/blog/components/BlogArticleShell';
+  - import { BlogArticleToc } from '@/features/blog/components/BlogArticleToc';
+  - import { BlogEditorialByline } from '@/features/blog/components/BlogEditorialByline';
+  - import { BlogHireCta } from '@/features/blog/components/BlogHireCta';
+- `/blog/bookmarks` — `apps/web/src/app/(public)/blog/bookmarks/page.tsx`
+  - import { RequireAuth } from '@/components/auth/RequireAuth';
+  - import { BlogBookmarksClient } from '@/features/blog/BlogBookmarksClient';
+- `/blog/category/[slug]` — `apps/web/src/app/(public)/blog/category/[slug]/page.tsx`
+  - import { BlogHireCta } from '@/features/blog/components/BlogHireCta';
+  - import { BlogListingShell } from '@/features/blog/components/BlogListingShell';
+  - import { BlogListingToolbar } from '@/features/blog/components/BlogListingToolbar';
+  - import { BlogPagination } from '@/features/blog/components/BlogPagination';
+  - import { BlogPostCard } from '@/features/blog/components/BlogPostCard';
+- `/blog` — `apps/web/src/app/(public)/blog/page.tsx`
+  - import { BlogHireCta } from '@/features/blog/components/BlogHireCta';
+  - import { BlogListingShell } from '@/features/blog/components/BlogListingShell';
+  - import { BlogListingToolbar } from '@/features/blog/components/BlogListingToolbar';
+  - import { BlogNewsletterCta } from '@/features/blog/components/BlogNewsletterCta';
+  - import { BlogPagination } from '@/features/blog/components/BlogPagination';
+- `/blog/tag/[slug]` — `apps/web/src/app/(public)/blog/tag/[slug]/page.tsx`
+  - import { BlogHireCta } from '@/features/blog/components/BlogHireCta';
+  - import { BlogListingShell } from '@/features/blog/components/BlogListingShell';
+  - import { BlogListingToolbar } from '@/features/blog/components/BlogListingToolbar';
+  - import { BlogPagination } from '@/features/blog/components/BlogPagination';
+  - import { BlogPostCard } from '@/features/blog/components/BlogPostCard';
+- `/contact` — `apps/web/src/app/(public)/contact/page.tsx`
+  - import { Reveal, ZigReveal } from '@/components/motion/MotionPrimitives';
+  - import { ContactFormClient } from '@/features/contact/ContactFormClient';
+- `/` — `apps/web/src/app/(public)/page.tsx`
+  - import { BlogPostCard } from '@/features/blog/components/BlogPostCard';
+  - import { Reveal, Stagger, StaggerItem, ZigReveal } from '@/components/motion/MotionPrimitives';
+  - import { loadHomepageData } from '@/features/marketing/load-homepage-data';
+  - import { HomepagePrimaryCta } from '@/features/marketing/HomepagePrimaryCta';
+  - import { MobileStickyCta } from '@/features/marketing/mobile-sticky-cta';
+- `/portfolio/[id]` — `apps/web/src/app/(public)/portfolio/[id]/page.tsx`
+  - import { JsonLd } from '@/components/seo/JsonLd';
+  - import { BlogMarkdown } from '@/features/blog/components/BlogMarkdown';
+  - import { PortfolioLikeButton } from '@/features/portfolio/PortfolioLikeButton';
+  - import { PortfolioViewMeta } from '@/features/portfolio/PortfolioViewMeta';
+  - import { PortfolioCaseStudyHero } from '@/features/portfolio/PortfolioCaseStudyHero';
+- `/portfolio` — `apps/web/src/app/(public)/portfolio/page.tsx`
+  - import { PortfolioHero } from '@/features/portfolio/PortfolioHero';
+  - import { toTimelineEntries } from '@/features/portfolio/portfolio-timeline';
+- `/privacy` — `apps/web/src/app/(public)/privacy/page.tsx`
+- `/terms` — `apps/web/src/app/(public)/terms/page.tsx`
+- `/verify` — `apps/web/src/app/(public)/verify/page.tsx` — redirects: routes.verifyDocument
+- `/verify-document` — `apps/web/src/app/(public)/verify-document/page.tsx`
+  - import { DocumentVerifyClient } from '@/features/documents/DocumentVerifyClient';
+- `/work` — `apps/web/src/app/(public)/work/page.tsx` — redirects: routes.portfolio
+- `/impersonate` — `apps/web/src/app/impersonate/page.tsx`
+  - import { ImpersonateHandoff } from './ImpersonateHandoff';
+- `/share/[token]` — `apps/web/src/app/share/[token]/page.tsx`
+
+## admin
+
+- `/login` — `apps/admin/src/app/(auth)/login/page.tsx`
+  - import { AdminLoginForm } from '@/features/auth/AdminLoginForm';
+  - import { AdminLoginShell } from '@/features/auth/AdminLoginShell';
+- `/analytics` — `apps/admin/src/app/(dashboard)/analytics/page.tsx`
+  - import { AnalyticsClient } from '@/features/analytics/AnalyticsClient';
+- `/api-keys` — `apps/admin/src/app/(dashboard)/api-keys/page.tsx` — redirects: '/integrations'
+- `/audit` — `apps/admin/src/app/(dashboard)/audit/page.tsx`
+  - import { AuditClient } from '@/features/audit/AuditClient';
+- `/contact` — `apps/admin/src/app/(dashboard)/contact/page.tsx`
+  - import { ContactClient } from '@/features/contact/ContactClient';
+- `/content` — `apps/admin/src/app/(dashboard)/content/page.tsx`
+  - import { ContentClient } from '@/features/content/ContentClient';
+- `/content/posts/[id]/edit` — `apps/admin/src/app/(dashboard)/content/posts/[id]/edit/page.tsx`
+  - import { AdminBlogPostEditorClient } from '@/features/content/AdminBlogPostEditorClient';
+- `/content/posts/new` — `apps/admin/src/app/(dashboard)/content/posts/new/page.tsx`
+  - import { AdminBlogPostEditorClient } from '@/features/content/AdminBlogPostEditorClient';
+- `/dashboard` — `apps/admin/src/app/(dashboard)/dashboard/page.tsx`
+  - import { DashboardClient } from '@/features/dashboard/DashboardClient';
+- `/integrations` — `apps/admin/src/app/(dashboard)/integrations/page.tsx`
+  - import { IntegrationsClient } from '@/features/integrations/IntegrationsClient';
+- `/media/analytics` — `apps/admin/src/app/(dashboard)/media/analytics/page.tsx` — redirects: '/media?tab=analytics'
+- `/media/browse` — `apps/admin/src/app/(dashboard)/media/browse/page.tsx` — redirects: '/media'
+- `/media/folders` — `apps/admin/src/app/(dashboard)/media/folders/page.tsx` — redirects: '/media'
+- `/media` — `apps/admin/src/app/(dashboard)/media/page.tsx`
+  - import AdminMediaPageClient from './MediaPageClient';
+- `/media/quarantine` — `apps/admin/src/app/(dashboard)/media/quarantine/page.tsx` — redirects: '/media?tab=quarantine'
+- `/media/settings` — `apps/admin/src/app/(dashboard)/media/settings/page.tsx` — redirects: '/media'
+- `/media/storage` — `apps/admin/src/app/(dashboard)/media/storage/page.tsx` — redirects: '/media'
+- `/messages/archived` — `apps/admin/src/app/(dashboard)/messages/archived/page.tsx` — redirects: '/messages/inbox'
+- `/messages/inbox` — `apps/admin/src/app/(dashboard)/messages/inbox/page.tsx`
+  - import { AdminMessagesPanelClient } from '@/features/messages/AdminMessagesPanelClient';
+- `/messages/new/direct` — `apps/admin/src/app/(dashboard)/messages/new/direct/page.tsx` — redirects: '/messages/new-direct'
+- `/messages/new` — `apps/admin/src/app/(dashboard)/messages/new/page.tsx` — redirects: '/messages/new-direct'
+- `/messages/new-direct` — `apps/admin/src/app/(dashboard)/messages/new-direct/page.tsx`
+  - import { AdminNewDirectClient } from '@/features/messages/AdminNewDirectClient';
+- `/messages/new-group` — `apps/admin/src/app/(dashboard)/messages/new-group/page.tsx`
+  - import { AdminNewGroupChatClient } from '@/features/messages/AdminNewGroupChatClient';
+- `/messages` — `apps/admin/src/app/(dashboard)/messages/page.tsx`
+  - import { AdminMessagesOverviewClient } from '@/features/messages/AdminMessagesOverviewClient';
+- `/messages/project/[projectId]` — `apps/admin/src/app/(dashboard)/messages/project/[projectId]/page.tsx`
+  - import { AdminProjectThreadClient } from '@/features/messages/AdminProjectThreadClient';
+- `/messages/thread/[threadId]` — `apps/admin/src/app/(dashboard)/messages/thread/[threadId]/page.tsx`
+  - import { AdminChatThreadClient } from '@/features/messages/AdminChatThreadClient';
+- `/messages/threads` — `apps/admin/src/app/(dashboard)/messages/threads/page.tsx` — redirects: '/messages/inbox'
+- `/moderation` — `apps/admin/src/app/(dashboard)/moderation/page.tsx`
+  - import { ModerationClient } from '@/features/moderation/ModerationClient';
+- `/notifications` — `apps/admin/src/app/(dashboard)/notifications/page.tsx`
+  - import { AdminNotificationsClient } from '@/features/notifications/AdminNotificationsClient';
+- `/payments/[id]` — `apps/admin/src/app/(dashboard)/payments/[id]/page.tsx` — redirects: PAYMENT_HUB_REDIRECTS[params.id] ?? '/payments'
+  - import { PaymentDetailClient } from '@/features/payments/PaymentDetailClient';
+- `/payments/accounts` — `apps/admin/src/app/(dashboard)/payments/accounts/page.tsx`
+  - import { PlatformPaymentAccountsClient } from '@/features/payments/PlatformPaymentAccountsClient';
+- `/payments/by-project` — `apps/admin/src/app/(dashboard)/payments/by-project/page.tsx` — redirects: '/payments'
+- `/payments/company-legal` — `apps/admin/src/app/(dashboard)/payments/company-legal/page.tsx`
+  - import { CompanyLegalProfilesClient } from '@/features/payments/CompanyLegalProfilesClient';
+- `/payments/disputes` — `apps/admin/src/app/(dashboard)/payments/disputes/page.tsx`
+  - import { GePageHeader as PageHeader } from '@/components/admin/AdminGentelellaUI';
+  - import { AdminDisputesSection } from '@/features/payments/AdminDisputesSection';
+- `/payments` — `apps/admin/src/app/(dashboard)/payments/page.tsx`
+  - import { PaymentsClient } from '@/features/payments/PaymentsClient';
+- `/payments/projects/[id]` — `apps/admin/src/app/(dashboard)/payments/projects/[id]/page.tsx`
+  - import { ProjectPaymentsClient } from '@/features/payments/ProjectPaymentsClient';
+- `/pipeline` — `apps/admin/src/app/(dashboard)/pipeline/page.tsx`
+  - import { PipelineHubClient } from '@/features/pipeline/PipelineHubClient';
+- `/pipeline/projects/[id]` — `apps/admin/src/app/(dashboard)/pipeline/projects/[id]/page.tsx`
+  - import { ProjectPipelineHubClient } from '@/features/pipeline/ProjectPipelineHubClient';
+- `/pipeline/projects` — `apps/admin/src/app/(dashboard)/pipeline/projects/page.tsx`
+  - import { PipelineProjectPickerClient } from '@/features/pipeline/PipelineProjectPickerClient';
+- `/pipeline/users/[id]` — `apps/admin/src/app/(dashboard)/pipeline/users/[id]/page.tsx`
+  - import { UserPipelineHubClient } from '@/features/pipeline/UserPipelineHubClient';
+- `/pipeline/users` — `apps/admin/src/app/(dashboard)/pipeline/users/page.tsx`
+  - import { PipelineUserPickerClient } from '@/features/pipeline/PipelineUserPickerClient';
+- `/portfolio/[id]/edit` — `apps/admin/src/app/(dashboard)/portfolio/[id]/edit/page.tsx`
+  - import { AdminPortfolioEditorClient } from '@/features/portfolio/AdminPortfolioEditorClient';
+- `/portfolio/new` — `apps/admin/src/app/(dashboard)/portfolio/new/page.tsx`
+  - import { AdminPortfolioEditorClient } from '@/features/portfolio/AdminPortfolioEditorClient';
+- `/portfolio` — `apps/admin/src/app/(dashboard)/portfolio/page.tsx`
+  - import { AdminPortfolioClient } from '@/features/portfolio/AdminPortfolioClient';
+- `/profile` — `apps/admin/src/app/(dashboard)/profile/page.tsx`
+  - import { OperatorProfileClient } from '@/features/profile/OperatorProfileClient';
+- `/projects/[id]` — `apps/admin/src/app/(dashboard)/projects/[id]/page.tsx` — redirects: PROJECT_HUB_REDIRECTS[params.id] ?? '/projects'
+  - import { AdminProjectDetailClient } from '@/features/projects/AdminProjectDetailClient';
+- `/projects/archive` — `apps/admin/src/app/(dashboard)/projects/archive/page.tsx`
+  - import { ProjectsClient } from '@/features/projects/ProjectsClient';
+- `/projects/completed` — `apps/admin/src/app/(dashboard)/projects/completed/page.tsx`
+  - import { ProjectsClient } from '@/features/projects/ProjectsClient';
+- `/projects/new` — `apps/admin/src/app/(dashboard)/projects/new/page.tsx` — redirects: '/projects'
+- `/projects` — `apps/admin/src/app/(dashboard)/projects/page.tsx`
+  - import { ProjectsClient } from '@/features/projects/ProjectsClient';
+- `/projects/stats` — `apps/admin/src/app/(dashboard)/projects/stats/page.tsx`
+  - import { ProjectsClient } from '@/features/projects/ProjectsClient';
+- `/quotes/[id]` — `apps/admin/src/app/(dashboard)/quotes/[id]/page.tsx` — redirects: QUOTE_HUB_REDIRECTS[params.id] ?? '/quotes'
+  - import { QuoteDetailClient } from '@/features/quotes/QuoteDetailClient';
+- `/quotes/drafts` — `apps/admin/src/app/(dashboard)/quotes/drafts/page.tsx`
+  - import { QuotesClient } from '@/features/quotes/QuotesClient';
+- `/quotes/new` — `apps/admin/src/app/(dashboard)/quotes/new/page.tsx` — redirects: '/requests'
+- `/quotes` — `apps/admin/src/app/(dashboard)/quotes/page.tsx`
+  - import { QuotesClient } from '@/features/quotes/QuotesClient';
+- `/quotes/payment-schedules` — `apps/admin/src/app/(dashboard)/quotes/payment-schedules/page.tsx` — redirects: '/quotes'
+- `/quotes/stats` — `apps/admin/src/app/(dashboard)/quotes/stats/page.tsx`
+  - import { QuotesClient } from '@/features/quotes/QuotesClient';
+- `/requests/[id]` — `apps/admin/src/app/(dashboard)/requests/[id]/page.tsx` — redirects: '/requests'
+  - import { RequestDetailClient } from '@/features/requests/RequestDetailClient';
+- `/requests/[id]/quote/edit` — `apps/admin/src/app/(dashboard)/requests/[id]/quote/edit/page.tsx`
+  - import { RequestQuoteEditClient } from '@/features/requests/RequestQuoteEditClient';
+- `/requests/[id]/quote/new` — `apps/admin/src/app/(dashboard)/requests/[id]/quote/new/page.tsx`
+  - import { RequestQuoteBuilderClient } from '@/features/requests/RequestQuoteBuilderClient';
+- `/requests/capacity` — `apps/admin/src/app/(dashboard)/requests/capacity/page.tsx` — redirects: '/requests'
+- `/requests` — `apps/admin/src/app/(dashboard)/requests/page.tsx`
+  - import { RequestsClient } from '@/features/requests/RequestsClient';
+- `/system/announcements` — `apps/admin/src/app/(dashboard)/system/announcements/page.tsx` — redirects: '/system?tab=operations'
+- `/system/cache` — `apps/admin/src/app/(dashboard)/system/cache/page.tsx` — redirects: '/system?tab=operations'
+- `/system/email-templates` — `apps/admin/src/app/(dashboard)/system/email-templates/page.tsx` — redirects: '/system?tab=templates'
+- `/system/features` — `apps/admin/src/app/(dashboard)/system/features/page.tsx` — redirects: '/system?tab=features'
+- `/system/health` — `apps/admin/src/app/(dashboard)/system/health/page.tsx` — redirects: '/system'
+- `/system/jobs` — `apps/admin/src/app/(dashboard)/system/jobs/page.tsx` — redirects: '/system?tab=jobs'
+- `/system/maintenance` — `apps/admin/src/app/(dashboard)/system/maintenance/page.tsx` — redirects: '/system?tab=operations'
+- `/system/notification-templates` — `apps/admin/src/app/(dashboard)/system/notification-templates/page.tsx` — redirects: '/system?tab=templates&pane=notifications'
+- `/system` — `apps/admin/src/app/(dashboard)/system/page.tsx`
+  - import { SystemClient } from '@/features/system/SystemClient';
+- `/system/staff` — `apps/admin/src/app/(dashboard)/system/staff/page.tsx` — redirects: '/users?role=ADMIN'
+- `/users/[id]` — `apps/admin/src/app/(dashboard)/users/[id]/page.tsx`
+  - import { UserDetailClient } from '@/features/users/UserDetailClient';
+- `/users` — `apps/admin/src/app/(dashboard)/users/page.tsx`
+  - import { UsersListClient } from '@/features/users/UsersListClient';
+- `/users/search` — `apps/admin/src/app/(dashboard)/users/search/page.tsx`
+  - import { UsersListClient } from '@/features/users/UsersListClient';
+- `/` — `apps/admin/src/app/page.tsx`
+  - import { AdminGateHome } from '@/features/auth/AdminGateHome';
+

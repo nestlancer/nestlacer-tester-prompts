@@ -2,6 +2,8 @@
 
 Includes UI prompts, API/backend prompts and the added security prompt suite.
 
+**Before any external LLM run:** read [`00-start-here/DEMO-ACCOUNTS.md`](00-start-here/DEMO-ACCOUNTS.md) for hosts (`https://nestlancer.com`, `https://app.nestlancer.com`, `https://admin.nestlancer.com`, `https://api.nestlancer.com`) and demo logins.
+
 ## Public + marketing UI prompts
 
 | ID | File | Title |

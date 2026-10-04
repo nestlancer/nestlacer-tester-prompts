@@ -4,6 +4,11 @@
 **Execution:** Direct backend/seed/API validation is allowed for this `A##` prompt. Use demo/prod data only.  
 **Scope:** Seed payloads, demo scenario coverage, fixture creation and safe destructive-test readiness.
 
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Browser origins:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
+
 ## 1. Source and contract references
 
 - `seed/README.md`
@@ -26,21 +31,24 @@
 
 ## 2. Seed/fixture groups to cover
 
-- Environment detection and guardrails: dev/prod, Infisical env, database name, S3 bucket names, Docker direct URLs.
+### Public-domain path (default for external LLM)
+- Prove fixtures via portals + `https://api.nestlancer.com/api/v1` list endpoints using [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md).
+- Catalog counts: blogs/portfolio/templates/flags/packages/accounts visible over HTTPS.
+- Demo clients (15) + admin login/work-object smoke.
+- AUDIT-* fixture creation via UI/API only.
+
+### Operator / local-lab path (mark BLOCKED if unavailable)
+- Environment detection and guardrails: Infisical env, database name, S3 bucket names (never print secrets). Docker/direct microservice URLs are **local-lab only**.
 - Phases: reset, core, blogs, portfolio, content, demo, legacy `prod-data/run-seed.sh` forwarding.
-- Core payloads: admin, admin capacity, system config, email templates, notification templates, feature flags.
-- Commerce payloads: legal profiles, platform payment accounts, quote line-item blocks, service packages.
-- Public content: taxonomy, 110 blog posts, portfolio items/images.
-- Demo accounts/cohorts and scenarios.
-- Demo asset generation and media upload linkage.
-- Re-run/idempotency ledger and cache busting.
+- Core/commerce/public/demo payload files under `seed/payloads/**`.
+- Demo asset generation, media upload linkage, idempotency ledger, cache busting scripts.
 
 ## 3. Required setup / fixtures
 
-- Read-only DB/query access or API list endpoints for counts.
-- Demo/admin credentials through approved secret channel; never print them in report.
-- Knowledge of target environment (`dev`, `staging`, production-like demo) and explicit operator approval before any reset/demo seeding against prod.
-- Optional: Mail/MinIO/S3/Redis access to validate storage and cache side effects.
+- **Public-domain:** API list endpoints + demo/admin credentials from DEMO-ACCOUNTS.md.
+- **Operator-only:** Read-only DB/MinIO/Redis/shell seed access if validating storage/cache internals.
+- Explicit operator approval before any reset/demo seeding against prod (`--confirm-prod`).
+- Mail sink usually unavailable (outbound email suppressed) — mark email-content checks BLOCKED.
 
 ## 4. Mandatory tests
 

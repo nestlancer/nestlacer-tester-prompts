@@ -4,6 +4,11 @@
 **Execution:** Direct API/backend contract testing is allowed for this `A##` prompt. Use demo/prod data only.  
 **Scope:** Backend auth contract and BFF cookie/session behavior
 
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Browser origins:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
+
 ## 1. Source and contract references
 - openapi-operations-by-tag.md tags: `auth`, `users` session/security subset
 - backend-controller-endpoints.md: gateway auth, services/auth, services/users
@@ -18,10 +23,10 @@
 - user sessions/profile basic
 
 ## 3. Required setup / fixtures
-- demo client account
-- demo admin account
-- 2FA-enabled account if available
-- reset/verify email sink access if available
+- demo client account from [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md) (e.g. `arjun.mehta@nestlancer.com`)
+- demo admin account (`admin@nestlancer.com`)
+- 2FA-enabled account if available (create AUDIT-* disposable account; else BLOCKED)
+- reset/verify email sink access if available (usually BLOCKED on demo seed — outbound email suppressed; see DEMO-ACCOUNTS.md)
 
 ## 4. Mandatory tests
 1. Validate envelope/status/error codes for each auth endpoint.

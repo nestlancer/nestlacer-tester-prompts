@@ -3,7 +3,8 @@
 **Priority:** P0  
 **Primary role:** Regression QA lead  
 **Scope:** Browser rerun of the source’s existing Playwright specs, `NL-BUG`/`RERUN` markers and changelog regression surfaces.
-**Target host:** `nestlancer.com` + `app.nestlancer.com` + `admin.nestlancer.com`
+**Target host:** `https://nestlancer.com` + `https://app.nestlancer.com` + `https://admin.nestlancer.com`
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
 ## 0. Demo-production mode for this prompt
 

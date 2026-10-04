@@ -3,7 +3,8 @@
 **Priority:** P0  
 **Primary role:** operator/admin  
 **Scope:** Deep project delivery operations
-**Target host:** `admin.nestlancer.com` (admin console)
+**Target host:** `https://admin.nestlancer.com` (admin console)
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
 
 ## 0. Demo-production mode for this prompt

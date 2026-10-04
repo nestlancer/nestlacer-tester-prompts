@@ -2,6 +2,17 @@
 
 **Purpose:** Add practical application-security and abuse-resistance coverage to every verified prompt. The goal is to find and fix vulnerabilities in the authorized Nestlancer demo/production-like environment without harming real users, data, money, providers or infrastructure.
 
+## Target hosts (public-domain default)
+
+| Surface | Origin |
+|---|---|
+| Marketing | `https://nestlancer.com` |
+| Client / app | `https://app.nestlancer.com` |
+| Admin | `https://admin.nestlancer.com` |
+| API gateway | `https://api.nestlancer.com/api/v1` |
+
+Demo accounts and password: [`../00-start-here/DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md). Do not call localhost/Docker/microservice ports unless the operator marks **local lab mode**.
+
 ## Authorization and safety boundaries
 
 - Test only systems, domains, accounts, APIs and data explicitly owned/approved for this audit.

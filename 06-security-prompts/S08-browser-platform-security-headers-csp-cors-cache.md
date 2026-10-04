@@ -4,6 +4,11 @@
 **Role:** Platform security QA  
 **Scope:** Frontend apps, middleware, BFF/proxy, headers, CORS, cache behavior and redirects.
 
+**Target hosts:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` · `https://api.nestlancer.com`
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)
+
 ## Pair with existing prompts
 
 - P01, P02, P17, P40, P43, P44, P45

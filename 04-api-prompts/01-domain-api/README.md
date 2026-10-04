@@ -2,6 +2,12 @@
 
 Direct API prompts for core domain contracts A01-A16.
 
+**API base URL (required):** `https://api.nestlancer.com/api/v1`  
+**Accounts:** [`../../00-start-here/DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)  
+**Runbook:** [`../../01-coverage-matrices/API-PROMPTS-RUNBOOK.md`](../../01-coverage-matrices/API-PROMPTS-RUNBOOK.md)
+
+Public-domain mode only for external LLM runs — no localhost / Docker / microservice ports.
+
 | File | Title |
 |---|---|
 | [A01-auth--sessions--2fa--reset-tokens-and-portal-role-boundaries.md](A01-auth--sessions--2fa--reset-tokens-and-portal-role-boundaries.md) | A01 — Auth, sessions, 2FA, reset tokens and portal role boundaries |

@@ -4,6 +4,11 @@
 **Role:** Security QA / identity auditor  
 **Scope:** Auth, account recovery, session lifecycle, role boundaries, object ownership and impersonation.
 
+**Target hosts:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` · `https://api.nestlancer.com`
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)
+
 ## Pair with existing prompts
 
 - P03, P15, P18, P30, P31, P43, P45

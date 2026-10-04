@@ -4,10 +4,11 @@
 **Execution:** Direct API/backend contract testing is allowed for this `A##` prompt. Use demo/prod data only.  
 **Scope:** Messaging REST plus realtime side effects
 
-## 1. Source and contract references
-- openapi tags: `messages`, `Conversations`, `Chat threads`, `Message Threads`, `Messaging - Admin`
-- services/messaging controllers
-- ws-gateway controllers
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**WebSocket URL:** `https://api.nestlancer.com` (Socket.IO path `/ws/socket.io`)
+**Browser origins:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
 ## 2. Endpoint groups to cover
 - conversations/unread

@@ -3,7 +3,8 @@
 **Priority:** P0  
 **Primary role:** operator/admin plus audit client  
 **Scope:** Full selected-user page-in-page walk
-**Target host:** `admin.nestlancer.com` (admin console)
+**Target host:** `https://admin.nestlancer.com` (admin console)
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
 
 ## 0. Demo-production mode for this prompt

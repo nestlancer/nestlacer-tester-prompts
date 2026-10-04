@@ -3,7 +3,8 @@
 **Priority:** P1  
 **Primary role:** Document/email QA + artifact integrity auditor  
 **Scope:** User-visible artifacts produced by UI flows: quote PDFs, invoices, receipts, verification pages, email/notification templates, report/export files, media downloads and generated worker outputs.
-**Target host:** `nestlancer.com` + `app.nestlancer.com` + `admin.nestlancer.com`
+**Target host:** `https://nestlancer.com` + `https://app.nestlancer.com` + `https://admin.nestlancer.com`
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
 ## 0. Demo-production mode for this prompt
 
@@ -59,7 +60,7 @@ You may generate, download, resend, revoke and delete demo/audit artifacts when 
 5. Trigger payment refund/dispute/manual/offline flows on demo data if supported and verify document/ledger wording.
 6. Open `/verify` and `/verify-document` with a valid demo document token/signature if available; test tampered token/signature.
 7. Preview all high-risk email templates in admin system/templates. Send only to demo sink/audit account. Check subject, variables, links and branding.
-8. Request password reset/email verification/2FA emails for disposable demo accounts and verify content via demo mail sink; never paste tokens into the report.
+8. Request password reset/email verification/2FA emails for disposable demo accounts. If outbound email is suppressed (demo seed default), mark **content** verification BLOCKED and still record API/UI status codes; never paste tokens into the report. Use a mail sink only when an operator provides one.
 9. Generate admin exports/reports available from UI. Download and open the file. Verify headers, row count, filters, permission scope and no secret columns.
 10. Upload a disposable media file, download it, share it publicly, revoke share, and verify private/public access behavior. Test rejected SVG/spoof sample if fixture exists.
 11. Verify worker-generated artifacts appear after queue processing or record exact worker/outbox backlog if blocked.

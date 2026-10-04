@@ -4,6 +4,11 @@
 **Execution:** Direct API/backend contract testing is allowed for this `A##` prompt. Use demo/prod data only.  
 **Scope:** Public/content APIs and admin CMS APIs
 
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Browser origins:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
+
 ## 1. Source and contract references
 - openapi tags: blog/admin blog/comment/taxonomy, portfolio/public/admin, contact/public/admin
 - services/blog, services/portfolio, services/contact controllers

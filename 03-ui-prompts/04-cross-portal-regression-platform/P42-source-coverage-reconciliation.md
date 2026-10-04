@@ -3,7 +3,8 @@
 **Priority:** P0  
 **Primary role:** QA lead / coverage auditor  
 **Scope:** Final source-to-prompt reconciliation so nothing from the repositories is missed
-**Target host:** `nestlancer.com` + `app.nestlancer.com` + `admin.nestlancer.com`
+**Target host:** `https://nestlancer.com` + `https://app.nestlancer.com` + `https://admin.nestlancer.com`
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
 ## 0. Demo-production mode for this prompt
 
@@ -12,12 +13,14 @@ This prompt is mostly read-only. It may open routes and click safe controls. Exe
 ## 1. Source-code anchors to read before browser testing
 
 ### Generated/static inventories in this prompt suite
-- `frontend-route-map.md`
-- `frontend-api-method-usage.md`
-- `frontend-control-string-inventory.md`
-- `openapi-operations-by-tag.md`
-- `backend-controller-endpoints.md`
-- `00-COVERAGE-MATRIX.md`
+- [`../../02-source-inventories/frontend-route-map.md`](../../02-source-inventories/frontend-route-map.md)
+- [`../../02-source-inventories/frontend-api-method-usage.md`](../../02-source-inventories/frontend-api-method-usage.md)
+- [`../../02-source-inventories/frontend-control-string-inventory.md`](../../02-source-inventories/frontend-control-string-inventory.md)
+- [`../../02-source-inventories/openapi-operations-by-tag.md`](../../02-source-inventories/openapi-operations-by-tag.md)
+- [`../../02-source-inventories/backend-controller-endpoints.md`](../../02-source-inventories/backend-controller-endpoints.md)
+- [`../../01-coverage-matrices/UI-COVERAGE-MATRIX-organized.md`](../../01-coverage-matrices/UI-COVERAGE-MATRIX-organized.md)
+- [`../../01-coverage-matrices/API-COVERAGE-MATRIX-organized.md`](../../01-coverage-matrices/API-COVERAGE-MATRIX-organized.md)
+- [`../../00-start-here/DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
 ### Frontend source roots
 - `apps/web/src/app/**`

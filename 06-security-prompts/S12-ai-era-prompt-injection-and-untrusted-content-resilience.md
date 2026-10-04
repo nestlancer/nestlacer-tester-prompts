@@ -4,6 +4,11 @@
 **Role:** AI-era application security tester  
 **Scope:** Defend the app against modern untrusted-content attacks, including prompt-injection-style content, malicious Markdown/HTML, poisoned documents and unsafe automation. Run now for content surfaces, and rerun if any AI/LLM feature is added.
 
+**Target hosts:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` · `https://api.nestlancer.com`
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)
+
 ## Pair with existing prompts
 
 - P02, P10, P13, P14, P16, P32, P33, P34, P36, P37, P44, P47

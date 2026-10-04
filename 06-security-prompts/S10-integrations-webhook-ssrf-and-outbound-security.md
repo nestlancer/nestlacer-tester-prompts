@@ -4,6 +4,11 @@
 **Role:** Integration security auditor  
 **Scope:** Admin integrations, outgoing webhooks, inbound webhooks, URL validation, DNS/private-network safety and retry behavior.
 
+**Target hosts:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` · `https://api.nestlancer.com`
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)
+
 ## Pair with existing prompts
 
 - P35, P38, P43, P44, P45, P46

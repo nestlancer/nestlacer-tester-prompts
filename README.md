@@ -2,15 +2,19 @@
 
 This directory is the organized, verified prompt suite derived from `nestlancer-ai-prompts-v4-max-complete`, now updated with mandatory application-security and abuse-resistance checks.
 
-## Portal URLs (required when running prompts)
+## Portal / API URLs (required when running prompts)
 
-| Surface | Host | Used by |
+External LLM runs must use **public domains only** (not localhost, Docker IPs, or microservice ports).
+
+| Surface | Origin | Used by |
 |---|---|---|
-| Marketing / landing | `nestlancer.com` | P01 (+ cross-portal) |
-| Client portal + app-host public | `app.nestlancer.com` | P02–P17 (+ cross-portal) |
-| Admin console | `admin.nestlancer.com` | P18–P41 (+ cross-portal) |
+| Marketing / landing | `https://nestlancer.com` | P01 (+ cross-portal) |
+| Client portal + app-host public | `https://app.nestlancer.com` | P02–P17 (+ cross-portal) |
+| Admin console | `https://admin.nestlancer.com` | P18–P41 (+ cross-portal) |
+| API gateway | `https://api.nestlancer.com` (`/api/v1/*`) | A01–A20, S## API checks |
+| WebSocket | `https://api.nestlancer.com` (`/ws/socket.io`) | messaging / realtime prompts |
 
-Every UI prompt carries a `**Target host:**` line. Prefer these production hosts; if the session uses a demo/staging override, record the actual origin in the evidence preamble and keep the same path map.
+Every UI prompt carries a `**Target host:**` line. Every API/security prompt carries `**API base URL:**` / `**Target hosts:**`. Demo logins live in [`00-start-here/DEMO-ACCOUNTS.md`](00-start-here/DEMO-ACCOUNTS.md). If the session uses a demo/staging override, record the actual origins in the evidence preamble and keep the same path map.
 
 ## Counts
 
@@ -21,6 +25,7 @@ Every UI prompt carries a `**Target host:**` line. Prefer these production hosts
 
 ## Start here
 
+- [DEMO-ACCOUNTS.md](00-start-here/DEMO-ACCOUNTS.md) — **Required** demo emails/password, hosts, public-domain vs operator-only rules
 - [00-RUNBOOK.md](00-start-here/00-RUNBOOK.md) — Runbook — demo-production execution rules, safety fences, evidence standard and security overlay
 - [00-SECURITY-RUNBOOK.md](06-security-prompts/00-SECURITY-RUNBOOK.md) — Security runbook — authorized defensive testing rules and universal security checklist
 - [00-SOURCE-UNDERSTANDING.md](00-start-here/00-SOURCE-UNDERSTANDING.md) — Source understanding — architecture, route facts, state machines and source-derived findings

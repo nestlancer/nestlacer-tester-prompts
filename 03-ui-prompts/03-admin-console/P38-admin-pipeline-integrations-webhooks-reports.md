@@ -3,7 +3,8 @@
 **Priority:** P1  
 **Primary role:** operator/admin  
 **Scope:** Pipeline and integrations/webhook surfaces
-**Target host:** `admin.nestlancer.com` (admin console)
+**Target host:** `https://admin.nestlancer.com` (admin console)
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
 
 ## 0. Demo-production mode for this prompt
@@ -42,7 +43,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 1. Pipeline stage view: columns/cards/counts/deep links, API explorer if present.
 2. User hub picker/detail: requests/quotes/projects/payments/sessions/activity/flags for selected audit user.
 3. Project hub picker/detail: project progress/deliverables/payments/timeline.
-4. Integrations: health/events, list webhooks, create audit webhook to safe localhost/example, edit/enable/disable/test/delete, deliveries tab.
+4. Integrations: health/events, list webhooks, create audit webhook to an operator-approved **public HTTPS** demo sink (never `localhost`, private IPs, or metadata endpoints — see DEMO-ACCOUNTS.md / S10), edit/enable/disable/test/delete, deliveries tab.
 5. Check `/api-keys` redirect to integrations and whether any API key controls exist.
 6. Probe `/reports` and record UI gap if absent; if UI exists, list/download report safely.
 7. Cross-link findings to system/webhooks backend surfaces.
@@ -61,7 +62,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - reports probe
 
 ## 6. Data and safety fences
-Create only `AUDIT-P38` webhooks pointing to safe non-production endpoint. Do not send to real customer systems.
+Create only `AUDIT-P38` webhooks pointing to a safe **public HTTPS** non-production sink. Do not send to real customer systems, localhost, or private network targets.
 
 ## 7. Required evidence
 - Screenshot every L1 route and each L2 tab / L3 drawer / L3 modal opened by this prompt.

@@ -4,6 +4,11 @@
 **Role:** Backend security QA  
 **Scope:** Direct API abuse resistance without production DoS.
 
+**Target hosts:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` · `https://api.nestlancer.com`
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)
+
 ## Pair with existing prompts
 
 - P12, P23, P24, P26, P27, P28, P35, P39, P45, P46

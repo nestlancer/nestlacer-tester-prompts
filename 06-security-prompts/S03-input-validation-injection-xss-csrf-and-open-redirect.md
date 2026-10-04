@@ -4,6 +4,11 @@
 **Role:** Application security tester  
 **Scope:** All user-controlled input across public, client, admin, API and generated-output surfaces.
 
+**Target hosts:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` · `https://api.nestlancer.com`
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)
+
 ## Pair with existing prompts
 
 - P01, P02, P06, P07, P13, P14, P21, P22, P24, P33, P34, P35, P36, P37, P43, P44, P47

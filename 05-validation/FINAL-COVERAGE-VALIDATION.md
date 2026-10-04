@@ -37,7 +37,7 @@ Generated: 2026-10-04
 Validated by script after generation:
 
 - `README.md`: no missing local links.
-- `00-COVERAGE-MATRIX.md`: 47 prompt links, no missing local links.
+- `00-COVERAGE-MATRIX.md` (legacy name): use [`../01-coverage-matrices/UI-COVERAGE-MATRIX-organized.md`](../01-coverage-matrices/UI-COVERAGE-MATRIX-organized.md) — 47 prompt links.
 - `API-COVERAGE-MATRIX.md`: 20 prompt links, no missing local links.
 - `API-PROMPTS-RUNBOOK.md`: no missing local links.
 

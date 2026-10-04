@@ -2,6 +2,10 @@
 
 Authorized defensive application-security, abuse-resistance and AI-era untrusted-content prompts S01-S12 plus the security runbook.
 
+**Target hosts:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` · `https://api.nestlancer.com`  
+**Accounts:** [`../00-start-here/DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)  
+**Start with:** [`00-SECURITY-RUNBOOK.md`](00-SECURITY-RUNBOOK.md) then `S01`.
+
 | File | Title |
 |---|---|
 | [00-SECURITY-RUNBOOK.md](00-SECURITY-RUNBOOK.md) | Security Runbook — Authorized defensive testing only |

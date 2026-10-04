@@ -4,6 +4,11 @@
 **Role:** Realtime/content-abuse security QA  
 **Scope:** WebSockets, messages, notifications, broadcasts, comments, moderation and user-generated content.
 
+**Target hosts:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` · `https://api.nestlancer.com`
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)
+
 ## Pair with existing prompts
 
 - P04, P13, P14, P19, P33, P34, P36, P45

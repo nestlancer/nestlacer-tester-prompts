@@ -4,6 +4,11 @@
 **Execution:** Direct backend/API/queue contract testing is allowed for this `A##` prompt. Use demo/prod data only.  
 **Scope:** Asynchronous side effects and worker contracts beyond immediate HTTP response success.
 
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Browser origins:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
+
 ## 1. Source and contract references
 
 - `workers/analytics-worker/src/**`
@@ -40,7 +45,7 @@
 
 - Queue/worker status access via admin system/jobs/health or backend tooling.
 - Demo records that trigger each event class.
-- Demo mail sink, push sink and webhook sink.
+- Demo mail/push sinks if operator provides them (else BLOCKED); webhook sink must be public HTTPS demo URL — never localhost (see DEMO-ACCOUNTS.md).
 - Test-mode signed Razorpay/GitHub payloads if supported.
 - Disposable media files and report/export requests.
 

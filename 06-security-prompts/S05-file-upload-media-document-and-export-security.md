@@ -4,6 +4,11 @@
 **Role:** File/document security auditor  
 **Scope:** Uploads, private media, generated PDFs, public shares, exports and downloads.
 
+**Target hosts:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` · `https://api.nestlancer.com`
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)
+
 ## Pair with existing prompts
 
 - P10, P11, P16, P32, P35, P39, P44, P46, P47

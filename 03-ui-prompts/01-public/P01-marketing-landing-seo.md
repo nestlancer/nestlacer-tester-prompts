@@ -3,7 +3,8 @@
 **Priority:** P2  
 **Primary role:** anonymous/public visitor  
 **Scope:** Landing app public website and marketing-to-app handoff
-**Target host:** `nestlancer.com` (marketing / landing)
+**Target host:** `https://nestlancer.com` (marketing / landing)
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
 
 ## 0. Demo-production mode for this prompt

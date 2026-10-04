@@ -3,7 +3,8 @@
 **Priority:** P0  
 **Primary role:** anonymous/client  
 **Scope:** Complete client account entry and recovery lifecycle
-**Target host:** `app.nestlancer.com` (client portal)
+**Target host:** `https://app.nestlancer.com` (client portal)
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
 
 ## 0. Demo-production mode for this prompt

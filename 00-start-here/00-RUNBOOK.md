@@ -18,41 +18,50 @@ The previous prompt set was already source anchored, but another deeper loop fou
 
 ## Prompt inventory
 
-- **47 UI/browser prompts:** `prompts/P01-...` through `prompts/P47-...`.
-- **20 API/backend prompts:** `api-prompts/A01-...` through `api-prompts/A20-...`.
+- **47 UI/browser prompts:** `03-ui-prompts/**/P01-...` through `P47-...`.
+- **20 API/backend prompts:** `04-api-prompts/**/A01-...` through `A20-...`.
+- **12 security prompts:** `06-security-prompts/S01-...` through `S12-...`.
 - Start with:
-  - `00-SOURCE-UNDERSTANDING.md`
-  - `frontend-route-map.md`
-  - `frontend-special-route-handlers-and-middleware.md`
-  - `frontend-api-method-usage.md`
-  - `frontend-control-string-inventory.md`
-  - `openapi-operations-by-tag.md`
-  - `backend-controller-endpoints.md`
-  - `source-regression-markers-inventory.md`
-  - `00-COVERAGE-MATRIX.md`
-  - `API-COVERAGE-MATRIX.md`
-  - `LOOP-COMPLETENESS-AUDIT.md`
+  - [`DEMO-ACCOUNTS.md`](DEMO-ACCOUNTS.md) — hosts + demo logins (required for external LLM runs)
+  - [`00-SOURCE-UNDERSTANDING.md`](00-SOURCE-UNDERSTANDING.md)
+  - [`../02-source-inventories/frontend-route-map.md`](../02-source-inventories/frontend-route-map.md)
+  - [`../02-source-inventories/frontend-special-route-handlers-and-middleware.md`](../02-source-inventories/frontend-special-route-handlers-and-middleware.md)
+  - [`../02-source-inventories/frontend-api-method-usage.md`](../02-source-inventories/frontend-api-method-usage.md)
+  - [`../02-source-inventories/frontend-control-string-inventory.md`](../02-source-inventories/frontend-control-string-inventory.md)
+  - [`../02-source-inventories/openapi-operations-by-tag.md`](../02-source-inventories/openapi-operations-by-tag.md)
+  - [`../02-source-inventories/backend-controller-endpoints.md`](../02-source-inventories/backend-controller-endpoints.md)
+  - [`../02-source-inventories/source-regression-markers-inventory.md`](../02-source-inventories/source-regression-markers-inventory.md)
+  - [`../01-coverage-matrices/UI-COVERAGE-MATRIX-organized.md`](../01-coverage-matrices/UI-COVERAGE-MATRIX-organized.md)
+  - [`../01-coverage-matrices/API-COVERAGE-MATRIX-organized.md`](../01-coverage-matrices/API-COVERAGE-MATRIX-organized.md)
+  - [`LOOP-COMPLETENESS-AUDIT.md`](LOOP-COMPLETENESS-AUDIT.md)
 
-## Portal URLs
+## Portal / API URLs
 
-Use these hosts when opening browser sessions and recording evidence (same map as the older B01–B34 suite):
+Use these hosts when opening browser sessions, calling the API, and recording evidence. **Public-domain mode is the default for external LLM runs.**
 
-| Surface | Host | Apps source |
+| Surface | Origin | Apps / notes |
 |---|---|---|
 | Marketing / landing | `https://nestlancer.com` | `apps/landing` |
 | Client portal + app-host public | `https://app.nestlancer.com` | `apps/web` |
 | Admin console | `https://admin.nestlancer.com` | `apps/admin` |
+| API gateway | `https://api.nestlancer.com` | Paths under `/api/v1/*` |
+| WebSocket | `https://api.nestlancer.com` | Socket.IO path `/ws/socket.io` |
 
 - UI prompts label the host in `**Target host:**`.
-- Cross-portal prompts (P39–P47, except where scoped) walk all three.
-- API prompts call the configured gateway/BFF for the same environment; browser-origin checks (CORS, cookies, CSP, redirects) must use the three portal hosts above.
-- If a demo/staging override is used instead, record the real origin once in the session preamble and keep path coverage identical.
+- API prompts label `**API base URL:** https://api.nestlancer.com/api/v1`.
+- Cross-portal prompts (P39–P47, except where scoped) walk the three portals; API checks use the gateway.
+- Browser-origin checks (CORS, cookies, CSP, redirects) must use the three portal hosts; prefer same-origin `{portal}/api/v1/*` for BFF cookie mode.
+- Do **not** call localhost, Docker IPs, or microservice host ports unless the operator marks **local lab mode**.
+- Demo accounts: [`DEMO-ACCOUNTS.md`](DEMO-ACCOUNTS.md).
+- If a demo/staging override is used instead, record the real origins once in the session preamble and keep path coverage identical.
 
 Session preamble checklist:
 
 ```text
-Portals reachable: nestlancer.com [ ]  app.nestlancer.com [ ]  admin.nestlancer.com [ ]
+Mode: public-domain [ ]  local-lab [ ]
+Portals reachable: nestlancer.com [ ]  app.nestlancer.com [ ]  admin.nestlancer.com [ ]  api.nestlancer.com [ ]
 Actual origins used (if override): ______________________________
+Demo accounts file: 00-start-here/DEMO-ACCOUNTS.md
 ```
 
 ## How to run the suite

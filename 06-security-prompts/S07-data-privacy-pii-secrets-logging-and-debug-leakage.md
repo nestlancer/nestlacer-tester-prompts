@@ -4,6 +4,11 @@
 **Role:** Privacy/security auditor  
 **Scope:** PII, secrets, diagnostics, debug panels, logs, exports, telemetry, emails and support evidence.
 
+**Target hosts:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` · `https://api.nestlancer.com`
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)
+
 ## Pair with existing prompts
 
 - P14, P15, P30, P31, P35, P44, P46, P47

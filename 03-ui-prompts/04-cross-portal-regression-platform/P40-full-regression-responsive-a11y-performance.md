@@ -3,7 +3,8 @@
 **Priority:** P1  
 **Primary role:** client/admin/anonymous  
 **Scope:** Final completeness net over all prompts
-**Target host:** `nestlancer.com` + `app.nestlancer.com` + `admin.nestlancer.com`
+**Target host:** `https://nestlancer.com` + `https://app.nestlancer.com` + `https://admin.nestlancer.com`
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
 
 ## 0. Demo-production mode for this prompt
@@ -13,7 +14,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 ## 1. Source-code anchors to read before browser testing
 
 ### Frontend
-- analysis/frontend-route-map.md if present
+- [`../../02-source-inventories/frontend-route-map.md`](../../02-source-inventories/frontend-route-map.md)
 - apps/*/src/app/**
 - packages/theme/**
 - packages/ui/**

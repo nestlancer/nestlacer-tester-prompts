@@ -4,12 +4,19 @@
 **Execution:** Direct API/backend contract testing is allowed for this `A##` prompt. Use demo/prod data only.  
 **Scope:** Operational/non-UI backend surfaces
 
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**WebSocket URL:** `https://api.nestlancer.com` (Socket.IO path `/ws/socket.io`)
+**Inbound webhooks base:** `https://api.nestlancer.com/api/v1/webhooks/`
+**Browser origins:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports. Worker kill / docker-deploy internals are **operator-only** (mark BLOCKED).
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
+
 ## 1. Source and contract references
 - openapi health/webhooks tags
 - gateway/ws-gateway controllers
 - services/webhooks controllers
-- workers/*
-- docker/deploy docs
+- workers/* (operator/local-lab visibility)
+- docker/deploy docs (operator/local-lab)
 
 ## 2. Endpoint groups to cover
 - health live/ready/detailed/dependencies/services/registry/workers/websocket/debug

@@ -4,6 +4,11 @@
 **Role:** Security lead / application architect  
 **Scope:** Build the security map before running deeper tests.
 
+**Target hosts:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` · `https://api.nestlancer.com`
+**API base URL:** `https://api.nestlancer.com/api/v1`
+**Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
+**Accounts:** see [`DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)
+
 ## Source anchors
 
 - `00-start-here/00-SOURCE-UNDERSTANDING.md`

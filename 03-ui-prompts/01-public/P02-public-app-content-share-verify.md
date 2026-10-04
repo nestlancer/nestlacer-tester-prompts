@@ -3,6 +3,7 @@
 **Priority:** P2  
 **Primary role:** anonymous plus optional signed-in client  
 **Scope:** Public pages served by `apps/web`
+**Target host:** `app.nestlancer.com` (app-host public surfaces)
 
 
 ## 0. Demo-production mode for this prompt

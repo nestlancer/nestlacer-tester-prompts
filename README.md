@@ -2,6 +2,16 @@
 
 This directory is the organized, verified prompt suite derived from `nestlancer-ai-prompts-v4-max-complete`, now updated with mandatory application-security and abuse-resistance checks.
 
+## Portal URLs (required when running prompts)
+
+| Surface | Host | Used by |
+|---|---|---|
+| Marketing / landing | `nestlancer.com` | P01 (+ cross-portal) |
+| Client portal + app-host public | `app.nestlancer.com` | P02–P17 (+ cross-portal) |
+| Admin console | `admin.nestlancer.com` | P18–P41 (+ cross-portal) |
+
+Every UI prompt carries a `**Target host:**` line. Prefer these production hosts; if the session uses a demo/staging override, record the actual origin in the evidence preamble and keep the same path map.
+
 ## Counts
 
 - UI/browser prompts: **47** (`P01`–`P47`)

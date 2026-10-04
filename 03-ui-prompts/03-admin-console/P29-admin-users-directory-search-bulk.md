@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** operator/admin  
 **Scope:** Admin user list before selecting a user
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -20,7 +21,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Admin users list/search/bulk/security-stats/user-metrics
 
 ## 2. Routes / surfaces to walk
-- admin `/users`
+- `admin.nestlancer.com` `/users`
 - `/users/search`
 
 ## 3. What this prompt must prove

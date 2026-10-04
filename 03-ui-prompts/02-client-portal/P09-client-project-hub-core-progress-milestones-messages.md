@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** authenticated client  
 **Scope:** Core client project detail tabs
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt
@@ -26,7 +27,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Payments project milestones
 
 ## 2. Routes / surfaces to walk
-- web `/projects/[id]?tab=overview|progress|milestones|messages`
+- `app.nestlancer.com` `/projects/[id]?tab=overview|progress|milestones|messages`
 
 ## 3. What this prompt must prove
 - Six-tab project hub routing and aliases are verified.

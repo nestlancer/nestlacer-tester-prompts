@@ -3,6 +3,7 @@
 **Priority:** P2  
 **Primary role:** authenticated client  
 **Scope:** Client project list surfaces
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt
@@ -21,7 +22,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Quotes list for new-project chooser
 
 ## 2. Routes / surfaces to walk
-- web `/projects`
+- `app.nestlancer.com` `/projects`
 - `/projects/new`
 - `/projects/archive`
 - `/projects/completed`

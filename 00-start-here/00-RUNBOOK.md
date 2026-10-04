@@ -33,13 +33,36 @@ The previous prompt set was already source anchored, but another deeper loop fou
   - `API-COVERAGE-MATRIX.md`
   - `LOOP-COMPLETENESS-AUDIT.md`
 
+## Portal URLs
+
+Use these hosts when opening browser sessions and recording evidence (same map as the older B01–B34 suite):
+
+| Surface | Host | Apps source |
+|---|---|---|
+| Marketing / landing | `https://nestlancer.com` | `apps/landing` |
+| Client portal + app-host public | `https://app.nestlancer.com` | `apps/web` |
+| Admin console | `https://admin.nestlancer.com` | `apps/admin` |
+
+- UI prompts label the host in `**Target host:**`.
+- Cross-portal prompts (P39–P47, except where scoped) walk all three.
+- API prompts call the configured gateway/BFF for the same environment; browser-origin checks (CORS, cookies, CSP, redirects) must use the three portal hosts above.
+- If a demo/staging override is used instead, record the real origin once in the session preamble and keep path coverage identical.
+
+Session preamble checklist:
+
+```text
+Portals reachable: nestlancer.com [ ]  app.nestlancer.com [ ]  admin.nestlancer.com [ ]
+Actual origins used (if override): ______________________________
+```
+
 ## How to run the suite
 
 1. Read `00-SOURCE-UNDERSTANDING.md` and the route/API inventories before executing prompts.
-2. Run P46/A20 early to prove demo fixtures exist and to create disposable audit records.
-3. Execute high-risk P0 UI prompts first: auth, quotes, projects, payments, user/admin security, system operations, source reconciliation, middleware/proxy, debug/leakage, known regressions and demo fixtures.
-4. Execute API prompts for backend-only or hard-to-trigger surfaces, especially A17–A20 for route handlers, cross-cutting contracts, workers and seed readiness.
-5. Finish with P42 and P45 as reconciliation gates. If they find uncovered source, add another prompt and rerun the matrix.
+2. Confirm the three portal hosts (or an explicit staging override) are reachable before the first browser prompt.
+3. Run P46/A20 early to prove demo fixtures exist and to create disposable audit records.
+4. Execute high-risk P0 UI prompts first: auth, quotes, projects, payments, user/admin security, system operations, source reconciliation, middleware/proxy, debug/leakage, known regressions and demo fixtures.
+5. Execute API prompts for backend-only or hard-to-trigger surfaces, especially A17–A20 for route handlers, cross-cutting contracts, workers and seed readiness.
+6. Finish with P42 and P45 as reconciliation gates. If they find uncovered source, add another prompt and rerun the matrix.
 
 ## Demo-production execution mode requested by product owner
 

@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** operator/admin  
 **Scope:** Admin media hub
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -27,7 +28,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Documents list-for-user/download
 
 ## 2. Routes / surfaces to walk
-- admin `/media`
+- `admin.nestlancer.com` `/media`
 - redirects `/media/browse`, `/media/folders`, `/media/storage`, `/media/settings`
 - `/media/quarantine` tab redirect
 - `/media/analytics` tab redirect

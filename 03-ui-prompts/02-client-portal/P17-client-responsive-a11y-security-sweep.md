@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** authenticated client plus anonymous  
 **Scope:** Completeness net over all client routes
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt

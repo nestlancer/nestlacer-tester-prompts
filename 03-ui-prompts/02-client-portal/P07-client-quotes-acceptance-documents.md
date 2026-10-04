@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** authenticated client  
 **Scope:** Client quote lifecycle and document handoff
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt
@@ -22,7 +23,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Documents quote versions/contract preview/download
 
 ## 2. Routes / surfaces to walk
-- web `/quotes`
+- `app.nestlancer.com` `/quotes`
 - `/quotes/[id]`
 - aliases `/quotes/drafts`, `/quotes/new`, `/quotes/templates`
 

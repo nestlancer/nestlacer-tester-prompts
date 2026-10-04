@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** authenticated client  
 **Scope:** Client messaging and chat overlays
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt
@@ -28,7 +29,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Media downloads for attachments
 
 ## 2. Routes / surfaces to walk
-- web `/messages`
+- `app.nestlancer.com` `/messages`
 - `/messages/inbox`
 - `/messages/[conversationId]`
 - `/messages/thread/[threadId]`

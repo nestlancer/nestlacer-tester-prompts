@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** Test data steward + QA operator  
 **Scope:** Prove the production-like environment has enough demo/audit data to execute all prompt flows, including destructive create/update/delete/status/password/session/payment/media/webhook operations.
+**Target host:** `nestlancer.com` + `app.nestlancer.com` + `admin.nestlancer.com`
 
 ## 0. Demo-production mode for this prompt
 

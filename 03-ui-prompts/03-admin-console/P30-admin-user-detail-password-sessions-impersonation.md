@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** operator/admin plus audit client  
 **Scope:** Full selected-user page-in-page walk
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -24,7 +25,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Users profile in client tab
 
 ## 2. Routes / surfaces to walk
-- admin `/users/[id]`
+- `admin.nestlancer.com` `/users/[id]`
 - client `/impersonate` handoff opened from admin
 - related `/pipeline/users/[id]`, `/media?uploaderId=...` links
 

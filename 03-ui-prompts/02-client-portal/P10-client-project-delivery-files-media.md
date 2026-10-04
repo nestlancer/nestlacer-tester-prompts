@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** authenticated client  
 **Scope:** Delivery and file-specific project detail tabs
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt
@@ -24,7 +25,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Media list/download/share
 
 ## 2. Routes / surfaces to walk
-- web `/projects/[id]?tab=deliverables`
+- `app.nestlancer.com` `/projects/[id]?tab=deliverables`
 - `/projects/[id]?tab=files`
 - related `/settings/files` links
 

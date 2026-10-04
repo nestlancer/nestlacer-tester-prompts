@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** Browser QA + platform edge/middleware auditor  
 **Scope:** Next.js route handlers and middleware that are easy to miss when only walking `page.tsx` routes.
+**Target host:** `nestlancer.com` + `app.nestlancer.com` + `admin.nestlancer.com`
 
 ## 0. Demo-production mode for this prompt
 

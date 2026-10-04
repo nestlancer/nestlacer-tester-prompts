@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** operator/admin  
 **Scope:** Admin project overview and management
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -23,7 +24,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Admin projects list/stats/detail/update/status/history/complete/archive/unarchive/duplicate/export/template/team/analytics
 
 ## 2. Routes / surfaces to walk
-- admin `/projects`
+- `admin.nestlancer.com` `/projects`
 - `/projects/archive`
 - `/projects/completed`
 - `/projects/stats`

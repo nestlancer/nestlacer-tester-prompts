@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** operator/admin  
 **Scope:** Admin messaging and moderation
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -22,9 +23,9 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Admin messages flagged/dismiss/escalate/delete/restore/history/analytics/broadcast system message
 
 ## 2. Routes / surfaces to walk
-- admin `/messages`, `/messages/inbox`, `/messages/new-direct`, `/messages/new-group`, `/messages/project/[projectId]`, `/messages/thread/[threadId]`
+- `admin.nestlancer.com` `/messages`, `/messages/inbox`, `/messages/new-direct`, `/messages/new-group`, `/messages/project/[projectId]`, `/messages/thread/[threadId]`
 - aliases `/messages/new`, `/messages/new/direct`, `/messages/threads`, `/messages/archived`
-- admin `/moderation`
+- `admin.nestlancer.com` `/moderation`
 
 ## 3. What this prompt must prove
 - All admin message variants and aliases are covered.

@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** operator/admin  
 **Scope:** Admin overview metrics and analytics tabs
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -20,8 +21,8 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Admin quote/request/project/payment stats
 
 ## 2. Routes / surfaces to walk
-- admin `/dashboard`
-- admin `/analytics`
+- `admin.nestlancer.com` `/dashboard`
+- `admin.nestlancer.com` `/analytics`
 
 ## 3. What this prompt must prove
 - Business metrics reconcile with underlying list pages.

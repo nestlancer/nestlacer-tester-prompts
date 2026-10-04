@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** authenticated client  
 **Scope:** Client notification delivery and preferences
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt
@@ -24,7 +25,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Push register/unregister subscriptions
 
 ## 2. Routes / surfaces to walk
-- web `/notifications`
+- `app.nestlancer.com` `/notifications`
 - `/settings/notifications`
 - shell bell dropdown
 - push registration component

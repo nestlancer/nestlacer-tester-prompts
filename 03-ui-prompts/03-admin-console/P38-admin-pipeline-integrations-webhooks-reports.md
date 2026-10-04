@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** operator/admin  
 **Scope:** Pipeline and integrations/webhook surfaces
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -27,8 +28,8 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Admin reports list/download API if no UI
 
 ## 2. Routes / surfaces to walk
-- admin `/pipeline`, `/pipeline/users`, `/pipeline/users/[id]`, `/pipeline/projects`, `/pipeline/projects/[id]`
-- admin `/integrations`
+- `admin.nestlancer.com` `/pipeline`, `/pipeline/users`, `/pipeline/users/[id]`, `/pipeline/projects`, `/pipeline/projects/[id]`
+- `admin.nestlancer.com` `/integrations`
 - alias `/api-keys` → `/integrations`
 - probe `/reports` API-only/no UI
 

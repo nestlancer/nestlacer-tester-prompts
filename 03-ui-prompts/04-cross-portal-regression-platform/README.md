@@ -2,6 +2,8 @@
 
 End-to-end, reconciliation, middleware/BFF/proxy, debug/leakage, known regressions, demo fixtures and generated artifacts.
 
+**Portal URLs:** `nestlancer.com` · `app.nestlancer.com` · `admin.nestlancer.com`
+
 | File | Title |
 |---|---|
 | [P39-cross-portal-end-to-end-workflows.md](P39-cross-portal-end-to-end-workflows.md) | P39 — Cross-portal end-to-end workflows and backend/UI parity |

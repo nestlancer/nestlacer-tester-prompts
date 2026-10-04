@@ -3,6 +3,7 @@
 **Priority:** P2  
 **Primary role:** authenticated client  
 **Scope:** Client `/dashboard`
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt
@@ -20,7 +21,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Projects/quotes/payments/conversations slices as used by dashboard
 
 ## 2. Routes / surfaces to walk
-- web `/dashboard`
+- `app.nestlancer.com` `/dashboard`
 
 ## 3. What this prompt must prove
 - Dashboard KPIs agree with detailed pages.

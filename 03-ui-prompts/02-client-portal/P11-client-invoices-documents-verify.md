@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** authenticated client plus anonymous verifier  
 **Scope:** Invoices, payment documents and public verification
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt
@@ -24,7 +25,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Documents mine/download/verify/versions
 
 ## 2. Routes / surfaces to walk
-- web `/invoices`
+- `app.nestlancer.com` `/invoices`
 - `/invoices/[id]` redirect/not-found behavior
 - `/payments/invoice/[id]`
 - `/settings/files` generated documents

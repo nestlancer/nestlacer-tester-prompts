@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** authenticated client  
 **Scope:** Client file, media and generated document library
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt
@@ -23,7 +24,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Documents mine/download
 
 ## 2. Routes / surfaces to walk
-- web `/settings/files`
+- `app.nestlancer.com` `/settings/files`
 
 ## 3. What this prompt must prove
 - File library controls are tested independently of project detail.

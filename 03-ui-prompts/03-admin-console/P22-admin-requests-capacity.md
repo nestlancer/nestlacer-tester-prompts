@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** operator/admin  
 **Scope:** Operator request management
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -22,7 +23,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Client requests parity
 
 ## 2. Routes / surfaces to walk
-- admin `/requests`
+- `admin.nestlancer.com` `/requests`
 - `/requests/[id]`
 - alias `/requests/capacity`
 

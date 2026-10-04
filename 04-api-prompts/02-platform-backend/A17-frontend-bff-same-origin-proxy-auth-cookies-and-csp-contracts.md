@@ -99,7 +99,7 @@
 # Result — A17 — Frontend BFF/proxy/auth/cookie/CSP contracts
 
 ## Summary
-- Origins tested:
+- Origins tested: `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com` (or recorded staging overrides)
 - Accounts/fixtures:
 - Highest severity:
 

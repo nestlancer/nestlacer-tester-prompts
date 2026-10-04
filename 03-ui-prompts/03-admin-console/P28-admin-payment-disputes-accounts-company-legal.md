@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** operator/admin  
 **Scope:** Admin money-adjacent settings and disputes
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -23,7 +24,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Company legal profile CRUD with GSTIN/PAN validation
 
 ## 2. Routes / surfaces to walk
-- admin `/payments/disputes`
+- `admin.nestlancer.com` `/payments/disputes`
 - `/payments/accounts`
 - `/payments/company-legal`
 - probe `/payments/methods` absent/redirect

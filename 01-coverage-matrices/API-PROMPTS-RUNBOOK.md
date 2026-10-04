@@ -2,6 +2,16 @@
 
 These `A##` prompts complement the browser/UI prompts. Direct HTTP/API/worker/seed testing is allowed for API prompts because the user requested backend-level completeness on a production-like demo-data environment.
 
+## Portal / origin URLs
+
+Browser-origin and same-origin BFF checks use:
+
+- Marketing: `https://nestlancer.com`
+- Client / app-host public: `https://app.nestlancer.com`
+- Admin: `https://admin.nestlancer.com`
+
+Direct API prompts hit the environment gateway/BFF configured for that demo-production target; record the gateway base URL in the result summary when it differs from the portal hosts.
+
 ## Execution rules
 
 - Use demo/audit accounts and objects only.

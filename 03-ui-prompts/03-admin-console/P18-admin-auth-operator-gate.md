@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** operator/admin plus wrong-role client  
 **Scope:** Admin entry and authorization boundary
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -25,8 +26,8 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Users profile role check
 
 ## 2. Routes / surfaces to walk
-- admin `/`
-- admin `/login`
+- `admin.nestlancer.com` `/`
+- `admin.nestlancer.com` `/login`
 - in-page 2FA challenge
 - deep links to protected admin routes
 

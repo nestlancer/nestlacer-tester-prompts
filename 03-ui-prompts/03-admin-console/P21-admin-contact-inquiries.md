@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** operator/admin  
 **Scope:** Admin handling of public contact messages
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -21,7 +22,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Public contact submit
 
 ## 2. Routes / surfaces to walk
-- admin `/contact`
+- `admin.nestlancer.com` `/contact`
 - public contact pages from P01/P02
 
 ## 3. What this prompt must prove

@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** anonymous/client  
 **Scope:** Complete client account entry and recovery lifecycle
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt
@@ -27,7 +28,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - BFF auth route handlers under apps/web/src/app/api/auth
 
 ## 2. Routes / surfaces to walk
-- web `/login`
+- `app.nestlancer.com` `/login`
 - `/register`
 - `/forgot-password`
 - `/reset-password?token=...`

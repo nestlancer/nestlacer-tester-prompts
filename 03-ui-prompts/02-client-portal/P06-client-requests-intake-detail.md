@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** authenticated client  
 **Scope:** Request lifecycle from client side
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt
@@ -23,7 +24,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Services catalogue if used by intake
 
 ## 2. Routes / surfaces to walk
-- web `/requests`
+- `app.nestlancer.com` `/requests`
 - `/requests/new`
 - `/requests/[id]`
 - `/requests/archive` alias

@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** operator/admin  
 **Scope:** Blog/content management
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -28,7 +29,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Blog analytics
 
 ## 2. Routes / surfaces to walk
-- admin `/content`
+- `admin.nestlancer.com` `/content`
 - `/content/posts/new`
 - `/content/posts/[id]/edit`
 

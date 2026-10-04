@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** authenticated client  
 **Scope:** Global client chrome on every authenticated page
+**Target host:** `app.nestlancer.com` (client portal)
 
 
 ## 0. Demo-production mode for this prompt

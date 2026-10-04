@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** operator/admin  
 **Scope:** Deep project delivery operations
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -23,7 +24,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Admin milestones/deliverables/progress/time-entries/payment milestones/portfolio draft/promote media/project analytics
 
 ## 2. Routes / surfaces to walk
-- admin `/projects/[id]?tab=delivery|progress|analytics`
+- `admin.nestlancer.com` `/projects/[id]?tab=delivery|progress|analytics`
 - `/payments/projects/[id]`
 - portfolio bridge panels
 

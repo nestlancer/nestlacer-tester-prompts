@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** QA lead / coverage auditor  
 **Scope:** Final source-to-prompt reconciliation so nothing from the repositories is missed
+**Target host:** `nestlancer.com` + `app.nestlancer.com` + `admin.nestlancer.com`
 
 ## 0. Demo-production mode for this prompt
 

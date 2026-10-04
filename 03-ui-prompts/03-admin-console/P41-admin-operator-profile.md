@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** operator/admin  
 **Scope:** Dedicated `/profile` admin page and user-menu entry, separate from managed user detail
+**Target host:** `admin.nestlancer.com` (admin console)
 
 ## 0. Demo-production mode for this prompt
 
@@ -23,7 +24,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - If quick links open other pages: dashboard/system/audit requests from those pages only
 
 ## 2. Routes / surfaces to walk
-- admin `/profile`
+- `admin.nestlancer.com` `/profile`
 - admin user menu entry that opens `/profile`
 - quick links on profile: `/dashboard`, `/system`, `/audit`
 

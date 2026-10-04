@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** operator/admin auditor  
 **Scope:** Audit and accountability surfaces
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -22,7 +23,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Impersonation sessions/end
 
 ## 2. Routes / surfaces to walk
-- admin `/audit`
+- `admin.nestlancer.com` `/audit`
 - audit tabs/filters within page
 
 ## 3. What this prompt must prove

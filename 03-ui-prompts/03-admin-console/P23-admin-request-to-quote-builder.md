@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** operator/admin  
 **Scope:** Quote creation from request detail
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -24,7 +25,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Admin quote create/patch/send/templates/line-items/payment-schedules
 
 ## 2. Routes / surfaces to walk
-- admin `/requests/[id]/quote/new`
+- `admin.nestlancer.com` `/requests/[id]/quote/new`
 - `/requests/[id]/quote/edit`
 - entry from `/requests/[id]`
 

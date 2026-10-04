@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** operator/admin  
 **Scope:** Admin notification operations
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -22,7 +23,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Admin users list for recipients
 
 ## 2. Routes / surfaces to walk
-- admin `/notifications` with tabs My notifications, Send, Broadcast, Segment, Delivery report, Platform log
+- `admin.nestlancer.com` `/notifications` with tabs My notifications, Send, Broadcast, Segment, Delivery report, Platform log
 
 ## 3. What this prompt must prove
 - Admin notification send paths are covered end-to-end.

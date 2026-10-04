@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** operator/admin  
 **Scope:** Admin money operations core
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -22,7 +23,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Admin payments list/stats/detail/timeline/transactions/verify/approve-transfer/reject-transfer/refund/manual/reconciliation/receipts/invoices
 
 ## 2. Routes / surfaces to walk
-- admin `/payments`
+- `admin.nestlancer.com` `/payments`
 - `/payments/[id]`
 - redirect `/payments/by-project`
 - reconciliation tab/section

@@ -3,6 +3,7 @@
 **Priority:** P2  
 **Primary role:** anonymous/public visitor  
 **Scope:** Landing app public website and marketing-to-app handoff
+**Target host:** `nestlancer.com` (marketing / landing)
 
 
 ## 0. Demo-production mode for this prompt
@@ -27,8 +28,8 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Portfolio featured/list calls if home loads work cards
 
 ## 2. Routes / surfaces to walk
-- landing `/`, `/about`, `/services`, `/pricing`, `/contact`
-- landing redirects `/blog*`, `/portfolio*`, `/terms`, `/privacy` to app where applicable
+- `nestlancer.com` `/`, `/about`, `/services`, `/pricing`, `/contact`
+- `nestlancer.com` redirects `/blog*`, `/portfolio*`, `/terms`, `/privacy` to app where applicable
 - `/llms.txt`, `/llms-full.txt`, `/.well-known/llms.txt`, robots, sitemap, unknown 404
 
 ## 3. What this prompt must prove

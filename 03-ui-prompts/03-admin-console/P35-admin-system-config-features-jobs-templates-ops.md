@@ -3,6 +3,7 @@
 **Priority:** P0  
 **Primary role:** operator/admin  
 **Scope:** System console and high-risk operations
+**Target host:** `admin.nestlancer.com` (admin console)
 
 
 ## 0. Demo-production mode for this prompt
@@ -23,9 +24,9 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Health debug
 
 ## 2. Routes / surfaces to walk
-- admin `/system` query tabs Health, Config, Features, Jobs, Templates, Operations
+- `admin.nestlancer.com` `/system` query tabs Health, Config, Features, Jobs, Templates, Operations
 - redirects `/system/health`, `/system/features`, `/system/jobs`, `/system/email-templates`, `/system/notification-templates`, `/system/cache`, `/system/maintenance`, `/system/announcements`, `/system/staff`
-- admin `/api-keys` redirect to `/integrations`
+- `admin.nestlancer.com` `/api-keys` redirect to `/integrations`
 
 ## 3. What this prompt must prove
 - All tabbed system subpages and redirect aliases are covered.

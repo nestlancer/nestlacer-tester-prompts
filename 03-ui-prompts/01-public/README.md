@@ -2,6 +2,8 @@
 
 Anonymous/public web, landing, blog, portfolio, share and verification surfaces.
 
+**Portal URLs:** `nestlancer.com` (P01 marketing) · `app.nestlancer.com` (P02 app-host public)
+
 | File | Title |
 |---|---|
 | [P01-marketing-landing-seo.md](P01-marketing-landing-seo.md) | P01 — Marketing landing, SEO, redirects and contact intake |

@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** client/admin/anonymous  
 **Scope:** Final completeness net over all prompts
+**Target host:** `nestlancer.com` + `app.nestlancer.com` + `admin.nestlancer.com`
 
 
 ## 0. Demo-production mode for this prompt

@@ -3,6 +3,7 @@
 **Priority:** P1  
 **Primary role:** Document/email QA + artifact integrity auditor  
 **Scope:** User-visible artifacts produced by UI flows: quote PDFs, invoices, receipts, verification pages, email/notification templates, report/export files, media downloads and generated worker outputs.
+**Target host:** `nestlancer.com` + `app.nestlancer.com` + `admin.nestlancer.com`
 
 ## 0. Demo-production mode for this prompt
 

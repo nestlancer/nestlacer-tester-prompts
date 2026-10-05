@@ -71,6 +71,7 @@
 5. **Document worker**
    - Trigger quote/invoice/receipt generation through business flows.
    - Verify canonical document registry, latest-pointer behavior, PDF content and no duplicate latest siblings after concurrent direct download + worker generation.
+   - **Run [`PDF-LAYOUT-INTEGRITY.md`](../../00-start-here/PDF-LAYOUT-INTEGRITY.md)** on worker- and direct-download PDFs (client + admin). Carefully check Payment History / tables for overlapping or stacked text; treat dense-section overlaps as P1. Apply the same check to quote/receipt/contract outputs so future template regressions are caught.
 6. **Media worker**
    - Upload image/video/file fixtures; verify metadata, thumbnail/resize, virus scan/quarantine, stale processing and storage sync.
    - Verify SVG/spoof rejection and forced download behavior.

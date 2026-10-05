@@ -41,7 +41,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 ## 4. Mandatory Playwright UI walk
 1. List: status filters/counts/empty/error/loading/row navigation/alias redirects.
 2. Detail: line items, taxes/currency, schedule, validity, source request, docs, history.
-3. PDF/contract preview/download: content-type/size/version/no token leak.
+3. PDF/contract preview/download: content-type/size/version/no token leak; **then run [`PDF-LAYOUT-INTEGRITY.md`](../../00-start-here/PDF-LAYOUT-INTEGRITY.md)** — inspect line items / payment schedule for overlapping or stacked text (same defect class as invoice payment history).
 4. Accept flow: confirm/e-sign/terms/payment/project link; double-submit/back-refresh.
 5. Decline/request changes: reason validation, status update, admin parity.
 6. Verify draft/expired/accepted states hide invalid actions.
@@ -78,6 +78,7 @@ Only accept/decline `AUDIT-P07` quotes. Never accept real money proposals.
 - Accepted twice.
 - PDF stale/wrong version.
 - Draft visible to client.
+- **Quote/contract PDF overlapping or stacked text in line items / payment schedule (same class as invoice payment-history overlaps).**
 
 ## 10. Output format for this prompt
 

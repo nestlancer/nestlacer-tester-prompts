@@ -168,6 +168,7 @@ Markers are not defects by themselves. They identify prior regressions that prom
 - `libs/pdf/src/utils/format.util.ts:40` — /** NL-BUG-PDF-004: never print internal payment enums on customer documents. */
 - `libs/pdf/src/utils/format.util.ts:63` — /** NL-BUG-PDF-004: customer-facing payment status wording. */
 - `libs/pdf/src/utils/payment-document-sections.ts:22` — // Never put bank UTR / payment refs in the document-number column (NL-BUG-PAY-008).
+- **Tester-suite regression focus (layout):** invoice **Payment History** overlapping/stacked rows and concatenated `NL-INV`/`NL-RCPT` / currency amounts — treat as `NL-BUG-PDF-LAYOUT-*` / P1 across client+admin generated PDFs (quotes/receipts/contracts too). Enforced by `browser-runner/pdf_integrity.py` + [`PDF-LAYOUT-INTEGRITY.md`](../00-start-here/PDF-LAYOUT-INTEGRITY.md).
 - `libs/queue/src/queue-publisher.service.ts:152` — * Inspect RabbitMQ queue depths for the admin jobs console (NL-BUG-SYS-001).
 - `libs/storage/src/interfaces/storage.interface.ts:54` — /** Force browser download instead of inline render (NL-BUG-MEDIA-001). */
 - `libs/tracing/src/middleware/correlation-id.middleware.ts:23` — // NL-BUG-PERF-002: honour a client-supplied X-Request-ID when present and valid,

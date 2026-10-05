@@ -51,6 +51,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 5. Line item library: list/create/update/deactivate audit block if exposed.
 6. Payment schedule presets and `/quotes/payment-schedules` redirect.
 7. Compare client quote after send: DRAFT hidden, SENT visible.
+8. **Admin + client PDF layout integrity:** download quote/contract PDFs from admin and client; follow [`PDF-LAYOUT-INTEGRITY.md`](../../00-start-here/PDF-LAYOUT-INTEGRITY.md). Check line items/schedules for overlaps (same class as invoice payment-history stacking).
 
 ## 5. Controls and page-in-page units that must be inventoried
 - filters
@@ -88,6 +89,7 @@ Only mutate `AUDIT-P24` quote/templates/library blocks.
 - PDF contract mismatches detail.
 - Deleted quote still listed.
 - Library API has no UI route recorded.
+- **Admin/client quote PDF overlapping or stacked text in tables/schedules.**
 
 ## 10. Output format for this prompt
 

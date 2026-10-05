@@ -51,6 +51,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 5. Methods: list/add if available, set default, nickname, delete confirm.
 6. Dispute: reason/category/evidence validation and audit submit.
 7. Refresh/back behavior after payment state changes.
+8. **PDF layout integrity:** after any invoice/receipt download, follow [`PDF-LAYOUT-INTEGRITY.md`](../../00-start-here/PDF-LAYOUT-INTEGRITY.md). Inspect payment history / totals carefully for overlaps; escalate dense-section overlaps to P1.
 
 ## 5. Controls and page-in-page units that must be inventoried
 - Pay now
@@ -83,6 +84,7 @@ Only audit payments ₹1–₹100. No real refunds/charges/disputes/cancellation
 - Offline transfer accepts empty reference.
 - Method delete without confirm.
 - Amount/currency mismatch.
+- **Invoice/receipt PDF overlapping payment history or concatenated amounts/document numbers.**
 
 ## 10. Output format for this prompt
 

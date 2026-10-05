@@ -28,6 +28,7 @@ Every UI prompt carries a `**Target host:**` line. Every API/security prompt car
 
 - [DEMO-ACCOUNTS.md](00-start-here/DEMO-ACCOUNTS.md) — **Required** demo emails/password, hosts, public-domain vs operator-only rules
 - [00-RUNBOOK.md](00-start-here/00-RUNBOOK.md) — Runbook — demo-production execution rules, safety fences, evidence standard and security overlay
+- [PDF-LAYOUT-INTEGRITY.md](00-start-here/PDF-LAYOUT-INTEGRITY.md) — **Required for any generated PDF** — overlapping/stacked text checks (Payment History class) for client + admin invoices, receipts, quotes, contracts
 - [00-SECURITY-RUNBOOK.md](06-security-prompts/00-SECURITY-RUNBOOK.md) — Security runbook — authorized defensive testing rules and universal security checklist
 - [00-SOURCE-UNDERSTANDING.md](00-start-here/00-SOURCE-UNDERSTANDING.md) — Source understanding — architecture, route facts, state machines and source-derived findings
 - [LOOP-COMPLETENESS-AUDIT.md](00-start-here/LOOP-COMPLETENESS-AUDIT.md) — Completeness audit loop — what each source-review pass added
@@ -55,6 +56,7 @@ External LLM / agent runs must use light CLI tools only:
 |---|---|---|
 | Frontend pages / UI walks (`P##`) | **Playwright CLI** | `npx playwright`, `playwright test`, or short Playwright CLI scripts. Screenshots, console, network from Playwright. |
 | Direct API / BFF / gateway (`A##`, API parts of `S##`) | **`curl`** | Hit `https://api.nestlancer.com/api/v1` or same-origin `{portal}/api/v1/*` / `/api/auth/*`. Redact secrets. |
+| Generated PDF layout integrity | **`browser-runner/pdf_integrity.py`** via `lib/pdf_analyze.js` | Mandatory for invoice/receipt/quote/contract downloads — overlap/payment-history class is **FAIL/P1**. See [`PDF-LAYOUT-INTEGRITY.md`](00-start-here/PDF-LAYOUT-INTEGRITY.md). |
 | Forbidden | Browser MCP / Chrome DevTools MCP / browser-use / heavy interactive browser agents | Do not use these stacks for this suite. |
 
 Every prompt file repeats this rule in a `## Tooling (required)` section.

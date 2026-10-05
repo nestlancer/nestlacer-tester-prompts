@@ -48,6 +48,7 @@ You may generate, download, resend, revoke and delete demo/audit artifacts when 
 ## 3. What this prompt must prove
 
 - Generated PDFs have correct customer-facing wording, numbers, dates, tax/legal fields, totals, currency, page numbering and branding.
+- **Generated PDFs have no overlapping/stacked text in dense sections** (Payment History on invoices is the known example; apply the same careful review to line items, schedules, receipts, quotes, contracts and any future templates). Follow [`PDF-LAYOUT-INTEGRITY.md`](../../00-start-here/PDF-LAYOUT-INTEGRITY.md). Dense-section overlaps are **FAIL/P1**.
 - PDFs never expose internal enum names, bank UTR/payment refs in wrong columns, private notes, JWTs, cookies or debug payloads.
 - Invoice/receipt generation uses canonical latest documents and does not mint duplicate/zombie latest siblings.
 - Company legal profile data is validated and only valid GSTIN/PAN/legal fields appear; blank fields remain blank rather than printing placeholders.
@@ -59,11 +60,11 @@ You may generate, download, resend, revoke and delete demo/audit artifacts when 
 
 ## 4. Mandatory checks
 
-1. Create or select a demo quote with line items, discount/tax/payment schedule and legal profile. Send it, download PDF, and verify visual/content details.
+1. Create or select a demo quote with line items, discount/tax/payment schedule and legal profile. Send it, download PDF, and verify visual/content details **plus layout integrity** ([`PDF-LAYOUT-INTEGRITY.md`](../../00-start-here/PDF-LAYOUT-INTEGRITY.md)).
 2. Attempt to access/download an unissued draft quote as the client. Expect denial/not found.
 3. Accept a demo quote and follow project/payment creation side effects. Verify regenerated/linked documents remain consistent.
-4. Complete a low-value test-mode or mocked payment. Download invoice and receipt. Verify no duplicate latest documents after repeated refresh/download.
-5. Trigger payment refund/dispute/manual/offline flows on demo data if supported and verify document/ledger wording.
+4. Complete a low-value test-mode or mocked payment. Download invoice and receipt from **both client and admin** when available. Verify no duplicate latest documents after repeated refresh/download. **Carefully inspect invoice Payment History for overlapping/stacked rows, concatenated `NL-INV`/`NL-RCPT` numbers, and smashed currency amounts** — run `browser-runner/pdf_integrity.py` and manually confirm readability.
+5. Trigger payment refund/dispute/manual/offline flows on demo data if supported and verify document/ledger wording **and layout**.
 6. Open `/verify` and `/verify-document` with a valid demo document token/signature if available; test tampered token/signature.
 7. Preview all high-risk email templates in admin system/templates. Send only to demo sink/audit account. Check subject, variables, links and branding.
 8. Request password reset/email verification/2FA emails for disposable demo accounts. If outbound email is suppressed (demo seed default), mark **content** verification BLOCKED and still record API/UI status codes; never paste tokens into the report. Use a mail sink only when an operator provides one.
@@ -71,6 +72,7 @@ You may generate, download, resend, revoke and delete demo/audit artifacts when 
 10. Upload a disposable media file, download it, share it publicly, revoke share, and verify private/public access behavior. Test rejected SVG/spoof sample if fixture exists.
 11. Verify worker-generated artifacts appear after queue processing or record exact worker/outbox backlog if blocked.
 12. Re-open the originating UI pages after downloads to confirm statuses, counts and audit logs match generated artifacts.
+13. **Sweep all artifact classes for the overlap defect class**, not only invoices — quotes, receipts, contracts, and any newly added PDF template must get the same careful check so future regressions are caught early.
 
 ## 5. Negative and abuse probes
 
@@ -100,6 +102,7 @@ You may generate, download, resend, revoke and delete demo/audit artifacts when 
 ## 8. Defects this prompt is designed to catch
 
 - Broken PDF branding, duplicate dates/page numbers or internal enum wording.
+- **Overlapping/stacked text in Payment History or other dense PDF sections (client or admin); concatenated document numbers/amounts; same layout class on future templates.**
 - Missing/invalid legal/tax data printed on invoices/receipts/quotes.
 - Duplicate latest invoice/receipt documents after repeated downloads/worker races.
 - Email templates with broken variables or unsafe links.

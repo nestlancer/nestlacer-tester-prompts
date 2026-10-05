@@ -41,6 +41,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - All invoice/document routes and redirects map to real documents.
 - Downloads/previews are non-empty and correctly named.
 - Public verify is safe and minimal.
+- **Generated invoice/receipt PDFs have no overlapping layout defects** (especially Payment History / transaction tables) — follow [`PDF-LAYOUT-INTEGRITY.md`](../../00-start-here/PDF-LAYOUT-INTEGRITY.md). Same care for any other generated PDF from this surface.
 
 ## 4. Mandatory Playwright UI walk
 1. Invoice list: filters/status/project/date/totals/download/empty/error/loading.
@@ -49,6 +50,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 4. Generated documents in `/settings/files`; compare same invoice/receipt availability.
 5. Public verify valid/invalid/expired number/token.
 6. Malformed ids, another user invoice and mobile PDF/download UI.
+7. **PDF layout integrity (careful):** download invoice + receipt from client (and admin parity if available). Run `browser-runner/pdf_integrity.py` / `lib/pdf_analyze.js`. Manually inspect Payment History / totals / footer for overlapping or stacked text, concatenated `NL-INV`/`NL-RCPT` numbers, and smashed currency amounts. Dense-section overlaps are **FAIL/P1**, not cosmetic. Apply the same checks to any other PDFs downloaded in this prompt.
 
 ## 5. Controls and page-in-page units that must be inventoried
 - invoice row
@@ -81,6 +83,7 @@ No money mutations. Download only audit-account documents.
 - Valid invoice not found.
 - Verify leaks full private document.
 - Download link token exposed in UI.
+- **Overlapping/stacked Payment History (or other table) text on invoice/receipt PDFs; concatenated doc numbers/amounts; same layout class on future generated PDFs.**
 
 ## 10. Output format for this prompt
 

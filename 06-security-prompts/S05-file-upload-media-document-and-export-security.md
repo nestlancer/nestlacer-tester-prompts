@@ -27,7 +27,7 @@
 3. Verify private media cannot be opened by another client, project member without permission, anonymous user or guessed URL.
 4. Verify public share token access works only for intended file and revocation immediately blocks access.
 5. Verify unsafe files are forced to download and not rendered inline.
-6. Verify generated PDFs for quotes/invoices/receipts contain only expected data and no internal enums/secrets/debug payloads.
+6. Verify generated PDFs for quotes/invoices/receipts contain only expected data and no internal enums/secrets/debug payloads. **Also verify layout integrity** per [`PDF-LAYOUT-INTEGRITY.md`](../00-start-here/PDF-LAYOUT-INTEGRITY.md): no overlapping Payment History / dense table text, no concatenated document numbers or smashed amounts (client and admin downloads).
 7. Verify exports honor filters, role scope, row limits, expiration and download permissions.
 8. Verify object storage and DB stay paired after delete/replace/quarantine/reprocess.
 9. Verify document/share/verification tokens cannot be guessed, tampered or reused after revocation/expiry.

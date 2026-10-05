@@ -47,6 +47,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 5. Verify payment/manual payment controls and validations.
 6. Refund modal: inventory reason/amount/confirmation; execute only if explicit staging audit authorization.
 7. Reconciliation report: filters, export/download, retry/error states.
+8. **Admin invoice/receipt PDF layout integrity:** download from admin payment detail; follow [`PDF-LAYOUT-INTEGRITY.md`](../../00-start-here/PDF-LAYOUT-INTEGRITY.md). Carefully inspect Payment History for overlapping rows/amounts (known client-visible defect class that can also appear on admin-generated copies and future templates).
 
 ## 5. Controls and page-in-page units that must be inventoried
 - payment filters
@@ -81,6 +82,7 @@ No real refunds, cancellations or settlement changes. Audit payments only.
 - Double verification changes state twice.
 - Refund lacks confirm/reason.
 - Documents mismatch client.
+- **Admin-generated invoice/receipt PDF overlapping payment history or concatenated amounts/IDs.**
 
 ## 10. Output format for this prompt
 

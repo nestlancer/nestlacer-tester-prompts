@@ -41,7 +41,7 @@
 3. Offline transfer submit and admin approve/reject.
 4. Payment methods CRUD/default/nickname/delete permissions.
 5. Dispute file/respond/resolve lifecycle.
-6. Invoice/receipt/document generation/download and verification.
+6. Invoice/receipt/document generation/download and verification — **also run [`PDF-LAYOUT-INTEGRITY.md`](../../00-start-here/PDF-LAYOUT-INTEGRITY.md)** on downloaded bytes (client + admin). Fail on overlapping Payment History / concatenated doc numbers / smashed amounts.
 7. Admin manual payment/refund/reconciliation/revenue exports on demo data.
 8. Company legal GSTIN/PAN validation and platform account CRUD.
 

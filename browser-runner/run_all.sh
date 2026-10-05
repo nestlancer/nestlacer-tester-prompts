@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# NOTE (2026-10 refresh): this legacy pipeline drives the original sweeps +
+# per-prompt runners for ~13 prompts. The canonical 79-prompt pipeline is now
+# ./run_prompts.sh (generic api_runner/ui_runner/security_runner +
+# report_generator with per-prompt template reports). Use run_prompts.sh for
+# full-suite runs; this script remains for the legacy sweep evidence format.
 set -u
 cd "$(dirname "$0")"
 # Output root: $NL_OUT if set, else repo-relative (matches lib/http.js default).

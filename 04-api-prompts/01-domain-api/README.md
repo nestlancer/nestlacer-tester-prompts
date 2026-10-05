@@ -8,6 +8,8 @@ Direct API prompts for core domain contracts A01-A16.
 
 Public-domain mode only for external LLM runs — no localhost / Docker / microservice ports.
 
+**Tooling:** `curl` for direct API/BFF endpoints; Playwright CLI only if a page/origin check is required. Do **not** use browser MCP / Chrome DevTools MCP / browser-use.
+
 | File | Title |
 |---|---|
 | [A01-auth--sessions--2fa--reset-tokens-and-portal-role-boundaries.md](A01-auth--sessions--2fa--reset-tokens-and-portal-role-boundaries.md) | A01 — Auth, sessions, 2FA, reset tokens and portal role boundaries |

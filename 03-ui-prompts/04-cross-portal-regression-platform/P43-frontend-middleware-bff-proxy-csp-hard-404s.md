@@ -6,9 +6,15 @@
 **Target host:** `https://nestlancer.com` + `https://app.nestlancer.com` + `https://admin.nestlancer.com`
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
+
 ## 0. Demo-production mode for this prompt
 
-Most checks are routing/header/read-only. You may execute same-origin browser `fetch()` calls only to the app’s own route handlers or safe health/read endpoints. Do not use curl/Postman for this UI prompt. Use API prompts A16/A17/A18 for direct backend probing.
+Most checks are routing/header/read-only. Drive pages and same-origin checks with **Playwright CLI** (including `page.request` / in-page `fetch` to the app’s own route handlers or safe health/read endpoints). Use **`curl`** only in API prompts A16/A17/A18 for direct gateway/backend probing. Do **not** use browser MCP / Chrome DevTools MCP / browser-use.
 
 ## 1. Source-code anchors to read first
 
@@ -60,7 +66,7 @@ Most checks are routing/header/read-only. You may execute same-origin browser `f
 - Request/correlation IDs are stable across page and API calls and do not leak secrets.
 - The web Next route `/api/webhooks/razorpay` refuses webhooks so production webhooks must go to the API gateway endpoint.
 
-## 4. Mandatory browser checks
+## 4. Mandatory Playwright UI checks
 
 1. Start with no auth cookies. Open each protected admin/web prefix sample and confirm redirect to the proper login page with `from=<original path>`.
 2. Log in as the appropriate demo admin/user. Reopen the same protected samples and verify content loads or a legitimate API 401/403 is shown without infinite redirects.
@@ -72,7 +78,7 @@ Most checks are routing/header/read-only. You may execute same-origin browser `f
    - `/quotes/not-a-uuid-audit`
    Capture status code, page content, URL, CSP header and console.
 4. Open `/api-keys` as admin and verify it redirects/aliases to `/integrations`. Confirm no “Coming soon” placeholder remains.
-5. Use DevTools Network or browser console `fetch('/api/v1/health')` / another safe path from each app origin. Capture status, response envelope and `x-request-id`/`x-correlation-id` presence.
+5. From Playwright CLI on each app origin, request `/api/v1/health` (or another safe path) via `page.request` or in-page `fetch`. Capture status, response envelope and `x-request-id`/`x-correlation-id` presence.
 6. Temporarily test a known-bad proxy target only if the environment supports it safely; otherwise record whether a misconfigured environment would return `{ message: 'API upstream is not configured' }` with 502 per source.
 7. From the web origin, test:
    - `fetch('/api/webhooks/razorpay')` → 404

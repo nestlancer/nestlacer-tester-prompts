@@ -6,12 +6,17 @@
 **Target host:** `https://app.nestlancer.com` (client portal)
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
 
 ## 0. Demo-production mode for this prompt
 
 This suite is intended for a production-like app with demo data. Execute create/update/delete/status/password/session/payment/media operations when the target object is clearly demo/audit data for this prompt. If the object is not confirmed demo/audit, record the control and stop before final confirmation. Always capture before/after state and audit/network evidence.
 
-## 1. Source-code anchors to read before browser testing
+## 1. Source-code anchors to read before Playwright testing
 
 ### Frontend
 - apps/web/src/app/**
@@ -20,7 +25,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - packages/theme/**
 - packages/auth/**
 
-### Backend / API surfaces expected in browser Network
+### Backend / API surfaces expected in Playwright network (or curl cross-check)
 - Observe page-owned Network only; no direct API calls
 
 ## 2. Routes / surfaces to walk
@@ -32,7 +37,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Verify responsive/keyboard/accessibility on dense pages.
 - Verify route aliases, guards, offline and error boundaries.
 
-## 4. Mandatory browser walk
+## 4. Mandatory Playwright UI walk
 1. Open every client route from coverage matrix and mark renders/redirects/404/auth guard.
 2. Viewport sweep 375/768/1440/1920 on dashboard, requests, project detail, payments, messages, settings files, blog article.
 3. Keyboard-only auth form, command palette, bell, message composer, media dialogs, payment checkout, project tabs.
@@ -78,7 +83,7 @@ No new destructive mutations; use prior audit objects.
 
 ## Session summary
 - Host/environment:
-- Browser/MCP/tooling:
+- Tooling (Playwright CLI for pages / curl for API):
 - Role/account used:
 - Fixtures created:
 - Routes walked:

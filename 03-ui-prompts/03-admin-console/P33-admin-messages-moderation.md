@@ -6,12 +6,17 @@
 **Target host:** `https://admin.nestlancer.com` (admin console)
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
 
 ## 0. Demo-production mode for this prompt
 
 This suite is intended for a production-like app with demo data. Execute create/update/delete/status/password/session/payment/media operations when the target object is clearly demo/audit data for this prompt. If the object is not confirmed demo/audit, record the control and stop before final confirmation. Always capture before/after state and audit/network evidence.
 
-## 1. Source-code anchors to read before browser testing
+## 1. Source-code anchors to read before Playwright testing
 
 ### Frontend
 - features/messages/**
@@ -19,7 +24,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - components/admin/AdminMessageLink.tsx
 - AdminModerationLink.tsx
 
-### Backend / API surfaces expected in browser Network
+### Backend / API surfaces expected in Playwright network (or curl cross-check)
 - Messaging conversations/chat threads/project messages/search/edit/delete/pin/flag
 - Admin messages flagged/dismiss/escalate/delete/restore/history/analytics/broadcast system message
 
@@ -33,7 +38,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Group/direct/project thread actions and system broadcast are tested.
 - Moderation queue actions are safe and auditable.
 
-## 4. Mandatory browser walk
+## 4. Mandatory Playwright UI walk
 1. Messages overview/panel/inbox: search, unread, thread list, archived aliases.
 2. Direct compose: user search, create/resume, validation.
 3. Group compose: add/remove members, title, create audit group.
@@ -84,7 +89,7 @@ Send/delete/moderate only `AUDIT-P33` messages/threads.
 
 ## Session summary
 - Host/environment:
-- Browser/MCP/tooling:
+- Tooling (Playwright CLI for pages / curl for API):
 - Role/account used:
 - Fixtures created:
 - Routes walked:

@@ -6,12 +6,17 @@
 **Target host:** `https://nestlancer.com` + `https://app.nestlancer.com` + `https://admin.nestlancer.com`
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
 
 ## 0. Demo-production mode for this prompt
 
 This suite is intended for a production-like app with demo data. Execute create/update/delete/status/password/session/payment/media operations when the target object is clearly demo/audit data for this prompt. If the object is not confirmed demo/audit, record the control and stop before final confirmation. Always capture before/after state and audit/network evidence.
 
-## 1. Source-code anchors to read before browser testing
+## 1. Source-code anchors to read before Playwright testing
 
 ### Frontend
 - [`../../02-source-inventories/frontend-route-map.md`](../../02-source-inventories/frontend-route-map.md)
@@ -21,7 +26,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - packages/auth/**
 - packages/api-client/**
 
-### Backend / API surfaces expected in browser Network
+### Backend / API surfaces expected in Playwright network (or curl cross-check)
 - No direct calls; observe UI Network. Use OpenAPI only as route gap reference.
 
 ## 2. Routes / surfaces to walk
@@ -34,7 +39,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Responsive/a11y/security/performance regressions are caught.
 - Final coverage matrix is complete.
 
-## 4. Mandatory browser walk
+## 4. Mandatory Playwright UI walk
 1. Route sweep: every static route renders/redirects/404s as expected; dynamic routes sampled with valid/invalid/forbidden ids.
 2. Viewport sweep: 320/375/768/1024/1440/1920/2560 on representative marketing, client, admin pages.
 3. Keyboard/a11y sweep: forms, tables, dialogs, menus, comboboxes, tablists, toast live regions, focus rings, escape/focus return.
@@ -84,7 +89,7 @@ No new destructive actions. Use existing audit data; create only tiny files/mess
 
 ## Session summary
 - Host/environment:
-- Browser/MCP/tooling:
+- Tooling (Playwright CLI for pages / curl for API):
 - Role/account used:
 - Fixtures created:
 - Routes walked:

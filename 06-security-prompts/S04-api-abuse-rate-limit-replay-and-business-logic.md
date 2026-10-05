@@ -9,6 +9,12 @@
 **Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **API / auth / webhook / contract probes:** use **`curl`** against `https://api.nestlancer.com/api/v1` (and portal same-origin `/api/v1/*` or `/api/auth/*` when testing BFF/CORS/cookie behavior).
+- **UI / page / header / CSP / storage checks:** use **Playwright CLI** only.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
+
 ## Pair with existing prompts
 
 - P12, P23, P24, P26, P27, P28, P35, P39, P45, P46

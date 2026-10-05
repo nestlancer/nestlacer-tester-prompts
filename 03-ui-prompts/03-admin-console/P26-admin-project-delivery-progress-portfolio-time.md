@@ -6,12 +6,17 @@
 **Target host:** `https://admin.nestlancer.com` (admin console)
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
 
 ## 0. Demo-production mode for this prompt
 
 This suite is intended for a production-like app with demo data. Execute create/update/delete/status/password/session/payment/media operations when the target object is clearly demo/audit data for this prompt. If the object is not confirmed demo/audit, record the control and stop before final confirmation. Always capture before/after state and audit/network evidence.
 
-## 1. Source-code anchors to read before browser testing
+## 1. Source-code anchors to read before Playwright testing
 
 ### Frontend
 - features/projects/AdminProjectDeliveryPanel.tsx
@@ -21,7 +26,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - features/payments/ProjectPaymentsClient.tsx
 - TimeEntriesPanel.tsx
 
-### Backend / API surfaces expected in browser Network
+### Backend / API surfaces expected in Playwright network (or curl cross-check)
 - Admin milestones/deliverables/progress/time-entries/payment milestones/portfolio draft/promote media/project analytics
 
 ## 2. Routes / surfaces to walk
@@ -34,7 +39,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Deliverable upload/update/delete and progress entries publish correctly.
 - Portfolio draft/promotion from project is verified.
 
-## 4. Mandatory browser walk
+## 4. Mandatory Playwright UI walk
 1. Delivery tab: milestones create/update/complete, deliverables upload/update/delete, payment milestone links.
 2. Upload audit deliverable and verify client sees it in P10.
 3. Progress tab: create/update/delete daily progress entry, attachments, visibility, client parity.
@@ -83,7 +88,7 @@ Use `AUDIT-P26` project. Delete only deliverables/progress/time entries created 
 
 ## Session summary
 - Host/environment:
-- Browser/MCP/tooling:
+- Tooling (Playwright CLI for pages / curl for API):
 - Role/account used:
 - Fixtures created:
 - Routes walked:

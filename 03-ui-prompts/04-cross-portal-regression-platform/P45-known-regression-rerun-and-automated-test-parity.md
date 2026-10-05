@@ -6,6 +6,12 @@
 **Target host:** `https://nestlancer.com` + `https://app.nestlancer.com` + `https://admin.nestlancer.com`
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
+
 ## 0. Demo-production mode for this prompt
 
 Execute mutating/destructive checks on confirmed demo/audit fixtures when required by the regression. If a source regression requires payment, webhook, password, session or delete behavior, use demo/test fixtures and capture before/after/audit evidence.
@@ -54,7 +60,7 @@ Cover the routes and behaviors represented by these specs/markers:
 ## 4. Mandatory regression checks
 
 1. Build a mini-ledger from `source-regression-markers-inventory.md` with columns: marker, source file, expected behavior, owner prompt, runtime verdict.
-2. Rerun all high-risk admin page smoke routes manually in browser: dashboard, analytics, audit, users, user detail, requests, quotes, projects, payments, payment detail, disputes, company legal, accounts, contact, moderation, integrations, media, notifications, system, pipeline, content, portfolio, profile.
+2. Rerun all high-risk admin page smoke routes via Playwright CLI: dashboard, analytics, audit, users, user detail, requests, quotes, projects, payments, payment detail, disputes, company legal, accounts, contact, moderation, integrations, media, notifications, system, pipeline, content, portfolio, profile.
 3. Verify notifications:
    - Default tab is “My notifications” where specified.
    - Platform logs/filter controls load and filter without blanking.

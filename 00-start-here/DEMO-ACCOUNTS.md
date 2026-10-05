@@ -2,6 +2,8 @@
 
 Use this ledger when running any `P##` / `A##` / `S##` prompt against **production domains** via an external LLM. Do **not** invent localhost, Docker IPs, or microservice host ports.
 
+**Tooling:** Playwright CLI for frontend pages; `curl` for direct API endpoints. Do **not** use browser MCP / Chrome DevTools MCP / browser-use.
+
 ## Canonical hosts (required)
 
 | Surface | Origin | Notes |

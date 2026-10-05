@@ -1,13 +1,19 @@
 # A11 — Admin dashboard, analytics, audit, reports, health and system operations
 
 **Priority:** P0  
-**Execution:** Direct API/backend contract testing is allowed for this `A##` prompt. Use demo/prod data only.  
+**Execution:** Direct API/backend contract testing via **`curl`**. Use Playwright CLI only for any required page/origin checks. Do not use browser MCP / Chrome DevTools MCP / browser-use. Use demo/prod data only.  
 **Scope:** High-privilege admin operational APIs
 
 **API base URL:** `https://api.nestlancer.com/api/v1`
 **Browser origins:** `https://nestlancer.com` · `https://app.nestlancer.com` · `https://admin.nestlancer.com`
 **Mode:** public-domain only — do not call localhost, Docker IPs, or microservice host ports.
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
+
+## Tooling (required)
+
+- **Direct API / backend / BFF endpoint checks:** use **`curl`** (cookie jar / `-H` auth as needed) against `https://api.nestlancer.com/api/v1` or the portal same-origin `{portal}/api/v1/*` / `/api/auth/*` paths this prompt covers. Record method, path, status, request id/correlation id, latency, and redacted envelope keys.
+- **Frontend page / browser-origin checks** (when this prompt requires a page, redirect, CSP, or cookie-visible UI): use **Playwright CLI** only.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
 
 ## 1. Source and contract references
 - openapi tags: admin dashboard/audit/system/reports/health
@@ -62,6 +68,7 @@
 
 ## Summary
 - Environment:
+- Tooling (`curl` for API / Playwright CLI for pages):
 - Accounts/fixtures:
 - Endpoint groups covered:
 - Highest severity:

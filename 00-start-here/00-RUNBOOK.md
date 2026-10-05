@@ -18,9 +18,10 @@ The previous prompt set was already source anchored, but another deeper loop fou
 
 ## Prompt inventory
 
-- **47 UI/browser prompts:** `03-ui-prompts/**/P01-...` through `P47-...`.
-- **20 API/backend prompts:** `04-api-prompts/**/A01-...` through `A20-...`.
-- **12 security prompts:** `06-security-prompts/S01-...` through `S12-...`.
+- **47 UI/Playwright prompts:** `03-ui-prompts/**/P01-...` through `P47-...` (Playwright CLI).
+- **20 API/backend prompts:** `04-api-prompts/**/A01-...` through `A20-...` (`curl`).
+- **12 security prompts:** `06-security-prompts/S01-...` through `S12-...` (`curl` + Playwright CLI).
+- **Forbidden tooling:** browser MCP, Chrome DevTools MCP, browser-use, or similar heavy interactive browser agents.
 - Start with:
   - [`DEMO-ACCOUNTS.md`](DEMO-ACCOUNTS.md) — hosts + demo logins (required for external LLM runs)
   - [`00-SOURCE-UNDERSTANDING.md`](00-SOURCE-UNDERSTANDING.md)
@@ -37,7 +38,7 @@ The previous prompt set was already source anchored, but another deeper loop fou
 
 ## Portal / API URLs
 
-Use these hosts when opening browser sessions, calling the API, and recording evidence. **Public-domain mode is the default for external LLM runs.**
+Use these hosts when opening Playwright CLI sessions, calling the API with curl, and recording evidence. **Public-domain mode is the default for external LLM runs.**
 
 | Surface | Origin | Apps / notes |
 |---|---|---|
@@ -64,10 +65,18 @@ Actual origins used (if override): ______________________________
 Demo accounts file: 00-start-here/DEMO-ACCOUNTS.md
 ```
 
+
+## Tooling (required)
+
+- **UI / page prompts (`P##`):** drive every frontend walk with **Playwright CLI** only. Capture screenshots, console, and network from Playwright.
+- **API / backend prompts (`A##`):** call endpoints with **`curl`** (cookie jar / headers as needed). Use Playwright CLI only when a page, redirect, CSP, or cookie-visible UI check is required by that prompt.
+- **Security prompts (`S##`):** `curl` for API/auth/webhook probes; Playwright CLI for page/header/CSP/storage checks.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or similar heavy interactive browser MCP stacks.
+
 ## How to run the suite
 
 1. Read `00-SOURCE-UNDERSTANDING.md` and the route/API inventories before executing prompts.
-2. Confirm the three portal hosts (or an explicit staging override) are reachable before the first browser prompt.
+2. Confirm the three portal hosts (or an explicit staging override) are reachable before the first Playwright UI prompt.
 3. Run P46/A20 early to prove demo fixtures exist and to create disposable audit records.
 4. Execute high-risk P0 UI prompts first: auth, quotes, projects, payments, user/admin security, system operations, source reconciliation, middleware/proxy, debug/leakage, known regressions and demo fixtures.
 5. Execute API prompts for backend-only or hard-to-trigger surfaces, especially A17–A20 for route handlers, cross-cutting contracts, workers and seed readiness.

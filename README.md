@@ -18,10 +18,11 @@ Every UI prompt carries a `**Target host:**` line. Every API/security prompt car
 
 ## Counts
 
-- UI/browser prompts: **47** (`P01`–`P47`)
-- API/backend prompts: **20** (`A01`–`A20`)
-- Security prompts: **12** (`S01`–`S12`) plus `00-SECURITY-RUNBOOK.md`
+- UI/Playwright prompts: **47** (`P01`–`P47`) — drive with Playwright CLI
+- API/backend prompts: **20** (`A01`–`A20`) — call with `curl`
+- Security prompts: **12** (`S01`–`S12`) plus `00-SECURITY-RUNBOOK.md` — `curl` + Playwright CLI as needed
 - Every existing `P##` and `A##` prompt now includes a mandatory security addendum.
+- Do **not** use browser MCP / Chrome DevTools MCP / browser-use for this suite.
 
 ## Start here
 
@@ -44,6 +45,19 @@ Every UI prompt carries a `**Target host:**` line. Every API/security prompt car
 - [Coverage matrices](01-coverage-matrices/) — organized UI/API/security matrices plus preserved original matrices.
 - [Source inventories](02-source-inventories/) — route, API, control, controller and regression inventories.
 - [Validation](05-validation/) — final and organization validation docs plus manifest.
+
+
+## Tooling (required)
+
+External LLM / agent runs must use light CLI tools only:
+
+| Surface | Tool | Notes |
+|---|---|---|
+| Frontend pages / UI walks (`P##`) | **Playwright CLI** | `npx playwright`, `playwright test`, or short Playwright CLI scripts. Screenshots, console, network from Playwright. |
+| Direct API / BFF / gateway (`A##`, API parts of `S##`) | **`curl`** | Hit `https://api.nestlancer.com/api/v1` or same-origin `{portal}/api/v1/*` / `/api/auth/*`. Redact secrets. |
+| Forbidden | Browser MCP / Chrome DevTools MCP / browser-use / heavy interactive browser agents | Do not use these stacks for this suite. |
+
+Every prompt file repeats this rule in a `## Tooling (required)` section.
 
 ## Security execution model
 

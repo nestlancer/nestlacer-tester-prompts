@@ -2,6 +2,8 @@
 
 Admin auth, shell, dashboard, requests, quotes, projects, payments, users, system, CMS, portfolio, pipeline and integrations.
 
+**Tooling:** Playwright CLI for pages; `curl` for any direct API cross-checks. Do **not** use browser MCP / Chrome DevTools MCP / browser-use.
+
 **Portal URL:** `admin.nestlancer.com`
 
 | File | Title |

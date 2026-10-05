@@ -6,12 +6,17 @@
 **Target host:** `https://nestlancer.com` (marketing / landing)
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
 
 ## 0. Demo-production mode for this prompt
 
 This suite is intended for a production-like app with demo data. Execute create/update/delete/status/password/session/payment/media operations when the target object is clearly demo/audit data for this prompt. If the object is not confirmed demo/audit, record the control and stop before final confirmation. Always capture before/after state and audit/network evidence.
 
-## 1. Source-code anchors to read before browser testing
+## 1. Source-code anchors to read before Playwright testing
 
 ### Frontend
 - apps/landing/src/app/page.tsx
@@ -23,7 +28,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - apps/landing/src/app/robots.ts
 - apps/landing/src/app/sitemap.ts
 
-### Backend / API surfaces expected in browser Network
+### Backend / API surfaces expected in Playwright network (or curl cross-check)
 - Public services: `GET /api/v1/services`
 - Contact: `POST /api/v1/contact`
 - Portfolio featured/list calls if home loads work cards
@@ -38,13 +43,13 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Services and contact are not static-only assumptions; API loading/error states are covered.
 - Redirects and 404s are verified instead of guessed.
 
-## 4. Mandatory browser walk
+## 4. Mandatory Playwright UI walk
 1. Walk header/footer/mobile nav, hero, below-fold sections, theme/motion and every CTA.
 2. Open about/services/pricing/contact; inventory all links, FAQ accordions, forms and validation.
 3. On services, test loading, error/empty fallback and service-card CTA routing.
 4. Submit invalid, missing-Turnstile, then `AUDIT-P01` contact inquiry; capture request keys and success state.
 5. Verify marketing redirects preserve route/id and do not loop.
-6. Open llms files, robots, sitemap and an unknown route in browser.
+6. Open llms files, robots, sitemap and an unknown route via Playwright CLI.
 
 ## 5. Controls and page-in-page units that must be inventoried
 - header nav
@@ -86,7 +91,7 @@ Create one `AUDIT-P01-<date>-CONTACT` inquiry only. Do not spam or rate-limit co
 
 ## Session summary
 - Host/environment:
-- Browser/MCP/tooling:
+- Tooling (Playwright CLI for pages / curl for API):
 - Role/account used:
 - Fixtures created:
 - Routes walked:

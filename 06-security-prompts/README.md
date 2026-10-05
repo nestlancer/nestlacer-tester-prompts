@@ -6,6 +6,8 @@ Authorized defensive application-security, abuse-resistance and AI-era untrusted
 **Accounts:** [`../00-start-here/DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md)  
 **Start with:** [`00-SECURITY-RUNBOOK.md`](00-SECURITY-RUNBOOK.md) then `S01`.
 
+**Tooling:** `curl` for API/security probes; Playwright CLI for page/header/CSP checks. Do **not** use browser MCP / Chrome DevTools MCP / browser-use.
+
 | File | Title |
 |---|---|
 | [00-SECURITY-RUNBOOK.md](00-SECURITY-RUNBOOK.md) | Security Runbook — Authorized defensive testing only |

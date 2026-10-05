@@ -6,12 +6,17 @@
 **Target host:** `https://app.nestlancer.com` (app-host public surfaces)
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
 
 ## 0. Demo-production mode for this prompt
 
 This suite is intended for a production-like app with demo data. Execute create/update/delete/status/password/session/payment/media operations when the target object is clearly demo/audit data for this prompt. If the object is not confirmed demo/audit, record the control and stop before final confirmation. Always capture before/after state and audit/network evidence.
 
-## 1. Source-code anchors to read before browser testing
+## 1. Source-code anchors to read before Playwright testing
 
 ### Frontend
 - apps/web/src/app/(public)/**
@@ -21,7 +26,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - apps/web/src/app/share/[token]/page.tsx
 - apps/web/src/features/contact/ContactFormClient.tsx
 
-### Backend / API surfaces expected in browser Network
+### Backend / API surfaces expected in Playwright network (or curl cross-check)
 - Blog posts/comments/like/bookmark/view/search APIs
 - Portfolio list/search/featured/view/like APIs
 - Media public share API
@@ -40,7 +45,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Blog engagement controls, comments and bookmarks are tested.
 - Share and verify pages do not leak private metadata.
 
-## 4. Mandatory browser walk
+## 4. Mandatory Playwright UI walk
 1. Walk blog index search/filter/pagination/category/tag/feed links; open one post.
 2. As audit client, like/bookmark/comment/reply/edit/delete/report where allowed; unauthenticated users should get safe login prompts.
 3. Open bookmarks page signed out and signed in.
@@ -91,7 +96,7 @@ Use only `AUDIT-P02` comments/contact inquiries. Do not moderate or delete real 
 
 ## Session summary
 - Host/environment:
-- Browser/MCP/tooling:
+- Tooling (Playwright CLI for pages / curl for API):
 - Role/account used:
 - Fixtures created:
 - Routes walked:

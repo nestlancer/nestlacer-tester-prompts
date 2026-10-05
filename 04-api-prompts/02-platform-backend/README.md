@@ -1,6 +1,8 @@
 # Platform/backend deep prompts
 
 BFF/proxy, cross-cutting backend contracts, workers/outbox and seed readiness A17-A20.
+**Tooling:** `curl` for direct API/BFF endpoints; Playwright CLI only if a page/origin check is required. Do **not** use browser MCP / Chrome DevTools MCP / browser-use.
+
 
 | File | Title |
 |---|---|

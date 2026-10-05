@@ -1,6 +1,6 @@
 # API Prompt Runbook — Nestlancer v4 Max-Complete
 
-These `A##` prompts complement the browser/UI prompts. Direct HTTP/API/worker/seed testing is allowed for API prompts because the user requested backend-level completeness on a production-like demo-data environment.
+These `A##` prompts complement the Playwright UI prompts. Direct HTTP/API/worker/seed testing with **`curl`** is required for API prompts because the user requested backend-level completeness on a production-like demo-data environment.
 
 ## Portal / API URLs (public-domain default)
 
@@ -18,6 +18,13 @@ Direct API prompts use the production gateway:
 Do **not** call localhost, Docker IPs, or microservice host ports in public-domain mode. Compare portal BFF (`{portal}/api/v1/*`) vs API gateway when needed — not gateway vs internal service ports. Demo accounts: [`../00-start-here/DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md). Record any staging override once in the result summary.
 
 Read inventories from `../02-source-inventories/` (not bare filenames).
+
+
+## Tooling (required)
+
+- Call every direct API / BFF / webhook / health check in these prompts with **`curl`**.
+- Use **Playwright CLI** only when an `A##` prompt also requires a page, redirect, CSP, or cookie-visible UI check.
+- Do **not** use browser MCP, Chrome DevTools MCP, browser-use, or other heavy interactive browser agents.
 
 ## Execution rules
 

@@ -6,11 +6,17 @@
 **Target host:** `https://admin.nestlancer.com` (admin console)
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
+
 ## 0. Demo-production mode for this prompt
 
 This suite is intended for a production-like app with demo data. Execute create/update/delete/session actions only when the target is the signed-in demo operator account and the operator approves. Never expose tokens/cookies/password values.
 
-## 1. Source-code anchors to read before browser testing
+## 1. Source-code anchors to read before Playwright testing
 
 ### Frontend
 - `apps/admin/src/app/(dashboard)/profile/page.tsx`
@@ -19,7 +25,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - `apps/admin/src/app/(dashboard)/AdminConsoleLayout.tsx`
 - `packages/auth/src/AuthProvider.tsx`
 
-### Backend / API surfaces expected in browser Network
+### Backend / API surfaces expected in Playwright network (or curl cross-check)
 - Signed-in profile: `GET /api/v1/users/profile`
 - Logout/refresh as used by the admin user menu
 - If quick links open other pages: dashboard/system/audit requests from those pages only
@@ -34,7 +40,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - It displays the signed-in operator identity accurately and does not leak client-only profile controls.
 - Quick links and audited-session copy are correct.
 
-## 4. Mandatory browser walk
+## 4. Mandatory Playwright UI walk
 1. Open `/profile` from the admin user menu, not only by URL.
 2. Record displayed avatar/initials, name, email, role/copy, and “Enterprise operator access. Session activity is audited.” text.
 3. Click Dashboard, System configuration, and Audit logs quick links; verify each route opens and browser back returns correctly.
@@ -80,6 +86,7 @@ Read-only except optional logout. Do not change the shared admin password or 2FA
 
 ## Session summary
 - Host/environment:
+- Tooling (Playwright CLI for pages / curl for API):
 - Operator account:
 - Routes walked:
 

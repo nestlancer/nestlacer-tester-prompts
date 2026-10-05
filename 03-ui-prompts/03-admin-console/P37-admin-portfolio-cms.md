@@ -6,12 +6,17 @@
 **Target host:** `https://admin.nestlancer.com` (admin console)
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
 
 ## 0. Demo-production mode for this prompt
 
 This suite is intended for a production-like app with demo data. Execute create/update/delete/status/password/session/payment/media operations when the target object is clearly demo/audit data for this prompt. If the object is not confirmed demo/audit, record the control and stop before final confirmation. Always capture before/after state and audit/network evidence.
 
-## 1. Source-code anchors to read before browser testing
+## 1. Source-code anchors to read before Playwright testing
 
 ### Frontend
 - features/portfolio/AdminPortfolioClient.tsx
@@ -20,7 +25,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - admin-portfolio-timeline.ts
 - features/portfolio/* in web app
 
-### Backend / API surfaces expected in browser Network
+### Backend / API surfaces expected in Playwright network (or curl cross-check)
 - Admin portfolio list/create/update/delete/publish/unpublish/reorder/categories/media/upload/thumbnail/featured-video/analytics
 - Public portfolio list/detail/view/like
 
@@ -35,7 +40,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Media upload/thumbnail/featured video controls are tested.
 - Reorder/categories/analytics are covered.
 
-## 4. Mandatory browser walk
+## 4. Mandatory Playwright UI walk
 1. Admin list: search, stats Published/Draft/Featured, timeline/list, reorder, publish/unpublish/delete, analytics.
 2. Categories: create/update/delete audit category.
 3. New/edit: title/slug/summary/body/results/timeline/status/visibility/featured/category/SEO/save/publish.
@@ -87,7 +92,7 @@ Only mutate `AUDIT-P37` portfolio items/media/categories.
 
 ## Session summary
 - Host/environment:
-- Browser/MCP/tooling:
+- Tooling (Playwright CLI for pages / curl for API):
 - Role/account used:
 - Fixtures created:
 - Routes walked:

@@ -2,6 +2,8 @@
 
 Client auth, dashboard, requests, quotes, projects, payments, files, messages, notifications and settings.
 
+**Tooling:** Playwright CLI for pages; `curl` for any direct API cross-checks. Do **not** use browser MCP / Chrome DevTools MCP / browser-use.
+
 **Portal URL:** `app.nestlancer.com`
 
 | File | Title |

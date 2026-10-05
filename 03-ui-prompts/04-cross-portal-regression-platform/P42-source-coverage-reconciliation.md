@@ -6,11 +6,17 @@
 **Target host:** `https://nestlancer.com` + `https://app.nestlancer.com` + `https://admin.nestlancer.com`
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
+
 ## 0. Demo-production mode for this prompt
 
 This prompt is mostly read-only. It may open routes and click safe controls. Execute mutations only if they belong to another prompt’s demo/audit fixture and are needed to prove a coverage claim.
 
-## 1. Source-code anchors to read before browser testing
+## 1. Source-code anchors to read before Playwright testing
 
 ### Generated/static inventories in this prompt suite
 - [`../../02-source-inventories/frontend-route-map.md`](../../02-source-inventories/frontend-route-map.md)
@@ -49,12 +55,12 @@ This prompt is mostly read-only. It may open routes and click safe controls. Exe
 - Every frontend `apiServices.*` usage is exercised by a UI prompt or explicitly recorded as blocked/no fixture.
 - Every backend OpenAPI/controller group has one of these statuses: UI covered, API prompt covered, backend-only by design, or missing UI bug.
 
-## 4. Mandatory reconciliation walk
+## 4. Mandatory Playwright reconciliation walk
 1. Build a route ledger from `frontend-route-map.md`; add columns: owner prompt, runtime verdict, evidence, notes.
 2. Build a control ledger from `frontend-control-string-inventory.md`; sample every file with destructive/security/money controls and confirm the owning prompt covers it.
 3. Build an API usage ledger from `frontend-api-method-usage.md`; for each `apiServices.service.method`, map to UI prompt and route/control that triggers it.
 4. Build a backend endpoint ledger from `openapi-operations-by-tag.md` and `backend-controller-endpoints.md`; map to UI prompt, API prompt, or gap.
-5. In browser, open every route that does not have a runtime status yet. For dynamic routes, use demo fixtures from P39 or earlier prompts.
+5. With Playwright CLI, open every route that does not have a runtime status yet. For dynamic routes, use demo fixtures from P39 or earlier prompts.
 6. Probe removed/moved routes that source indicates are redirects: `/api-keys`, `/quotes/new`, `/payments/by-project`, `/projects/new`, `/requests/capacity`, `/system/*`, `/media/*`, `/messages/new`, `/messages/threads`, `/settings/*` redirects, `/verify`, `/work`.
 7. Produce a final “not covered / blocked / duplicate / obsolete” list and create new follow-up prompts if any uncovered source remains.
 

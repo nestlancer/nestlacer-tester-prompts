@@ -13,6 +13,13 @@
 
 Demo accounts and password: [`../00-start-here/DEMO-ACCOUNTS.md`](../00-start-here/DEMO-ACCOUNTS.md). Do not call localhost/Docker/microservice ports unless the operator marks **local lab mode**.
 
+## Tooling (required)
+
+- **API / auth / webhook / contract probes:** use **`curl`** against `https://api.nestlancer.com/api/v1` (and portal same-origin `/api/v1/*` or `/api/auth/*` when testing BFF/CORS/cookie behavior).
+- **UI / page / header / CSP / storage checks:** use **Playwright CLI** only.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
+
+
 ## Authorization and safety boundaries
 
 - Test only systems, domains, accounts, APIs and data explicitly owned/approved for this audit.
@@ -29,7 +36,7 @@ For each security finding capture:
 
 - Route/API endpoint, role, account type and fixture used.
 - Request ID/correlation ID, timestamp and environment.
-- Browser/network/API evidence with sensitive values redacted.
+- Playwright CLI (pages) and/or `curl` (API) evidence with sensitive values redacted. Do not use browser MCP / Chrome DevTools MCP / browser-use.
 - Impact, reproducibility, affected roles/data, and whether the issue is exploitable by anonymous/client/admin users.
 - Expected secure behavior and actual behavior.
 - Severity: P0 critical, P1 high, P2 medium, P3 low, INFO hardening.

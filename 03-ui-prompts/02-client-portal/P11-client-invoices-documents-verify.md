@@ -6,12 +6,17 @@
 **Target host:** `https://app.nestlancer.com` (client portal)
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
 
 ## 0. Demo-production mode for this prompt
 
 This suite is intended for a production-like app with demo data. Execute create/update/delete/status/password/session/payment/media operations when the target object is clearly demo/audit data for this prompt. If the object is not confirmed demo/audit, record the control and stop before final confirmation. Always capture before/after state and audit/network evidence.
 
-## 1. Source-code anchors to read before browser testing
+## 1. Source-code anchors to read before Playwright testing
 
 ### Frontend
 - features/invoices/InvoicesListClient.tsx
@@ -20,7 +25,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - features/documents/hooks/useDocumentsApi.ts
 - features/documents/DocumentVerifyClient.tsx
 
-### Backend / API surfaces expected in browser Network
+### Backend / API surfaces expected in Playwright network (or curl cross-check)
 - Invoices list/get/download
 - Payments invoice/receipt URLs
 - Documents mine/download/verify/versions
@@ -37,7 +42,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Downloads/previews are non-empty and correctly named.
 - Public verify is safe and minimal.
 
-## 4. Mandatory browser walk
+## 4. Mandatory Playwright UI walk
 1. Invoice list: filters/status/project/date/totals/download/empty/error/loading.
 2. Open `/invoices/[id]` with alias/static ids and UUID ids; record redirects to `/payments/invoice/[id]` or not-found.
 3. Payment invoice detail: totals/taxes/metadata/status/download invoice/receipt/document versions.
@@ -84,7 +89,7 @@ No money mutations. Download only audit-account documents.
 
 ## Session summary
 - Host/environment:
-- Browser/MCP/tooling:
+- Tooling (Playwright CLI for pages / curl for API):
 - Role/account used:
 - Fixtures created:
 - Routes walked:

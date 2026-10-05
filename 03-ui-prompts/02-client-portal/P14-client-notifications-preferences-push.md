@@ -6,12 +6,17 @@
 **Target host:** `https://app.nestlancer.com` (client portal)
 **Accounts:** see [`DEMO-ACCOUNTS.md`](../../00-start-here/DEMO-ACCOUNTS.md)
 
+## Tooling (required)
+
+- **Frontend pages / UI walks:** use **Playwright CLI** only (`npx playwright`, `playwright test`, or short Playwright CLI scripts). Drive navigation, forms, screenshots, console, and network from Playwright.
+- **Direct API / gateway endpoints:** use **`curl`** against `https://api.nestlancer.com/api/v1` (or same-origin `{portal}/api/v1/*` for BFF/cookie checks when an API cross-check is needed). Record method, path, status, and redacted headers/body keys.
+- **Do not use** Cursor browser MCP, Chrome DevTools MCP, browser-use agents, or other heavy interactive browser MCP stacks for this suite.
 
 ## 0. Demo-production mode for this prompt
 
 This suite is intended for a production-like app with demo data. Execute create/update/delete/status/password/session/payment/media operations when the target object is clearly demo/audit data for this prompt. If the object is not confirmed demo/audit, record the control and stop before final confirmation. Always capture before/after state and audit/network evidence.
 
-## 1. Source-code anchors to read before browser testing
+## 1. Source-code anchors to read before Playwright testing
 
 ### Frontend
 - features/notifications/NotificationsClient.tsx
@@ -21,7 +26,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - components/push/PushRegistration.tsx
 - packages/utils/src/notifications.ts
 
-### Backend / API surfaces expected in browser Network
+### Backend / API surfaces expected in Playwright network (or curl cross-check)
 - Notifications list/unread/get/delete/mark-read/read-all/clear-read/history/channels/preferences
 - Push register/unregister subscriptions
 
@@ -36,7 +41,7 @@ This suite is intended for a production-like app with demo data. Execute create/
 - Preferences and quiet hours persist.
 - Push handles denied/granted/unavailable states.
 
-## 4. Mandatory browser walk
+## 4. Mandatory Playwright UI walk
 1. Notifications page: tabs/categories/unread/all/read, rows, target links, mark read/unread, delete, clear read, read all.
 2. Bell: preview rows, unread count, mark all read, link to center, compare with page.
 3. Preferences: channel matrix, categories, quiet hours enable/from/to/timezone validation/persist.
@@ -85,7 +90,7 @@ Mutate only audit user notifications/preferences; record initial state and resto
 
 ## Session summary
 - Host/environment:
-- Browser/MCP/tooling:
+- Tooling (Playwright CLI for pages / curl for API):
 - Role/account used:
 - Fixtures created:
 - Routes walked:

@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { analyzePdfs, integrityBugsFromAnalysis, markdownIntegrityTable } = require('./lib/pdf_analyze');
 
-const OUT = '/home/bhumukul-raj/Music/nestlacer-test-output/reports/P07';
+const OUT = path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P07');
 const EVID = path.join(OUT, 'evidence');
 fs.mkdirSync(EVID, { recursive: true });
 const APP = 'https://app.nestlancer.com';
@@ -124,7 +124,7 @@ async function tryDownload(page, buttonName, slug, result) {
 
 (async () => {
   const result = { prompt: 'P07', generatedAt: new Date().toISOString(), mode: 'public-domain UI-first with PDF professional-integrity analysis', steps: [], snapshots: [], network: [], console: [], storage: [], downloads: [], pdfIntegrity: [], controlInventory: [], bugs: [], blockers: [], notes: [], securityFindings: [] };
-  const browser = await chromium.launch({ channel: 'chrome', headless: true });
+  const browser = await chromium.launch({ headless: true });
 
   const arjun = await loginContext(browser, ARJUN, 'arjun', result);
   const page = arjun.page;

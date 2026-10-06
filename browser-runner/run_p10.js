@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const OUT = '/home/bhumukul-raj/Music/nestlacer-test-output/reports/P10';
+const OUT = path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P10');
 const EVID = path.join(OUT, 'evidence');
 fs.mkdirSync(EVID, { recursive: true });
 const APP = 'https://app.nestlancer.com';
@@ -29,7 +29,7 @@ async function openPreviewLink(page,slug,result){const rec={slug,verdict:'NOT_CL
 
 (async()=>{
   const result={prompt:'P10',generatedAt:new Date().toISOString(),mode:'public-domain UI-first',steps:[],snapshots:[],network:[],console:[],storage:[],previewActions:[],openActions:[],controlInventory:[],bugs:[],blockers:[],notes:[],securityFindings:[]};
-  const browser=await chromium.launch({ channel: 'chrome', headless: true});
+  const browser=await chromium.launch({ headless: true});
   const primary=await loginContext(browser,KARTHIK,'karthik',result); const page=primary.page;
 
   await goto(page,`${APP}/projects/${PROJECT_ID}?tab=deliverables`,'deliverables_karthik',result);

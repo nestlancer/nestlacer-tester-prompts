@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 const { analyzePdfs: analyzePdfsHelper, integrityBugsFromAnalysis, markdownIntegrityTable } = require('./lib/pdf_analyze');
 
-const OUT = '/home/bhumukul-raj/Music/nestlacer-test-output/reports/P15';
+const OUT = path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P15');
 const EVID = path.join(OUT, 'evidence');
 fs.mkdirSync(EVID, { recursive: true });
 const APP = 'https://app.nestlancer.com';
@@ -79,7 +79,7 @@ function analyzePdfs(paths){return analyzePdfsHelper(paths,{extractVerifyUrls:fa
 
   let mailbox=null;
   try{mailbox=await makeMailbox(); state.auditEmail=mailbox.address; state.mailToken=mailbox.token; result.auditAccount.address='<audit-p15-mail>@<mail-domain>'; result.auditAccount.created=true;}catch(e){result.blockers.push('mail.tm account creation failed: '+redact(e.message));}
-  const browser=await chromium.launch({ channel: 'chrome', headless: true});
+  const browser=await chromium.launch({ headless: true});
   const ctx=await browser.newContext({viewport:{width:1365,height:900},ignoreHTTPSErrors:true,acceptDownloads:true});
   const page=await ctx.newPage(); await attach(page,'audit_p15',result,redact);
 

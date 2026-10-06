@@ -4,7 +4,7 @@ const path = require('path');
 const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 
-const OUT = '/home/bhumukul-raj/Music/nestlacer-test-output/reports/P03/2fa_full';
+const OUT = path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P03', '2fa_full');
 const EVID = path.join(OUT, 'evidence');
 fs.mkdirSync(EVID, { recursive: true });
 
@@ -135,7 +135,7 @@ async function fillOtp(page, code) {
   const mailbox = await makeMailbox();
   result.address = mailbox.address.replace(/^(.{14}).*@/, '$1…@');
 
-  const browser = await chromium.launch({ channel: 'chrome', headless: true });
+  const browser = await chromium.launch({ headless: true });
   const ctx = await browser.newContext({ viewport: { width: 1365, height: 900 }, ignoreHTTPSErrors: true });
   const page = await ctx.newPage();
 

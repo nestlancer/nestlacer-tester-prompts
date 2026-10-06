@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { analyzePdfs, integrityBugsFromAnalysis, markdownIntegrityTable } = require('./lib/pdf_analyze');
 
-const OUT = '/home/bhumukul-raj/Music/nestlacer-test-output/reports/P11';
+const OUT = path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P11');
 const EVID = path.join(OUT, 'evidence');
 fs.mkdirSync(EVID, { recursive: true });
 const APP = 'https://app.nestlancer.com';
@@ -25,7 +25,7 @@ async function downloadByRole(page,name,slug,result){const rec={control:name,slu
 async function downloadNthPdf(page,n,slug,result){const rec={control:`PDF button #${n}`,slug,verdict:'NOT_CLICKED'}; try{const loc=page.getByRole('button',{name:/^PDF$/i}).nth(n); if(!(await loc.count())){rec.verdict='MISSING'; result.downloads.push(rec); return rec;} const dlPromise=page.waitForEvent('download',{timeout:20000}).catch(e=>({error:e.message})); await loc.click({timeout:5000}); const dl=await dlPromise; if(dl&&!dl.error){const filename=dl.suggestedFilename(); const save=path.join(EVID,`${slug}_${filename.replace(/[^a-zA-Z0-9._-]+/g,'_')}`); await dl.saveAs(save); rec.verdict='DOWNLOADED'; rec.filename=filename; rec.bytes=fs.statSync(save).size; rec.savedAs=save; rec.relative=path.relative(OUT,save); rec.tokenLeakInFilename=/token|secret|signature|credential|jwt|access/i.test(filename);} else {rec.verdict='NO_DOWNLOAD_EVENT'; rec.error=dl?.error||'';} }catch(e){rec.verdict='ERROR'; rec.error=e.message;} result.downloads.push(rec); return rec;}
 (async()=>{
   const result={prompt:'P11',generatedAt:new Date().toISOString(),mode:'public-domain UI-first with PDF professional-integrity analysis',steps:[],snapshots:[],network:[],console:[],storage:[],downloads:[],pdfIntegrity:[],controlInventory:[],bugs:[],blockers:[],notes:[],securityFindings:[]};
-  const browser=await chromium.launch({ channel: 'chrome', headless: true});
+  const browser=await chromium.launch({ headless: true});
   const arjun=await loginContext(browser,ARJUN,'arjun',result); const page=arjun.page;
 
   await goto(page,`${APP}/invoices`,'invoices_list_arjun',result);

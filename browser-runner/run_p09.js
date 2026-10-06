@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const OUT = '/home/bhumukul-raj/Music/nestlacer-test-output/reports/P09';
+const OUT = path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P09');
 const EVID = path.join(OUT, 'evidence');
 fs.mkdirSync(EVID, { recursive: true });
 const APP = 'https://app.nestlancer.com';
@@ -70,7 +70,7 @@ async function loginContext(browser,email,label,result,viewport={width:1365,heig
 
 (async()=>{
   const result={prompt:'P09',generatedAt:new Date().toISOString(),mode:'public-domain UI-first',steps:[],snapshots:[],network:[],console:[],storage:[],controlInventory:[],bugs:[],blockers:[],notes:[],securityFindings:[]};
-  const browser=await chromium.launch({ channel: 'chrome', headless: true});
+  const browser=await chromium.launch({ headless: true});
   const arjun=await loginContext(browser,ARJUN,'arjun',result); const page=arjun.page;
 
   await goto(page,`${APP}/projects`,'projects_list_arjun',result);

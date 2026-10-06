@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 const { analyzePdfs: analyzePdfsHelper, integrityBugsFromAnalysis, markdownIntegrityTable } = require('./lib/pdf_analyze');
 
-const OUT='/home/bhumukul-raj/Music/nestlacer-test-output/reports/P15';
+const OUT=path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P15');
 const EVID=path.join(OUT,'evidence_final');
 fs.mkdirSync(EVID,{recursive:true});
 const APP='https://app.nestlancer.com';
@@ -31,7 +31,7 @@ function parseJsonWithWarnings(out){const s=String(out||'').trim(); const starts
 function analyzePdfs(paths){return analyzePdfsHelper(paths,{extractVerifyUrls:false}).analysis;}
 (async()=>{
  const result={prompt:'P15',generatedAt:new Date().toISOString(),mode:'UI-first; dedicated disposable audit-client auth-cookie regression + shared demo read-only inventory',steps:[],snapshots:[],network:[],console:[],downloads:[],pdfIntegrity:[],controlInventory:[],bugs:[],blockers:[],notes:[],securityFindings:[]};
- const browser=await chromium.launch({ channel: 'chrome', headless: true});
+ const browser=await chromium.launch({ headless: true});
  // Dedicated audit account create/verify/login regression.
  const auditCtx=await browser.newContext({viewport:{width:1365,height:900},ignoreHTTPSErrors:true,acceptDownloads:true}); const auditPage=await auditCtx.newPage(); await attach(auditPage,'audit_disposable',result);
  try{const m=await makeMailbox(); await auditPage.goto(APP+'/register',{waitUntil:'domcontentloaded'}); await dismiss(auditPage); await auditPage.locator('input[name=firstName]').fill('Audit'); await auditPage.locator('input[name=lastName]').fill('P15'); await auditPage.locator('input[name=email]').fill(m.address); await auditPage.locator('input[name=password]').fill(auditPass); await auditPage.locator('input[name=confirmPassword]').fill(auditPass); await auditPage.locator('input[name=acceptTerms]').check(); await Promise.allSettled([auditPage.waitForURL(u=>!u.pathname.includes('/register'),{timeout:15000}), auditPage.locator('button[type=submit]').click()]); await auditPage.waitForLoadState('networkidle',{timeout:8000}).catch(()=>{}); await snap(auditPage,'audit_register_check_inbox',result); const link=await pollVerify(m); fs.writeFileSync(path.join(EVID,'audit_mail_verify_link_redacted.txt'),redact(link?sanitizeUrl(link):'NO VERIFY LINK')); if(link){await auditPage.goto(link,{waitUntil:'domcontentloaded',timeout:60000}); await auditPage.waitForLoadState('networkidle',{timeout:12000}).catch(()=>{}); await snap(auditPage,'audit_verify_email_success',result);} else result.blockers.push('Dedicated audit account did not receive verify email.');

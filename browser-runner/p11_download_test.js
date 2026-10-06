@@ -2,14 +2,14 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const OUT = '/home/bhumukul-raj/Music/nestlacer-test-output/reports/P11/download_test';
+const OUT = path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P11', 'download_test');
 fs.mkdirSync(OUT, { recursive: true });
 const APP = 'https://app.nestlancer.com';
 const PASS = process.env.NESTLANCER_DEMO_PASSWORD || 'Brick2@Build';
 const PAYMENT = '01a10733-de39-7618-978a-0febfac65964';
 
 (async () => {
-  const browser = await chromium.launch({ channel: 'chrome', headless: true });
+  const browser = await chromium.launch({ headless: true });
   const ctx = await browser.newContext({
     viewport: { width: 1365, height: 900 },
     ignoreHTTPSErrors: true,

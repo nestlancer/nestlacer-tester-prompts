@@ -1,11 +1,11 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
-const OUT='/home/bhumukul-raj/Music/nestlacer-test-output/reports/P46/login_probe'; fs.mkdirSync(OUT,{recursive:true});
+const OUT=path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P46', 'login_probe'); fs.mkdirSync(OUT,{recursive:true});
 const password='Brick2@Build';
 function redact(s){return String(s||'').replaceAll(password,'<redacted-password>').replace(/([A-Za-z0-9._%+-]+)@nestlancer\.com/g,'<demo-email>@nestlancer.com').replace(/(accessToken|refreshToken|token|otp|code|password|secret|cookie|authorization)\s*[:=]\s*["']?[^,"'\s}]+/gi,'$1:<redacted>')}
 async function probe(base,email,label){
- const browser=await chromium.launch({ channel: 'chrome', headless: true});
+ const browser=await chromium.launch({ headless: true});
  const ctx=await browser.newContext({viewport:{width:1365,height:900},ignoreHTTPSErrors:true});
  const page=await ctx.newPage();
  const net=[]; const responses=[];

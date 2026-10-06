@@ -1,9 +1,9 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
-const OUT='/home/bhumukul-raj/Music/nestlacer-test-output/reports/P03/form_inventory'; fs.mkdirSync(OUT,{recursive:true});
+const OUT=path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P03', 'form_inventory'); fs.mkdirSync(OUT,{recursive:true});
 (async()=>{
- const b=await chromium.launch({ channel: 'chrome', headless: true});
+ const b=await chromium.launch({ headless: true});
  const c=await b.newContext({viewport:{width:1365,height:900},ignoreHTTPSErrors:true});
  const p=await c.newPage();
  const routes=['/login','/register','/forgot-password','/reset-password','/verify-email'];

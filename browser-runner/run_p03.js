@@ -4,7 +4,7 @@ const path = require('path');
 const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 
-const OUT = '/home/bhumukul-raj/Music/nestlacer-test-output/reports/P03';
+const OUT = path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P03');
 const EVID = path.join(OUT, 'evidence');
 fs.mkdirSync(EVID, { recursive: true });
 
@@ -203,7 +203,7 @@ async function loginFlow(base, email, password, label, result, options={}) {
   try { mailbox = await createMailTm(); result.auditMailbox = { address: shortEmail(mailbox.address), domain: mailbox.domain, tool: 'mail.tm' }; }
   catch (e) { result.blockers.push(`Disposable mail sink creation failed: ${e.message}`); }
 
-  const browser = await chromium.launch({ channel: 'chrome', headless: true });
+  const browser = await chromium.launch({ headless: true });
   result.browser = browser;
   const context = await browser.newContext({ viewport: { width: 1365, height: 900 }, ignoreHTTPSErrors: true });
   const page = await context.newPage(); await attachCollectors(page, 'p03-main', result);

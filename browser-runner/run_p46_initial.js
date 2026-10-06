@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const OUT = '/home/bhumukul-raj/Music/nestlacer-test-output/reports/P46';
+const OUT = path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P46');
 const EVID = path.join(OUT, 'evidence');
 fs.mkdirSync(EVID, { recursive: true });
 
@@ -177,7 +177,7 @@ async function countText(page) {
     browser: 'Playwright Chromium headless',
     visits: [], snapshots: [], network: [], console: [], logins: [], seedChecks: [], notes: [], blockers: [], bugs: []
   };
-  const browser = await chromium.launch({ channel: 'chrome', headless: true });
+  const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({ viewport: { width: 1365, height: 900 }, ignoreHTTPSErrors: true });
   const page = await context.newPage();
   await attachCollectors(page, 'main', result);

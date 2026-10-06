@@ -1,7 +1,7 @@
 const { chromium } = require('playwright');
 const fs=require('fs'), path=require('path'), crypto=require('crypto');
 const { execFileSync } = require('child_process');
-const OUT='/home/bhumukul-raj/Music/nestlacer-test-output/reports/P03/2fa_attempt'; const EVID=path.join(OUT,'evidence'); fs.mkdirSync(EVID,{recursive:true});
+const OUT=path.join(__dirname, '..', 'nestlancer-test-output', 'reports', 'P03', '2fa_attempt'); const EVID=path.join(OUT,'evidence'); fs.mkdirSync(EVID,{recursive:true});
 const APP='https://app.nestlancer.com';
 const auditPassword='AuditP03TwoFA!'+crypto.randomBytes(4).toString('hex')+'aA1';
 const runId=Date.now().toString(36);
@@ -16,7 +16,7 @@ async function dismiss(p){for(const t of ['Accept','Dismiss'])try{const b=p.getB
 async function submit(p){try{await p.locator('button[type=submit]').first().click({timeout:3000})}catch{await p.keyboard.press('Enter')}}
 (async()=>{
  const result={steps:[],notes:[],blockers:[],address:null,links:[]}; const m=await mail(); result.address=m.address.replace(/^(.{12}).*@/,'$1…@');
- const browser=await chromium.launch({ channel: 'chrome', headless: true}); const ctx=await browser.newContext({viewport:{width:1365,height:900},ignoreHTTPSErrors:true}); const p=await ctx.newPage();
+ const browser=await chromium.launch({ headless: true}); const ctx=await browser.newContext({viewport:{width:1365,height:900},ignoreHTTPSErrors:true}); const p=await ctx.newPage();
  await p.goto(APP+'/register',{waitUntil:'networkidle'}); await dismiss(p); await p.locator('input[name=firstName]').fill('Audit'); await p.locator('input[name=lastName]').fill('TwoFA'); await p.locator('input[name=email]').fill(m.address); await p.locator('input[name=password]').fill(auditPassword); await p.locator('input[name=confirmPassword]').fill(auditPassword); await p.locator('input[name=acceptTerms]').check(); await submit(p); await p.waitForTimeout(3000); result.steps.push(await snap(p,'register_2fa_user'));
  const msg=await poll(m,30000); if(msg){let links=extract(msg); result.links=links.map(sanitizeUrl); fs.writeFileSync(path.join(EVID,'mail_message_redacted.txt'),redact(`SUBJECT ${msg.subject}\nINTRO ${msg.intro}\nLINKS\n${links.map(sanitizeUrl).join('\n')}`)); for(let i=0;i<links.length;i++){await p.goto(links[i],{waitUntil:'networkidle',timeout:60000}).catch(e=>result.notes.push('verify goto '+e.message)); const s=await snap(p,'verify_link_'+i); result.steps.push(s); if(/verified|success|activated|sign in/i.test(s.text) && !/invalid|expired|couldn't/i.test(s.text)) break;}} else result.blockers.push('No verification email in mail.tm');
  // try login regardless

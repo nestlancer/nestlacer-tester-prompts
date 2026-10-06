@@ -34,8 +34,9 @@ const SOURCES = [
   ['invoiceId', 'clientA', '/invoices?limit=5'],
   ['mediaId', 'clientA', '/media?limit=5'],
   ['notificationId', 'clientA', '/notifications?limit=5'],
-  ['conversationId', 'clientA', '/conversations?limit=5'],
-  ['paymentMethodId', 'clientA', '/payment-methods'],
+  // Prefer chat-thread list (stable `id`) over conversations envelope (`threadId`).
+  ['conversationId', 'clientA', '/messages/threads?limit=5'],
+  ['paymentMethodId', 'clientA', '/payments/methods'],
   ['adminUserId', 'admin', '/admin/users?limit=5'],
   ['adminProjectId', 'admin', '/admin/projects?limit=5'],
   ['adminQuoteId', 'admin', '/admin/quotes?limit=5'],
@@ -58,8 +59,9 @@ async function discover(sessions, log = () => {}) {
       const items = listOf(res);
       fx._raw[key] = { path: p, role, status: res.status, count: items.length };
       if (items.length) {
-        fx[key] = pickId(items[0]);
-        fx[key + 's'] = items.map(pickId).filter(Boolean);
+        // Conversations/threads envelopes often use threadId instead of id.
+        fx[key] = pickId(items[0]) || items[0].threadId || items[0].conversationId || null;
+        fx[key + 's'] = items.map((it) => pickId(it) || it.threadId || it.conversationId).filter(Boolean);
         if (key === 'postSlug') fx.postSlug = items[0].slug || fx.postSlug;
       }
       log(`  fixture ${key.padEnd(18)} ${String(res.status).padEnd(4)} n=${items.length} -> ${fx[key] || '-'}`);

@@ -37,6 +37,13 @@ function isLikelyPublic(route) {
   return PUBLIC_HINTS.some((h) => route === h || route.startsWith(h.trimEnd('/')));
 }
 
+/** Plain XML/text machine docs — browser chrome often scrolls wider than viewport. */
+function isPlainDocumentRoute(route) {
+  return /\.(xml|txt|json|csv|webmanifest)$/i.test(route)
+    || /\/(robots\.txt|sitemap\.xml)$/i.test(route)
+    || /\/\.well-known\//i.test(route);
+}
+
 /** Form-based login against the real portal login page. */
 async function uiLogin(page, base, email, password) {
   await page.goto(base + '/login', { waitUntil: 'domcontentloaded', timeout: 25000 });
@@ -87,6 +94,7 @@ async function visit(v, contexts) {
       continue;
     }
     const page = await entry.ctx.newPage();
+    await page.setViewportSize(kind === 'desktop' ? DESKTOP : MOBILE);
     const col = { console: [], warns: [], pageErrors: [], failed: [], httpErr: [], api: [], prefetchAbort: 0 };
     page.on('console', (m) => {
       const t = m.type(); const msg = redactStr(m.text()).slice(0, 300);
@@ -142,17 +150,30 @@ async function visit(v, contexts) {
       rec.horizontalOverflow = await page.evaluate(
         'document.scrollingElement.scrollWidth > document.documentElement.clientWidth').catch(() => null);
     }
+    const ct = (resp && resp.headers()['content-type']) || '';
+    const plainDoc = isPlainDocumentRoute(v.route)
+      || /^(text\/(plain|xml)|application\/(xml|json|rss\+xml|atom\+xml))/i.test(ct);
     const shot = `${v.app}-${routeSlug(v.route)}-${kind}.png`;
     try { await page.screenshot({ path: path.join(SHOTS, shot), fullPage: kind === 'desktop' }); rec.screenshot = shot; }
     catch (_) { /* noop */ }
     rec.verdict = (() => {
       if (rec.status >= 500) return 'FAIL-5XX';
       if (rec.status >= 400) return /(nl-unknown-404|nl-invalid)/.test(v.route) ? 'PASS-EXPECTED-4XX' : 'FAIL-4XX';
+      // Authenticated roles must not silently land on the login page.
+      if (v.role !== 'anon' && /\/(login|register)(\?|$)/i.test(rec.finalUrl)) return 'FAIL-AUTH-REDIRECT';
       if (v.role === 'anon' && !isLikelyPublic(v.route) && /\/(login|register)/.test(rec.finalUrl)) return 'REDIRECT-TO-LOGIN (PASS)';
       if (rec.pageErrors.length) return 'PAGE-ERROR';
       if (rec.failedRequests.length) return 'ASSET-BLOCKED';
-      if (rec.consoleErrors.length) return 'CONSOLE-ERRORS';
-      if (rec.horizontalOverflow) return 'OVERFLOW-X';
+      if (rec.consoleErrors.length) {
+        // Intentional hard-404 probes log a browser "Failed to load resource: 404".
+        if (/(nl-unknown-404|nl-invalid)/.test(v.route)
+          && rec.consoleErrors.every((e) => /status of 404|404 \(/.test(String(e)))) {
+          /* ignore expected 404 console noise */
+        } else {
+          return 'CONSOLE-ERRORS';
+        }
+      }
+      if (rec.horizontalOverflow && !plainDoc) return 'OVERFLOW-X';
       return 'PASS';
     })();
     out[kind] = rec;
@@ -162,37 +183,44 @@ async function visit(v, contexts) {
 }
 
 const loginState = { done: {} };
-async function getCtx(contexts, app, role, kind) {
-  const key = [app, role, kind].join('|');
+async function getCtx(contexts, app, role, _kind) {
+  // One browser context per app|role. Viewport is switched per visit so
+  // HttpOnly session cookies (Playwright expires:-1) stay intact — cloning
+  // via storageState drops them and authenticated walks land on /login.
+  const key = [app, role].join('|');
   if (contexts.has(key)) return contexts.get(key);
   const base = HOSTS[app];
   const entry = { ctx: null, ready: false, loginError: null };
   contexts.set(key, entry);
   entry.ctx = await getCtx.browser.newContext({
-    viewport: kind === 'desktop' ? DESKTOP : MOBILE,
+    viewport: DESKTOP,
     baseURL: base,
-    userAgent: role === 'anon' ? undefined : undefined,
   });
-  if (role === 'anon') { entry.ready = true; return entry; }
-  const lk = app + '|' + role;
-  if (!loginState.done[lk]) {
-    loginState.done[lk] = { result: 'FAIL', error: null };
-    const page = await entry.ctx.newPage();
-    try {
-      const acc = ACCOUNTS[role];
-      const r = await uiLogin(page, base, acc.email, acc.password);
-      loginState.done[lk] = { result: r === 'FAIL' ? 'FAIL' : 'OK', error: r === '2FA-PROMPT' ? '2fa page' : null };
-      if (r === 'OK') entry.ready = true;
-      else entry.loginError = r === '2FA-PROMPT' ? 'login landed on 2FA/verify screen' : 'form login did not leave /login';
-    } catch (e) {
-      loginState.done[lk] = { result: 'FAIL', error: redactStr(e.message).split('\n')[0] };
-      entry.loginError = loginState.done[lk].error;
-    }
-    await page.close().catch(() => null);
-  } else {
-    entry.loginError = 'login previously failed: ' + (loginState.done[lk].error || 'unknown');
+  if (role === 'anon') {
+    entry.ready = true;
+    return entry;
   }
-  if (!entry.ready && loginState.done[lk].result === 'OK') entry.ready = true;
+  const lk = app + '|' + role;
+  loginState.done[lk] = { result: 'FAIL', error: null };
+  const page = await entry.ctx.newPage();
+  try {
+    const acc = ACCOUNTS[role];
+    const r = await uiLogin(page, base, acc.email, acc.password);
+    loginState.done[lk] = {
+      result: r === 'FAIL' ? 'FAIL' : 'OK',
+      error: r === '2FA-PROMPT' ? '2fa page' : null,
+    };
+    if (r === 'OK') entry.ready = true;
+    else {
+      entry.loginError = r === '2FA-PROMPT'
+        ? 'login landed on 2FA/verify screen'
+        : 'form login did not leave /login';
+    }
+  } catch (e) {
+    loginState.done[lk] = { result: 'FAIL', error: redactStr(e.message).split('\n')[0] };
+    entry.loginError = loginState.done[lk].error;
+  }
+  await page.close().catch(() => null);
   return entry;
 }
 
@@ -208,6 +236,18 @@ function reclassifyRow(row) {
       r.failedRequests = (r.failedRequests || []).filter((f) => !aborts.includes(f));
     }
     if ((r.failedRequests || []).length && r.verdict === 'PASS') r.verdict = 'ASSET-BLOCKED';
+    // Plain XML/text machine docs: drop false-positive mobile OVERFLOW-X.
+    if (r.verdict === 'OVERFLOW-X' && isPlainDocumentRoute(row.route)) r.verdict = 'PASS';
+    // Intentional hard-404 probes: browser console 404 noise is expected.
+    if (r.verdict === 'CONSOLE-ERRORS' && /(nl-unknown-404|nl-invalid)/.test(row.route)
+      && (r.consoleErrors || []).every((e) => /status of 404|404 \(/.test(String(e)))) {
+      r.verdict = r.status >= 400 ? 'PASS-EXPECTED-4XX' : 'PASS';
+    }
+    // Auth roles redirected to login are failures (missed session / cookie).
+    if (row.role !== 'anon' && r.finalUrl && /\/(login|register)(\?|$)/i.test(r.finalUrl)
+      && !['FAIL-AUTH-REDIRECT', 'BLOCKED', 'NAV-ERROR'].includes(r.verdict)) {
+      r.verdict = 'FAIL-AUTH-REDIRECT';
+    }
   }
   return row;
 }

@@ -153,8 +153,13 @@ const fullErr = (r) => JSON.stringify((r.json && (r.json.error || r.json)) || r.
     const end = await admin.call('POST', `/admin/users/impersonate/end/${impSessionId}`, { body: {} });
     rec('A12/P31', 'admin ends impersonation session', { status: end.status, verdict: end.status < 400 ? 'PASS' : 'REVIEW' });
   }
-  r = await admin.call('GET', '/admin/audit?limit=25');
-  const impFound = /impersonat/i.test(JSON.stringify(r.json || {}));
+  // Prefer action filter; fall back to recent list (sync write makes this immediate).
+  r = await admin.call('GET', '/admin/audit?action=IMPERSONATION_START&limit=5');
+  let impFound = /impersonat/i.test(JSON.stringify(r.json || {}));
+  if (!impFound) {
+    r = await admin.call('GET', '/admin/audit?limit=25');
+    impFound = /impersonat/i.test(JSON.stringify(r.json || {}));
+  }
   rec('A11/P31', 'audit log records impersonation', { status: r.status, found: impFound, verdict: impFound ? 'PASS' : 'REVIEW' });
 
   /* ===== A20/P46 seed fixture counts ===== */

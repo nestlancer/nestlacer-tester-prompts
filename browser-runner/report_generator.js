@@ -60,7 +60,10 @@ function generateUiReport(id, meta, evd) {
   const origin = getAppOrigin(meta.app);
   const account = getRoleAccount(meta.role, meta.app);
   
-  let sevList = routes.map((r) => ({ verdict: [r.desktop?.verdict, r.mobile?.verdict].filter(Boolean)[0] }));
+  const sevList = routes.flatMap((r) => [
+    r.desktop?.verdict && { verdict: r.desktop.verdict },
+    r.mobile?.verdict && { verdict: r.mobile.verdict },
+  ].filter(Boolean));
   const highSev = highestSeverity(sevList);
 
   const covRows = routes.map((r) => {
@@ -331,8 +334,30 @@ function main() {
     }
 
     fs.writeFileSync(path.join(REPORTS, `${id}.md`), report);
-    const sev = report.includes('P0') ? 'P0' : (report.includes('P1') ? 'P1' : (report.includes('P2') ? 'P2' : (report.includes('P3') ? 'P3' : 'P4 (pass)')));
-    index.push({ id, status: 'reported', severity: sev, units: evd?.rows?.length || evd?.routes?.length || 'Complete' });
+    // Prefer evidence-derived severity. Never use report.includes('P0') — it false-matches
+    // prompt ids like "P01" and prose like "No critical (P0)".
+    // Report line shape: `- **Highest severity:** **P4 (pass)**`
+    const sevFromReport = (txt) => {
+      const m = String(txt).match(/\*\*Highest severity:\*\*\s*\*\*([^*]+)\*\*/);
+      return m ? m[1].trim() : null;
+    };
+    let indexSev = 'P4 (pass)';
+    if (evd) {
+      const rows = evd.routes || evd.rows || evd.probes || [];
+      const verd = rows.flatMap((r) => {
+        if (r.verdict) return [{ verdict: r.verdict }];
+        return [
+          r.desktop?.verdict && { verdict: r.desktop.verdict },
+          r.mobile?.verdict && { verdict: r.mobile.verdict },
+        ].filter(Boolean);
+      });
+      if (verd.length) indexSev = highestSeverity(verd);
+      else if (typeof evd.highestSeverity === 'string') indexSev = evd.highestSeverity;
+      else indexSev = sevFromReport(report) || 'P4 (pass)';
+    } else {
+      indexSev = sevFromReport(report) || 'P4 (pass)';
+    }
+    index.push({ id, status: 'reported', severity: indexSev, units: evd?.rows?.length || evd?.routes?.length || 'Complete' });
     made++;
   }
 

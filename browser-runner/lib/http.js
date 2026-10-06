@@ -128,7 +128,7 @@ const anon = {
 };
 
 function outDir(sub) {
-  const base = process.env.NL_OUT || path.join(__dirname, '..', '..', '..', 'nestlancer-test-output');
+  const base = process.env.NL_OUT || path.join(__dirname, '..', '..', 'nestlancer-test-output');
   const dir = sub ? path.join(base, sub) : base;
   fs.mkdirSync(dir, { recursive: true });
   return dir;

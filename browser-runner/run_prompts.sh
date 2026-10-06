@@ -18,7 +18,7 @@
 # but UI-first keeps screenshots unaffected by session state changes).
 set -u
 cd "$(dirname "$0")"
-OUT_ROOT="${NL_OUT:-"$(cd "$(dirname "$0")/../../.." && pwd)/nestlancer-test-output"}"
+OUT_ROOT="${NL_OUT:-"$(cd "$(dirname "$0")/.." && pwd)/nestlancer-test-output"}"
 export NL_OUT="$OUT_ROOT"
 LOG_DIR="$OUT_ROOT/run-logs"
 mkdir -p "$LOG_DIR"
@@ -34,10 +34,17 @@ run_step() {
 }
 
 rc=0
-run_step ui_runner node ui_runner.js "${SEL[@]:-}" || rc=1
-run_step api_runner node api_runner.js "${SEL[@]:-}" || rc=1
-run_step security_runner node security_runner.js "${SEL[@]:-}" || rc=1
-run_step report_generator node report_generator.js "${SEL[@]:-}" || rc=1
+if ((${#SEL[@]})); then
+  run_step ui_runner node ui_runner.js "${SEL[@]}" || rc=1
+  run_step api_runner node api_runner.js "${SEL[@]}" || rc=1
+  run_step security_runner node security_runner.js "${SEL[@]}" || rc=1
+  run_step report_generator node report_generator.js "${SEL[@]}" || rc=1
+else
+  run_step ui_runner node ui_runner.js || rc=1
+  run_step api_runner node api_runner.js || rc=1
+  run_step security_runner node security_runner.js || rc=1
+  run_step report_generator node report_generator.js || rc=1
+fi
 
 echo "Artifacts: $OUT_ROOT/evidence (json), $OUT_ROOT/screenshots (png), $OUT_ROOT/reports (*.md)"
 exit "$rc"

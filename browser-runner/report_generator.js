@@ -14,7 +14,7 @@ const path = require('path');
 const { allIds, outputTemplate } = require('./lib/prompts');
 const ALL = allIds();
 
-const OUT_ROOT = process.env.NL_OUT || path.join(__dirname, '..', '..', '..', 'nestlancer-test-output');
+const OUT_ROOT = process.env.NL_OUT || path.join(__dirname, '..', '..', 'nestlancer-test-output');
 const EVD = path.join(OUT_ROOT, 'evidence');
 const REPORTS = path.join(OUT_ROOT, 'reports');
 fs.mkdirSync(REPORTS, { recursive: true });

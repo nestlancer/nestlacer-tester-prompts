@@ -2,7 +2,7 @@
 set -u
 cd "$(dirname "$0")"
 # Output root: $NL_OUT if set, else repo-relative (matches lib/http.js default).
-OUT_ROOT="${NL_OUT:-"$(cd "$(dirname "$0")/../../.." && pwd)/nestlancer-test-output"}"
+OUT_ROOT="${NL_OUT:-"$(cd "$(dirname "$0")/.." && pwd)/nestlancer-test-output"}"
 export NL_OUT="$OUT_ROOT"
 LOG_DIR="$OUT_ROOT/run-logs"
 mkdir -p "$LOG_DIR"

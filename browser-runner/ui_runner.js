@@ -84,6 +84,66 @@ const a11yScript = `(() => {
   };
 })()`;
 
+/** Wait until auth shells finish hydrating so screenshots/a11y are not skeleton noise. */
+async function settleUi(page, { plainDoc, needH1 }) {
+  if (plainDoc) {
+    await page.waitForTimeout(200);
+    return { settled: true, stuckLoading: false, settleMs: 200 };
+  }
+  const t0 = Date.now();
+  // Prefer Accept once if consent banner still shows (initScript usually covers this).
+  try {
+    const accept = page.getByRole('button', { name: /^Accept$/i });
+    if (await accept.isVisible({ timeout: 400 })) await accept.click({ timeout: 1000 });
+  } catch (_) { /* noop */ }
+
+  let stuckLoading = false;
+  try {
+    await page.waitForFunction((requireH1) => {
+      const text = (document.body && document.body.innerText) || '';
+      const busy = !!document.querySelector('[aria-busy="true"]');
+      const pulses = document.querySelectorAll('.animate-pulse').length;
+      const h1 = document.querySelectorAll('h1').length;
+      const main = document.querySelectorAll('main').length;
+      const boot =
+        /Loading operator session/i.test(text)
+        || /Loading your workspace/i.test(text)
+        || (/^Loading\.\.\.$/m.test(text) && h1 === 0);
+      if (boot || busy) return false;
+      if (requireH1) return h1 > 0 && pulses <= 2;
+      if (h1 > 0 || main > 0) return pulses <= 2;
+      return pulses === 0;
+    }, needH1, { timeout: 15000 });
+  } catch (_) {
+    stuckLoading = await page.evaluate(() => {
+      const text = (document.body && document.body.innerText) || '';
+      return /Loading operator session|Loading your workspace|Loading\.\.\./i.test(text)
+        || !!document.querySelector('[aria-busy="true"]');
+    }).catch(() => true);
+  }
+  await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => null);
+  await page.waitForTimeout(300);
+  return { settled: !stuckLoading, stuckLoading, settleMs: Date.now() - t0 };
+}
+
+function consentInitForHost(host) {
+  let hostname = 'nestlancer.com';
+  try { hostname = new URL(host).hostname; } catch (_) { /* noop */ }
+  const domain = hostname.endsWith('nestlancer.com') ? '.nestlancer.com' : hostname;
+  return {
+    cookies: [{
+      name: 'nl_cookie_consent',
+      value: 'accepted',
+      domain,
+      path: '/',
+      expires: Math.floor(Date.now() / 1000) + 86400 * 365,
+    }],
+    initScript: () => {
+      try { localStorage.setItem('nestlancer-cookie-consent', 'accepted'); } catch (_) { /* noop */ }
+    },
+  };
+}
+
 /* -------------------------------------------------------------- visit */
 async function visit(v, contexts) {
   const out = { app: v.app, role: v.role, route: v.route, prompts: [...v.prompts].sort() };
@@ -132,11 +192,19 @@ async function visit(v, contexts) {
       await page.close().catch(() => null);
       continue;
     }
-    await page.waitForTimeout(750);
+    const ct = (resp && resp.headers()['content-type']) || '';
+    const plainDoc = isPlainDocumentRoute(v.route)
+      || /^(text\/(plain|xml)|application\/(xml|json|rss\+xml|atom\+xml))/i.test(ct);
+    const settle = await settleUi(page, {
+      plainDoc,
+      needH1: !plainDoc && v.role !== 'anon',
+    });
     const rec = {
       status: resp ? resp.status() : 0,
       finalUrl: redactStr(page.url()),
       timingMs: Date.now() - t0,
+      settleMs: settle.settleMs,
+      stuckLoading: settle.stuckLoading,
       consoleErrors: [...new Set(col.console)].slice(0, 50),
       consoleWarnings: [...new Set(col.warns)].slice(0, 20),
       pageErrors: [...new Set(col.pageErrors)].slice(0, 20),
@@ -150,9 +218,6 @@ async function visit(v, contexts) {
       rec.horizontalOverflow = await page.evaluate(
         'document.scrollingElement.scrollWidth > document.documentElement.clientWidth').catch(() => null);
     }
-    const ct = (resp && resp.headers()['content-type']) || '';
-    const plainDoc = isPlainDocumentRoute(v.route)
-      || /^(text\/(plain|xml)|application\/(xml|json|rss\+xml|atom\+xml))/i.test(ct);
     const shot = `${v.app}-${routeSlug(v.route)}-${kind}.png`;
     try { await page.screenshot({ path: path.join(SHOTS, shot), fullPage: kind === 'desktop' }); rec.screenshot = shot; }
     catch (_) { /* noop */ }
@@ -162,6 +227,7 @@ async function visit(v, contexts) {
       // Authenticated roles must not silently land on the login page.
       if (v.role !== 'anon' && /\/(login|register)(\?|$)/i.test(rec.finalUrl)) return 'FAIL-AUTH-REDIRECT';
       if (v.role === 'anon' && !isLikelyPublic(v.route) && /\/(login|register)/.test(rec.finalUrl)) return 'REDIRECT-TO-LOGIN (PASS)';
+      if (rec.stuckLoading) return 'FAIL-STUCK-LOADING';
       if (rec.pageErrors.length) return 'PAGE-ERROR';
       if (rec.failedRequests.length) return 'ASSET-BLOCKED';
       if (rec.consoleErrors.length) {
@@ -174,6 +240,11 @@ async function visit(v, contexts) {
         }
       }
       if (rec.horizontalOverflow && !plainDoc) return 'OVERFLOW-X';
+      // Authenticated HTML pages should expose an h1 after settle (design/a11y bar).
+      if (!plainDoc && v.role !== 'anon' && rec.a11y && Number(rec.a11y.h1Count) === 0
+        && !/\/(login|register)/i.test(rec.finalUrl)) {
+        return 'FAIL-NO-H1';
+      }
       return 'PASS';
     })();
     out[kind] = rec;
@@ -196,6 +267,10 @@ async function getCtx(contexts, app, role, _kind) {
     viewport: DESKTOP,
     baseURL: base,
   });
+  // Hide cookie banner so screenshots score real chrome, not consent chrome.
+  const consent = consentInitForHost(base);
+  await entry.ctx.addCookies(consent.cookies).catch(() => null);
+  await entry.ctx.addInitScript(consent.initScript).catch(() => null);
   if (role === 'anon') {
     entry.ready = true;
     return entry;
